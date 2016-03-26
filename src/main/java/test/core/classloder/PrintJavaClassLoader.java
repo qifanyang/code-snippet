@@ -11,6 +11,9 @@ package test.core.classloder;
  */
 public class PrintJavaClassLoader {
     public static void main(String[] args) {
+        System.out.println("java.class.path = " + System.getProperty("java.class.path"));
+        System.out.println("java.security.manager = " +  System.getProperty("java.security.manager"));
+        System.out.println("java.security.manager = " +  System.getProperty("java.ext.dirs"));
         System.out.println(PrintJavaClassLoader.class.getClassLoader());
         System.out.println(PrintJavaClassLoader.class.getClassLoader().getParent());
         System.out.println(PrintJavaClassLoader.class.getClassLoader().getParent().getParent());
