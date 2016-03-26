@@ -27,6 +27,7 @@ public class Utils {
         Field[] fields = info.getClass().getDeclaredFields();
         int len = 0;
         for(Field f : fields){
+            f.setAccessible(true);
             Object value = f.get(info);
             if(value instanceof Byte){
                 len+=1;
@@ -62,13 +63,14 @@ public class Utils {
         Field[] fields = info.getClass().getDeclaredFields();
 
         for(Field f : fields){
+            f.setAccessible(true);
             Object value = f.get(info);
             Class<?> type = f.getType();
-            if(type == Byte.class){
+            if(type == byte.class){
                 value = dataInput.readByte();
-            }else if(type == Short.class){
+            }else if(type == short.class){
                 value = dataInput.readShort();
-            }else if(type == Integer.class){
+            }else if(type == int.class){
                 value = dataInput.readInt();
             }else if(value instanceof byte[]){
                 if(value != null){
@@ -77,7 +79,7 @@ public class Utils {
                 //如果有可变数组,那么必须有一个 length字段表示字节数组长度
                 Field lengthFiled = info.getClass().getField("length");
                 Object len = lengthFiled.get(info);
-                if(null == len || len == 0){
+                if(null == len || len == Integer.valueOf(0)){
                     throw new IllegalStateException("bytes array length is null");
                 }
                 value = new byte[(int) len];

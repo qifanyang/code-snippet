@@ -28,13 +28,20 @@ public class ClassFileParser {
         minorVersion();
         majorVersion();
         constantPool();
+        accessFlag();
+        thisClass();
+        superClass();
+        interfaces();
+        fields();
+        methods();
+        attributes();
     }
 
     public void magic() throws IOException {
         cf.setMagic(dataInput.readInt());
         offset+=4;
         if(isDebug){
-            System.out.println("offset = "+ offset +",magic = " + Integer.toHexString(cf.getMagic()));
+            System.out.print(Integer.toHexString(cf.getMagic()));
         }
     }
 
@@ -42,7 +49,7 @@ public class ClassFileParser {
         cf.setMinor_version(dataInput.readShort());
         offset+=2;
         if(isDebug){
-            System.out.println("offset = "+ offset +",minor_version = " + cf.getMinor_version());
+            System.out.println(Integer.toHexString(cf.getMinor_version()));
         }
     }
 
@@ -137,7 +144,7 @@ public class ClassFileParser {
                     constantPoolParser = new ConstantInvokeDynamicInfo();
                     break;
                 default:
-                    throw new IllegalStateException("constant pool tag is illegal!!!");
+                    throw new IllegalStateException("constant pool tag is illegal!!!, tag = " + tag + " index = " + i);
             }
             constantPoolParser.parse(dataInput);
             cpInfo.setTag(constantPoolParser.getTag());
@@ -182,16 +189,50 @@ public class ClassFileParser {
         fieldsCount();
         short fields_count = cf.getFields_count();
         FieldInfo fields[] = new FieldInfo[fields_count];
+        cf.setFields(fields);
         for(int i = 0; i < fields_count; i++) {
             FieldInfo fieldInfo = new FieldInfo();
+            fieldInfo.parse(dataInput);
+            fields[i] = fieldInfo;
+        }
+    }
 
+    public void methodsCount() throws IOException {
+        cf.setMethods_count(dataInput.readShort());
+    }
 
+    public void methods() throws IOException {
+        methodsCount();
+        short methods_count = cf.getMethods_count();
+        MethodInfo methods[] = new MethodInfo[methods_count];
+        cf.setMethods(methods);
+        for(int i = 0; i < methods_count; i++){
+            MethodInfo methodInfo = new MethodInfo();
+            methodInfo.parse(dataInput);
+            methods[i] = methodInfo;
+        }
+    }
+
+    public void attributesCount() throws IOException {
+        cf.setAttributes_count(dataInput.readShort());
+    }
+
+    public void attributes() throws IOException {
+        attributesCount();
+        short attributes_count = cf.getAttributes_count();
+        AttributeInfo attributes[] = new AttributeInfo[attributes_count];
+        cf.setAttributes(attributes);
+
+        for(int i = 0; i < attributes_count; i++){
+            AttributeInfo attributeInfo = new AttributeInfo();
+            attributeInfo.parse(dataInput);
+            attributes[i] = attributeInfo;
         }
     }
 
     public static void main(String[] args) throws Exception {
 //        InputStream in = ClassFileParser.class.getClassLoader().getResourceAsStream("");
-        File file = new File(System.getProperty("user.dir") + "\\target\\classes\\test\\core\\base\\LongTest.class").getCanonicalFile();
+        File file = new File(System.getProperty("user.dir") + "\\target\\classes\\A.class").getCanonicalFile();
         System.out.println("file = " + file.getAbsolutePath());
         FileInputStream fis = new FileInputStream(file);
         DataInputStream dataInput = new DataInputStream(fis);

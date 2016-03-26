@@ -19,7 +19,7 @@ public class ConstantIntegerInfo implements IConstantPoolParser {
     byte bytes[] = new byte[4];//Big-Endian , byte short boolean char 都用integer表示
 
     public void parse(DataInput dataInput) throws IOException {
-        tag = dataInput.readByte();
+//        tag = dataInput.readByte();
         dataInput.readFully(bytes);
     }
     public byte getTag() {

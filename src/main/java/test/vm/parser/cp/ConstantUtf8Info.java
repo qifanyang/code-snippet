@@ -26,7 +26,7 @@ public class ConstantUtf8Info implements IConstantPoolParser {
      * @throws IOException
      */
     public void parse(DataInput dataInput) throws IOException {
-        tag = dataInput.readByte();
+//        tag = dataInput.readByte();
         length = dataInput.readShort();
         bytes = new byte[length];
         dataInput.readFully(bytes);

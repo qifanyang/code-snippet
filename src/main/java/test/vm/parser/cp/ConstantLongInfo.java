@@ -15,12 +15,12 @@ import java.io.IOException;
  * @version 1.0 2016/3/26
  */
 public class ConstantLongInfo implements IConstantPoolParser {
-    byte tag;
+    byte tag = 5;
     byte high_bytes[] = new byte[4];
     byte low_bytes[] = new byte[4];
 
     public void parse(DataInput dataInput) throws IOException {
-        tag = dataInput.readByte();
+//        tag = dataInput.readByte();
         dataInput.readFully(high_bytes);
         dataInput.readFully(low_bytes);
     }

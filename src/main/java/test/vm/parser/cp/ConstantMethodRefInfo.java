@@ -16,13 +16,15 @@ import java.io.IOException;
  * @version 1.0 2016/3/26
  */
 public class ConstantMethodRefInfo implements IConstantPoolParser {
-    byte tag;
+    byte tag = 10;
     short class_index;
     short name_and_type_index;
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
-        Utils.readFromDataInput(this, dataInput);
+//        Utils.readFromDataInput(this, dataInput);
+        class_index = dataInput.readShort();
+        name_and_type_index = dataInput.readShort();
     }
 
     @Override

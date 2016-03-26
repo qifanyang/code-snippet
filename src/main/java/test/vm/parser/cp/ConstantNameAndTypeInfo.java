@@ -23,7 +23,9 @@ public class ConstantNameAndTypeInfo implements IConstantPoolParser {
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
-        Utils.readFromDataInput(this, dataInput);
+//        Utils.readFromDataInput(this, dataInput);
+        name_index = dataInput.readShort();
+        descriptor_index = dataInput.readShort();
     }
     public byte getTag() {
         return tag;

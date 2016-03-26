@@ -26,7 +26,7 @@ public class ClassFile {
     private short fields_count;
     private FieldInfo fields[];
     private short methods_count;
-    private MethodInterceptor methods[];
+    private MethodInfo methods[];
     private short attributes_count;
     private AttributeInfo attributes[];
 
@@ -134,11 +134,11 @@ public class ClassFile {
         this.methods_count = methods_count;
     }
 
-    public MethodInterceptor[] getMethods() {
+    public MethodInfo[] getMethods() {
         return methods;
     }
 
-    public void setMethods(MethodInterceptor[] methods) {
+    public void setMethods(MethodInfo[] methods) {
         this.methods = methods;
     }
 

@@ -19,7 +19,7 @@ public class ConstantFloatInfo  implements IConstantPoolParser {
     byte bytes[] = new byte[4];//Big-Endian
 
     public void parse(DataInput dataInput) throws Exception {
-        tag = dataInput.readByte();
+//        tag = dataInput.readByte();
         dataInput.readFully(bytes);
     }
 

@@ -16,13 +16,15 @@ import java.io.IOException;
  * @version 1.0 2016/3/26
  */
 public class ConstantInvokeDynamicInfo implements IConstantPoolParser {
-    byte tag;
+    byte tag = 18;
     short bootstrap_method_attr_index;
     short name_and_type_index;
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
-        Utils.readFromDataInput(this, dataInput);
+//        Utils.readFromDataInput(this, dataInput);
+        bootstrap_method_attr_index = dataInput.readShort();
+        name_and_type_index = dataInput.readShort();
     }
 
     @Override

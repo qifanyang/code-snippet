@@ -22,7 +22,9 @@ public class ConstantFieldrefInfo  implements IConstantPoolParser {
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
-        Utils.readFromDataInput(this, dataInput);
+//        Utils.readFromDataInput(this, dataInput);
+        classIndex = dataInput.readShort();
+        nameAndTypeIndex = dataInput.readShort();
     }
 
     public byte getTag() {

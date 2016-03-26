@@ -14,17 +14,15 @@ import java.io.IOException;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantClassInfo  implements IConstantPoolParser {
-    byte tag = 7;
-    short length;
-    byte bytes[];
+public class ConstantClassInfo implements IConstantPoolParser {
+    byte tag = 7;//在cp_info中已经有tag, 所以这里的tag只可以确定
+    short name_index;
+//    byte bytes[];
 
     @Override
     public void parse(DataInput dataInput) throws IOException {
-        tag = dataInput.readByte();
-        length = dataInput.readShort();
-        bytes = new byte[length];
-        dataInput.readFully(bytes);
+//        tag = dataInput.readByte();
+        name_index = dataInput.readShort();
     }
 
     public byte getTag() {
@@ -35,19 +33,11 @@ public class ConstantClassInfo  implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getLength() {
-        return length;
+    public short getName_index() {
+        return name_index;
     }
 
-    public void setLength(short length) {
-        this.length = length;
-    }
-
-    public byte[] getBytes() {
-        return bytes;
-    }
-
-    public void setBytes(byte[] bytes) {
-        this.bytes = bytes;
+    public void setName_index(short name_index) {
+        this.name_index = name_index;
     }
 }

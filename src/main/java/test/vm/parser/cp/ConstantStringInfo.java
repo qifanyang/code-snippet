@@ -16,11 +16,12 @@ import java.io.IOException;
  * @version 1.0 2016/3/26
  */
 public class ConstantStringInfo implements IConstantPoolParser {
-    byte tag;
+    byte tag = 8;
     short string_index;
     @Override
     public void parse(DataInput dataInput) throws Exception {
-        Utils.readFromDataInput(this, dataInput);
+//        Utils.readFromDataInput(this, dataInput);
+        string_index = dataInput.readShort();
     }
 
     @Override

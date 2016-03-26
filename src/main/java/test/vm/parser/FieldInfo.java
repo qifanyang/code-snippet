@@ -25,7 +25,11 @@ public class FieldInfo {
         descriptor_index = dataInput.readShort();
         attributes_count = dataInput.readShort();
         attributes = new AttributeInfo[attributes_count];
-
+        for(int i = 0; i < attributes_count; i++){
+            AttributeInfo attributeInfo = new AttributeInfo();
+            attributeInfo.parse(dataInput);
+            attributes[i] = attributeInfo;
+        }
     }
 
     public short getAccess_flags() {
