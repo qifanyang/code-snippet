@@ -13,12 +13,14 @@ import java.io.IOException;
 @lombok.Data
 public class ConstantLongInfo implements IConstantPoolObject {
     U1 tag = U1.of(5);
-    U4 high_bytes[] = new U4[4];
-    U4 low_bytes[] = new U4[4];
+    U1 high_bytes[] = new U1[4];
+    U1 low_bytes[] = new U1[4];
 
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
+        reader.readBytes(high_bytes);
+        reader.readBytes(low_bytes);
 
     }
 }

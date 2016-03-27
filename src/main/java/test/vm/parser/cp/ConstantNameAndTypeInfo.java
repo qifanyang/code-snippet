@@ -21,6 +21,7 @@ public class ConstantNameAndTypeInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        name_index = reader.readU2();
+        descriptor_index = reader.readU2();
     }
 }

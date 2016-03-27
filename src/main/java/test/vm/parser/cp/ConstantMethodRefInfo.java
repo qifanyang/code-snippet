@@ -20,7 +20,8 @@ public class ConstantMethodRefInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        class_index = reader.readU2();
+        name_and_type_index = reader.readU2();
     }
 
 }

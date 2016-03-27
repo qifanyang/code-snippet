@@ -3,9 +3,7 @@ package test.vm.parser.cp;
 import test.vm.parser.ClassFileReader;
 import test.vm.parser.IConstantPoolObject;
 import test.vm.parser.U1;
-import test.vm.parser.Utils;
 
-import java.io.DataInput;
 import java.io.IOException;
 
 /**
@@ -20,7 +18,8 @@ public class ConstantDoubleInfo  implements IConstantPoolObject {
     U1 low_bytes[] = new U1[4];
 
     public void parse(ClassFileReader reader) throws IOException {
-
+        reader.readBytes(high_bytes);
+        reader.readBytes(low_bytes);
     }
 
 }

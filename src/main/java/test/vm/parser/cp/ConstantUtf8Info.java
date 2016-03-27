@@ -19,6 +19,8 @@ public class ConstantUtf8Info implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        length = reader.readU2();
+        bytes = new U1[length.value];
+        reader.readBytes(bytes);
     }
 }

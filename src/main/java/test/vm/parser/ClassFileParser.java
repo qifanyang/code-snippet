@@ -144,7 +144,7 @@ public class ClassFileParser {
                     constantPoolObject = new ConstantInvokeDynamicInfo();
                     break;
                 default:
-                    throw new IllegalStateException("constant pool tag is illegal!!!, tag = " + tag + " index = " + i);
+                    throw new IllegalStateException("constant pool tag is illegal!!!, tag = " + tag.value + " index = " + i);
             }
             constantPoolObject.parse(reader);
             cpInfo.setTag(constantPoolObject.getTag());

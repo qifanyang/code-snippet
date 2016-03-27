@@ -19,6 +19,6 @@ public class ConstantMethodTypeInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        descriptor_index = reader.readU2();
     }
 }

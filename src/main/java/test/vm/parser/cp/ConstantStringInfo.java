@@ -19,6 +19,6 @@ public class ConstantStringInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        string_index = reader.readU2();
     }
 }

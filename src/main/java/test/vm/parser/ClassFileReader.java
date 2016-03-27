@@ -29,4 +29,10 @@ public class ClassFileReader {
         int i = dataInput.readInt();
         return U4.of(i);
     }
+
+    public void readBytes(U1[] u1s) throws IOException {
+        for(int i = 0; i < u1s.length; i++){
+            u1s[i] = readU1();
+        }
+    }
 }

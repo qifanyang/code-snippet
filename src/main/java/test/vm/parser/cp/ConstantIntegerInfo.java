@@ -21,6 +21,6 @@ public class ConstantIntegerInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        reader.readBytes(bytes);
     }
 }

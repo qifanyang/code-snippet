@@ -18,10 +18,10 @@ public class ConstantFieldrefInfo implements IConstantPoolObject {
     U2 class_index;//指向常量池的索引,值类型ClassInfo
     U2 name_and_type_index;//指向常量池的索引,name_and_type_info
 
-
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        class_index = reader.readU2();
+        name_and_type_index = reader.readU2();
     }
 
 

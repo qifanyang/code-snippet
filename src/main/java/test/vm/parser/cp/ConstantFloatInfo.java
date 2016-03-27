@@ -20,6 +20,6 @@ public class ConstantFloatInfo  implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        reader.readBytes(bytes);
     }
 }

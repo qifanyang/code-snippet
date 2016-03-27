@@ -21,6 +21,7 @@ public class ConstantInvokeDynamicInfo implements IConstantPoolObject {
 
     @Override
     public void parse(ClassFileReader reader) throws Exception {
-
+        bootstrap_method_attr_index = reader.readU2();
+        name_and_type_index = reader.readU2();
     }
 }
