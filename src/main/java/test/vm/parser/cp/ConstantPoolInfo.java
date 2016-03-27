@@ -1,38 +1,17 @@
 package test.vm.parser.cp;
 
 import test.vm.parser.IConstantPoolObject;
+import test.vm.parser.U1;
 
 /**
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
+@lombok.Data
 public class ConstantPoolInfo {
-    byte tag;
-    int info[];
+    U1 tag;
+    U1 info[];
     IConstantPoolObject constantPoolObject;
 
-    public byte getTag() {
-        return tag;
-    }
-
-    public void setTag(byte tag) {
-        this.tag = tag;
-    }
-
-    public int[] getInfo() {
-        return info;
-    }
-
-    public void setInfo(int[] info) {
-        this.info = info;
-    }
-
-    public IConstantPoolObject getConstantPoolObject() {
-        return constantPoolObject;
-    }
-
-    public void setConstantPoolObject(IConstantPoolObject constantPoolObject) {
-        this.constantPoolObject = constantPoolObject;
-    }
 }

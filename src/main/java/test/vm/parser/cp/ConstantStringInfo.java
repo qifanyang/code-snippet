@@ -1,6 +1,9 @@
 package test.vm.parser.cp;
 
+import test.vm.parser.ClassFileReader;
 import test.vm.parser.IConstantPoolObject;
+import test.vm.parser.U1;
+import test.vm.parser.U2;
 
 import java.io.DataInput;
 
@@ -9,29 +12,13 @@ import java.io.DataInput;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
+@lombok.Data
 public class ConstantStringInfo implements IConstantPoolObject {
-    byte tag = 8;
-    int string_index;//指向constant_utf8_info的索引
-    @Override
-    public void parse(DataInput dataInput) throws Exception {
-//        Utils.readFromDataInput(this, dataInput);
-        string_index = dataInput.readUnsignedShort();
-    }
+    U1 tag = U1.of(8);
+    U2 string_index;//指向constant_utf8_info的索引
 
     @Override
-    public byte getTag() {
-        return tag;
-    }
+    public void parse(ClassFileReader reader) throws Exception {
 
-    public void setTag(byte tag) {
-        this.tag = tag;
-    }
-
-    public int getString_index() {
-        return string_index;
-    }
-
-    public void setString_index(int string_index) {
-        this.string_index = string_index;
     }
 }

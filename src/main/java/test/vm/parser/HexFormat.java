@@ -31,20 +31,22 @@ public class HexFormat {
 
     /**
      * 格式化输出无符号short,截取低16位
-     * @param i
+     * @param u2
      */
-    public void formatU2(int i){
+    public void formatU2(U2 u2){
+        int i = u2.value;
         short high = (short) ((i & 0xFF00) >> 8);
         short low = (short) (i & 0xFF);
         formatU1(high);
         formatU1(low);
     }
 
-    public void formatU4(long i){
+    public void formatU4(U4 u4){
+        long i = u4.value;
         int high = (int) ((i & 0xFFFF0000) >> 16);//
         int low = (int) (i & 0xFFFF);
-        formatU2(high);
-        formatU2(low);
+        formatU2(U2.of(high));
+        formatU2(U2.of(low));
     }
 
     public void format(int[] bytes){
@@ -75,14 +77,12 @@ public class HexFormat {
 
     public static void main(String[] args) {
         HexFormat hexFormat = new HexFormat();
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
-        hexFormat.formatU2(51966);
+        hexFormat.formatU2(U2.of(51966));
+        hexFormat.formatU2(U2.of(51966));
+        hexFormat.formatU2(U2.of(51966));
+        hexFormat.formatU2(U2.of(51966));
+        hexFormat.formatU2(U2.of(51966));
+        hexFormat.formatU2(U2.of(51966));
+
     }
 }

@@ -10,8 +10,8 @@ import java.io.IOException;
  */
 public interface IConstantPoolObject {
 
-    public void parse(DataInput dataInput) throws Exception;
+    public void parse(ClassFileReader reader) throws Exception;
 
-    public byte getTag();
+    public U1 getTag();
 
 }

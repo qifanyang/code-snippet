@@ -1,6 +1,9 @@
 package test.vm.parser.cp;
 
+import test.vm.parser.ClassFileReader;
 import test.vm.parser.IConstantPoolObject;
+import test.vm.parser.U1;
+import test.vm.parser.U2;
 
 import java.io.DataInput;
 
@@ -9,38 +12,15 @@ import java.io.DataInput;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
+@lombok.Data
 public class ConstantNameAndTypeInfo implements IConstantPoolObject {
-    byte tag = 12;
-    int name_index;//指向常量池的一个索引,在常量池中的数据类型为utf8_info
-    int descriptor_index;//描述符,字段类型和方法描述符
+    U1 tag = U1.of(12);
+    U2 name_index;//指向常量池的一个索引,在常量池中的数据类型为utf8_info
+    U2 descriptor_index;//描述符,字段类型和方法描述符
 
 
     @Override
-    public void parse(DataInput dataInput) throws Exception {
-//        Utils.readFromDataInput(this, dataInput);
-        name_index = dataInput.readUnsignedShort();
-        descriptor_index = dataInput.readUnsignedShort();
-    }
-    public byte getTag() {
-        return tag;
-    }
-    public void setTag(byte tag) {
-        this.tag = tag;
-    }
+    public void parse(ClassFileReader reader) throws Exception {
 
-    public int getName_index() {
-        return name_index;
-    }
-
-    public void setName_index(int name_index) {
-        this.name_index = name_index;
-    }
-
-    public int getDescriptor_index() {
-        return descriptor_index;
-    }
-
-    public void setDescriptor_index(int descriptor_index) {
-        this.descriptor_index = descriptor_index;
     }
 }

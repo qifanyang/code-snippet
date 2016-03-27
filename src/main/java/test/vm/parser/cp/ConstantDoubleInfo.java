@@ -1,6 +1,8 @@
 package test.vm.parser.cp;
 
+import test.vm.parser.ClassFileReader;
 import test.vm.parser.IConstantPoolObject;
+import test.vm.parser.U1;
 import test.vm.parser.Utils;
 
 import java.io.DataInput;
@@ -11,37 +13,14 @@ import java.io.IOException;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
+@lombok.Data
 public class ConstantDoubleInfo  implements IConstantPoolObject {
-    byte tag = 6;
-    int high_bytes[] = new int[4];
-    int low_bytes[] = new int[4];
+    U1 tag = U1.of(6);
+    U1 high_bytes[] = new U1[4];
+    U1 low_bytes[] = new U1[4];
 
-    public void parse(DataInput dataInput) throws IOException {
-        Utils.readUnsignedBytes(high_bytes,dataInput);
-        Utils.readUnsignedBytes(low_bytes,dataInput);
+    public void parse(ClassFileReader reader) throws IOException {
+
     }
 
-    public byte getTag() {
-        return tag;
-    }
-
-    public void setTag(byte tag) {
-        this.tag = tag;
-    }
-
-    public int[] getHigh_bytes() {
-        return high_bytes;
-    }
-
-    public void setHigh_bytes(int[] high_bytes) {
-        this.high_bytes = high_bytes;
-    }
-
-    public int[] getLow_bytes() {
-        return low_bytes;
-    }
-
-    public void setLow_bytes(int[] low_bytes) {
-        this.low_bytes = low_bytes;
-    }
 }

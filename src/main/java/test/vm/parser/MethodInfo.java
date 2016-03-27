@@ -8,74 +8,28 @@ import java.io.IOException;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
+@lombok.Data
 public class MethodInfo {
-    short access_flags;
-    short name_index;
-    short descriptor_index;
-    short attributes_count;
+    U2 access_flags;
+    U2 name_index;
+    U2 descriptor_index;
+    U2 attributes_count;
     AttributeInfo attributes[];
 
     ClassFile cf;
 
-    public void parse(DataInput dataInput) throws IOException {
-        access_flags = dataInput.readShort();
-        name_index = dataInput.readShort();
-        descriptor_index = dataInput.readShort();
-        attributes_count = dataInput.readShort();
-        attributes = new AttributeInfo[attributes_count];
-        for(int i = 0; i < attributes_count; i++){
+    public void parse(ClassFileReader reader) throws IOException {
+        access_flags = reader.readU2();
+        name_index = reader.readU2();
+        descriptor_index = reader.readU2();
+        attributes_count = reader.readU2();
+        attributes = new AttributeInfo[attributes_count.value];
+        for(int i = 0; i < attributes_count.value; i++){
             AttributeInfo attributeInfo = new AttributeInfo();
             attributeInfo.setCf(cf);
-            attributeInfo.parse(dataInput);
+            attributeInfo.parse(reader);
             attributes[i] = attributeInfo;
         }
     }
 
-    public short getAccess_flags() {
-        return access_flags;
-    }
-
-    public void setAccess_flags(short access_flags) {
-        this.access_flags = access_flags;
-    }
-
-    public short getName_index() {
-        return name_index;
-    }
-
-    public void setName_index(short name_index) {
-        this.name_index = name_index;
-    }
-
-    public short getDescriptor_index() {
-        return descriptor_index;
-    }
-
-    public void setDescriptor_index(short descriptor_index) {
-        this.descriptor_index = descriptor_index;
-    }
-
-    public short getAttributes_count() {
-        return attributes_count;
-    }
-
-    public void setAttributes_count(short attributes_count) {
-        this.attributes_count = attributes_count;
-    }
-
-    public AttributeInfo[] getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(AttributeInfo[] attributes) {
-        this.attributes = attributes;
-    }
-
-    public ClassFile getCf() {
-        return cf;
-    }
-
-    public void setCf(ClassFile cf) {
-        this.cf = cf;
-    }
 }

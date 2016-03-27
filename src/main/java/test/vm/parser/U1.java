@@ -7,4 +7,10 @@ package test.vm.parser;
  */
 public class U1 {
     public int value;
+
+    public static U1 of(int value){
+        U1 u1 = new U1();
+        u1.value = value;
+        return u1;
+    }
 }

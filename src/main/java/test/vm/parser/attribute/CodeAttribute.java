@@ -1,7 +1,6 @@
 package test.vm.parser.attribute;
 
-import test.vm.parser.AttributeInfo;
-import test.vm.parser.ClassFile;
+import test.vm.parser.*;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -13,13 +12,13 @@ import java.io.IOException;
 
 @lombok.Data
 public class CodeAttribute {
-    short attribute_name_index;
-    int attribute_length;
-    short max_stack;
-    short max_locals;
-    int code_length;
-    byte code[];
-    short exception_table_length;
+    U2 attribute_name_index;
+    U4 attribute_length;
+    U2 max_stack;
+    U2 max_locals;
+    U4 code_length;
+    U1 code[];
+    U2 exception_table_length;
     //TODO 异常表
     /**
      * {
@@ -29,26 +28,26 @@ public class CodeAttribute {
      * u2 catch_type;
      * } exception_table[exception_table_length];
      */
-    short attribute_count;
+    U2 attribute_count;
     AttributeInfo attributes[];
 
     ClassFile cf;
 
-    public void parse(DataInput dataInput) throws IOException {
-        attribute_name_index = dataInput.readShort();
-        attribute_length = dataInput.readInt();
-        max_stack = dataInput.readShort();
-        max_locals = dataInput.readShort();
-        code_length = dataInput.readInt();
-        code = new byte[code_length];
-        dataInput.readFully(code);
-        exception_table_length = dataInput.readShort();
-        attribute_count = dataInput.readShort();
-        attributes = new AttributeInfo[attribute_count];
-        for(int i = 0; i < attribute_count; i++){
+    public void parse(ClassFileReader reader) throws IOException {
+        attribute_name_index = reader.readU2();
+        attribute_length = reader.readU4();
+        max_stack = reader.readU2();
+        max_locals = reader.readU2();
+        code_length = reader.readU4();
+        code = new U1[(int) code_length.value];
+//        dataInput.readFully(code);
+        exception_table_length = reader.readU2();
+        attribute_count = reader.readU2();
+        attributes = new AttributeInfo[attribute_count.value];
+        for(int i = 0; i < attribute_count.value; i++){
             AttributeInfo attributeInfo = new AttributeInfo();
             attributeInfo.setCf(cf);
-            attributeInfo.parse(dataInput);
+            attributeInfo.parse(reader);
             attributes[i] = attributeInfo;
         }
     }
