@@ -2,33 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e1def8ba-7a6f-44a1-97ba-753c9b97d879" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/ConstantPoolParserRegistry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/HexFormat.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/c/test.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/AttributeInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/AttributeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/ClassFile.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/ClassFile.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/ClassFileParser.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/ClassFileParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantClassInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantClassInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantDoubleInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantDoubleInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFloatInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFloatInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantIntegerInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantIntegerInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInterfaceMethodRefInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInterfaceMethodRefInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInvokeDynamicInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInvokeDynamicInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantLongInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantLongInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodHandleInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodHandleInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodRefInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodRefInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodTypeInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantMethodTypeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantNameAndTypeInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantNameAndTypeInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantPoolInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantPoolInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantStringInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantStringInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantUtf8Info.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantUtf8Info.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/FieldInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/FieldInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/IConstantPoolParser.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/IConstantPoolParser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/MethodInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/MethodInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/Utils.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/Utils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/VirtualMachine.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/VirtualMachine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFieldrefInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFieldrefInfo.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="E:\code-snippet\src\main\java\test\vm\parser\cp\ConstantFieldrefInfo.java" afterPath="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFieldRefInfo.java" />
     </list>
     <ignored path="snippet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,18 +38,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ConstantInterfaceMethodRefInfo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInterfaceMethodRefInfo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="21" column="57" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="57" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ConstantInvokeDynamicInfo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantInvokeDynamicInfo.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -168,14 +132,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstantUtf8Info.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConstantUtf8Info.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantUtf8Info.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62222224">
-              <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -201,7 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/resources/bean-jdbc.xml" />
         <option value="$PROJECT_DIR$/src/main/java/test/spring/jdbc/JdbcTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/algorithm/TokenBucket.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/spring/jdbc/SelectTest.java" />
@@ -252,6 +225,7 @@
         <option value="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantNameAndTypeInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantStringInfo.java" />
         <option value="$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantUtf8Info.java" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -1008,7 +982,7 @@
       <workItem from="1458522673760" duration="10429000" />
       <workItem from="1458874649984" duration="1553000" />
       <workItem from="1458980128667" duration="19517000" />
-      <workItem from="1459055104814" duration="3667000" />
+      <workItem from="1459055104814" duration="3804000" />
     </task>
     <task id="LOCAL-00001" summary="添加静态代理代码片段">
       <created>1453456094242</created>
@@ -1076,11 +1050,17 @@
       <option name="project" value="LOCAL" />
       <updated>1459006633228</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="jvm中u1,u2,u4用的无符号,所以将索引short改为int">
+      <created>1459058801619</created>
+      <option name="number" value="00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1459058801619</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208934000" />
+    <option name="totallyTimeSpent" value="209071000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="-8" width="1456" height="916" extended-state="6" />
@@ -1088,12 +1068,12 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33248407" sideWeight="0.47236505" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33248407" sideWeight="0.47236505" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294271" sideWeight="0.5025" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32969153" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.50063694" sideWeight="0.4975" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.50063694" sideWeight="0.4975" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32356688" sideWeight="0.4807198" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32885906" sideWeight="0.49485862" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1311,13 +1291,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/src.zip!/java/net/URLClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_65/jre/lib/rt.jar!/sun/misc/URLClassPath.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1719,7 +1692,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFieldRefInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantFieldrefInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
@@ -1839,11 +1812,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/test/vm/parser/cp/ConstantUtf8Info.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62222224">
-          <caret line="45" column="15" selection-start-line="45" selection-start-column="15" selection-end-line="45" selection-end-column="15" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

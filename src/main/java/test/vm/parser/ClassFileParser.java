@@ -112,7 +112,7 @@ public class ClassFileParser {
                     break;
                 case 9:
                     //constant_fieldref
-                    constantPoolParser = new ConstantFieldRefInfo();
+                    constantPoolParser = new ConstantFieldrefInfo();
                     break;
                 case 10:
                     //constant_methodref

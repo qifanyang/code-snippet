@@ -1,30 +1,24 @@
 package test.vm.parser.cp;
 
 import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
- * Title:
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantFieldrefInfo  implements IConstantPoolParser {
+public class ConstantFieldrefInfo implements IConstantPoolParser {
     byte tag = 9;
-    short classIndex;//指向常量池的索引,值类型ClassInfo
-    short nameAndTypeIndex;//指向常量池的索引
+    int class_index;//指向常量池的索引,值类型ClassInfo
+    int name_and_type_index;//指向常量池的索引,name_and_type_info
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
 //        Utils.readFromDataInput(this, dataInput);
-        classIndex = dataInput.readShort();
-        nameAndTypeIndex = dataInput.readShort();
+        class_index = dataInput.readUnsignedShort();
+        name_and_type_index = dataInput.readUnsignedShort();
     }
 
     public byte getTag() {
@@ -35,19 +29,19 @@ public class ConstantFieldrefInfo  implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getClassIndex() {
-        return classIndex;
+    public int getClass_index() {
+        return class_index;
     }
 
-    public void setClassIndex(short classIndex) {
-        this.classIndex = classIndex;
+    public void setClass_index(int class_index) {
+        this.class_index = class_index;
     }
 
-    public short getNameAndTypeIndex() {
-        return nameAndTypeIndex;
+    public int getName_and_type_index() {
+        return name_and_type_index;
     }
 
-    public void setNameAndTypeIndex(short nameAndTypeIndex) {
-        this.nameAndTypeIndex = nameAndTypeIndex;
+    public void setName_and_type_index(int name_and_type_index) {
+        this.name_and_type_index = name_and_type_index;
     }
 }
