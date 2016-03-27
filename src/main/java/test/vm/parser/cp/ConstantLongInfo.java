@@ -1,6 +1,6 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
+import test.vm.parser.IConstantPoolObject;
 import test.vm.parser.Utils;
 
 import java.io.DataInput;
@@ -11,7 +11,7 @@ import java.io.IOException;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantLongInfo implements IConstantPoolParser {
+public class ConstantLongInfo implements IConstantPoolObject {
     byte tag = 5;
     int high_bytes[] = new int[4];
     int low_bytes[] = new int[4];

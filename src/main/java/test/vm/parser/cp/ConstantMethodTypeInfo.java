@@ -1,17 +1,15 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
  *表示方法类型,这里和name_and_type有点重复
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantMethodTypeInfo implements IConstantPoolParser {
+public class ConstantMethodTypeInfo implements IConstantPoolObject {
     byte tag = 16;
     int descriptor_index;
     @Override

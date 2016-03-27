@@ -1,6 +1,6 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
 
@@ -9,7 +9,7 @@ import java.io.DataInput;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantFieldrefInfo implements IConstantPoolParser {
+public class ConstantFieldrefInfo implements IConstantPoolObject {
     byte tag = 9;
     int class_index;//指向常量池的索引,值类型ClassInfo
     int name_and_type_index;//指向常量池的索引,name_and_type_info

@@ -1,17 +1,15 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
  *用于表示字段和方法,由名字和描述构成,当然这里也只是存储指向utf8_info的索引
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantNameAndTypeInfo implements IConstantPoolParser {
+public class ConstantNameAndTypeInfo implements IConstantPoolObject {
     byte tag = 12;
     int name_index;//指向常量池的一个索引,在常量池中的数据类型为utf8_info
     int descriptor_index;//描述符,字段类型和方法描述符

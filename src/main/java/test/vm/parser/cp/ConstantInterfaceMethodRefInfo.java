@@ -1,17 +1,15 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantInterfaceMethodRefInfo implements IConstantPoolParser {
+public class ConstantInterfaceMethodRefInfo implements IConstantPoolObject {
     byte tag = 11;
     int class_index;
     int name_and_type_index;

@@ -10,13 +10,13 @@ import java.util.Map;
  */
 public class ConstantPoolParserRegistry {
 
-    private static Map<Integer, IConstantPoolParser> parserMap = new HashMap<>();
+    private static Map<Integer, IConstantPoolObject> parserMap = new HashMap<>();
 
-    public static void registry(Integer tag, IConstantPoolParser parser) {
+    public static void registry(Integer tag, IConstantPoolObject parser) {
         parserMap.put(tag, parser);
     }
 
-    public static IConstantPoolParser fetch(Integer tag) {
+    public static IConstantPoolObject fetch(Integer tag) {
         return parserMap.get(tag);
     }
 }

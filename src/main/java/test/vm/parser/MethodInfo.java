@@ -15,6 +15,8 @@ public class MethodInfo {
     short attributes_count;
     AttributeInfo attributes[];
 
+    ClassFile cf;
+
     public void parse(DataInput dataInput) throws IOException {
         access_flags = dataInput.readShort();
         name_index = dataInput.readShort();
@@ -23,6 +25,7 @@ public class MethodInfo {
         attributes = new AttributeInfo[attributes_count];
         for(int i = 0; i < attributes_count; i++){
             AttributeInfo attributeInfo = new AttributeInfo();
+            attributeInfo.setCf(cf);
             attributeInfo.parse(dataInput);
             attributes[i] = attributeInfo;
         }
@@ -66,5 +69,13 @@ public class MethodInfo {
 
     public void setAttributes(AttributeInfo[] attributes) {
         this.attributes = attributes;
+    }
+
+    public ClassFile getCf() {
+        return cf;
+    }
+
+    public void setCf(ClassFile cf) {
+        this.cf = cf;
     }
 }

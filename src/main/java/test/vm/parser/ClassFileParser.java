@@ -15,9 +15,11 @@ public class ClassFileParser {
     private DataInput dataInput;
     private int offset;
     private boolean isDebug;
+    private HexFormat hf;
 
     public ClassFileParser() {
         cf = new ClassFile();
+        hf = new HexFormat();
     }
 
     public void parse() throws Exception {
@@ -38,7 +40,7 @@ public class ClassFileParser {
         cf.setMagic(dataInput.readInt());
         offset+=4;
         if(isDebug){
-            System.out.print(Integer.toHexString(cf.getMagic()));
+            hf.formatU4(cf.getMagic());
         }
     }
 
@@ -46,7 +48,7 @@ public class ClassFileParser {
         cf.setMinor_version(dataInput.readShort());
         offset+=2;
         if(isDebug){
-            System.out.println(Integer.toHexString(cf.getMinor_version()));
+            hf.formatU2(cf.getMinor_version());
         }
     }
 
@@ -54,7 +56,7 @@ public class ClassFileParser {
         cf.setMajor_version(dataInput.readShort());
         offset+=2;
         if(isDebug){
-            System.out.println("offset = "+ offset +",major_version = " + cf.getMajor_version());
+            hf.formatU2(cf.getMajor_version());
         }
     }
 
@@ -62,7 +64,7 @@ public class ClassFileParser {
         cf.setConstant_pool_count(dataInput.readShort());
         offset+=2;
         if(isDebug){
-            System.out.println("offset = "+ offset +"constant_pool_count = " + cf.getConstant_pool_count());
+            hf.formatU2(cf.getConstant_pool_count());
         }
     }
 
@@ -78,74 +80,75 @@ public class ClassFileParser {
         //常量池的索引范围是1至constant_pool_count−1
         for(int i = 1; i < constant_pool_count; i++){
             ConstantPoolInfo cpInfo = new ConstantPoolInfo();
-            IConstantPoolParser constantPoolParser = null;
+            IConstantPoolObject constantPoolObject = null;
             byte tag = dataInput.readByte();//常量池tag
             switch (tag){
                 case 1:
                     //constant_utf8_info
-                    constantPoolParser = new ConstantUtf8Info();
+                    constantPoolObject = new ConstantUtf8Info();
                     break;
                 case 2:
                 case 3:
                     //constant_integer
-                    constantPoolParser = new ConstantIntegerInfo();
+                    constantPoolObject = new ConstantIntegerInfo();
                     break;
                 case 4:
                     //constant_float
-                    constantPoolParser = new ConstantFloatInfo();
+                    constantPoolObject = new ConstantFloatInfo();
                     break;
                 case 5:
                     //constant_long
-                    constantPoolParser = new ConstantLongInfo();
+                    constantPoolObject = new ConstantLongInfo();
                     break;
                 case 6:
                     //constant_double
-                    constantPoolParser = new ConstantDoubleInfo();
+                    constantPoolObject = new ConstantDoubleInfo();
                     break;
                 case 7:
                     //constant_class
-                    constantPoolParser = new ConstantClassInfo();
+                    constantPoolObject = new ConstantClassInfo();
                     break;
                 case 8:
                     //constant_string
-                    constantPoolParser = new ConstantStringInfo();
+                    constantPoolObject = new ConstantStringInfo();
                     break;
                 case 9:
                     //constant_fieldref
-                    constantPoolParser = new ConstantFieldrefInfo();
+                    constantPoolObject = new ConstantFieldrefInfo();
                     break;
                 case 10:
                     //constant_methodref
-                    constantPoolParser = new ConstantMethodRefInfo();
+                    constantPoolObject = new ConstantMethodRefInfo();
                     break;
                 case 11:
                     //constant_interfaceref
-                    constantPoolParser = new ConstantInterfaceMethodRefInfo();
+                    constantPoolObject = new ConstantInterfaceMethodRefInfo();
                     break;
                 case 12:
                     //constant_nameAndType
-                    constantPoolParser = new ConstantNameAndTypeInfo();
+                    constantPoolObject = new ConstantNameAndTypeInfo();
                     break;
                 case 13:
                     break;
                 case 15:
                     //constant_methodHandle
-                    constantPoolParser = new ConstantMethodHandleInfo();
+                    constantPoolObject = new ConstantMethodHandleInfo();
                     break;
                 case 16:
                     //constant_methodType
-                    constantPoolParser = new ConstantMethodTypeInfo();
+                    constantPoolObject = new ConstantMethodTypeInfo();
                     break;
                 case 18:
                     //constant_invokeDynamic
-                    constantPoolParser = new ConstantInvokeDynamicInfo();
+                    constantPoolObject = new ConstantInvokeDynamicInfo();
                     break;
                 default:
                     throw new IllegalStateException("constant pool tag is illegal!!!, tag = " + tag + " index = " + i);
             }
-            constantPoolParser.parse(dataInput);
-            cpInfo.setTag(constantPoolParser.getTag());
-            cpInfo.setInfo(Utils.convert2Bytes(constantPoolParser));
+            constantPoolObject.parse(dataInput);
+            cpInfo.setTag(constantPoolObject.getTag());
+            cpInfo.setConstantPoolObject(constantPoolObject);
+//            cpInfo.setInfo(Utils.convert2Bytes(constantPoolParser));
             constant_pool_info[i] = cpInfo;
         }
 
@@ -205,6 +208,7 @@ public class ClassFileParser {
         cf.setMethods(methods);
         for(int i = 0; i < methods_count; i++){
             MethodInfo methodInfo = new MethodInfo();
+            methodInfo.setCf(cf);
             methodInfo.parse(dataInput);
             methods[i] = methodInfo;
         }

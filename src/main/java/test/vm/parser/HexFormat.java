@@ -8,12 +8,16 @@ package test.vm.parser;
 public class HexFormat {
 
     private int offset;//换行
+    private long pause = 2000;//输出间隔时间,调试
+    private boolean shouldPause = false;
+    //u1-->0 , u2-->1, u4-->2, 索引大的值有一个为true,则当前不暂停
+    private boolean pausePk[] = new boolean[3];
 
     /**
      * 格式化输出无符号byte,截取低8位
      * @param s
      */
-    public void formatUnsignedByte(short s){
+    public void formatU1(int s){
 //        byte high = (byte) ((s & 0xF0) >> 8);
         short b = (short) (s & 0xFF);
         format();
@@ -29,17 +33,35 @@ public class HexFormat {
      * 格式化输出无符号short,截取低16位
      * @param i
      */
-    public void formatUnsignedShort(int i){
+    public void formatU2(int i){
         short high = (short) ((i & 0xFF00) >> 8);
         short low = (short) (i & 0xFF);
-        formatUnsignedByte(high);
-        formatUnsignedByte(low);
+        formatU1(high);
+        formatU1(low);
     }
 
-    public void format(byte[] bytes){
-        for(byte b : bytes){
-            formatUnsignedByte(b);
+    public void formatU4(long i){
+        int high = (int) ((i & 0xFFFF0000) >> 16);//
+        int low = (int) (i & 0xFFFF);
+        formatU2(high);
+        formatU2(low);
+    }
+
+    public void format(int[] bytes){
+        for(int b : bytes){
+            formatU1(b);
         }
+    }
+
+    private void pauseConvert(){
+        if(shouldPause){
+            try {
+                Thread.sleep(pause);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        shouldPause = !shouldPause;
     }
 
     private void format(){
@@ -53,6 +75,14 @@ public class HexFormat {
 
     public static void main(String[] args) {
         HexFormat hexFormat = new HexFormat();
-        hexFormat.formatUnsignedShort(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
+        hexFormat.formatU2(51966);
     }
 }

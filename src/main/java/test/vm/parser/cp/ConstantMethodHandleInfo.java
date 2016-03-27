@@ -1,10 +1,8 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
  * 表示方法句柄,
@@ -13,7 +11,7 @@ import java.io.IOException;
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantMethodHandleInfo implements IConstantPoolParser {
+public class ConstantMethodHandleInfo implements IConstantPoolObject {
     byte tag = 15;
     int reference_kind;
     int reference_index;

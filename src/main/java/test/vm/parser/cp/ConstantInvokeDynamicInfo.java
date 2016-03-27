@@ -1,17 +1,15 @@
 package test.vm.parser.cp;
 
-import test.vm.parser.IConstantPoolParser;
-import test.vm.parser.Utils;
+import test.vm.parser.IConstantPoolObject;
 
 import java.io.DataInput;
-import java.io.IOException;
 
 /**
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
-public class ConstantInvokeDynamicInfo implements IConstantPoolParser {
+public class ConstantInvokeDynamicInfo implements IConstantPoolObject {
     byte tag = 18;
     int bootstrap_method_attr_index;
     int name_and_type_index;
