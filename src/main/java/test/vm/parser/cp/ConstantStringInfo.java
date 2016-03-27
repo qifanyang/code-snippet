@@ -7,21 +7,17 @@ import java.io.DataInput;
 import java.io.IOException;
 
 /**
- * Title:
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
- *
+ * 用于表示字符串对象java.lang.String
  * @author yangqf
  * @version 1.0 2016/3/26
  */
 public class ConstantStringInfo implements IConstantPoolParser {
     byte tag = 8;
-    short string_index;
+    int string_index;//指向constant_utf8_info的索引
     @Override
     public void parse(DataInput dataInput) throws Exception {
 //        Utils.readFromDataInput(this, dataInput);
-        string_index = dataInput.readShort();
+        string_index = dataInput.readUnsignedShort();
     }
 
     @Override
@@ -33,11 +29,11 @@ public class ConstantStringInfo implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getString_index() {
+    public int getString_index() {
         return string_index;
     }
 
-    public void setString_index(short string_index) {
+    public void setString_index(int string_index) {
         this.string_index = string_index;
     }
 }

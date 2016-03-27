@@ -7,23 +7,21 @@ import java.io.DataInput;
 import java.io.IOException;
 
 /**
- * Title:
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
- *
+ * 表示方法句柄,
+ * 如果kind为访问字段,那么index为指向constant_field_ref_info的索引
+ * 如果kind为调用方法,那么index为指向constant_method_ref_info的索引
  * @author yangqf
  * @version 1.0 2016/3/26
  */
 public class ConstantMethodHandleInfo implements IConstantPoolParser {
     byte tag = 15;
-    short reference_kind;
-    short reference_index;
+    int reference_kind;
+    int reference_index;
     @Override
     public void parse(DataInput dataInput) throws Exception {
 //        Utils.readFromDataInput(this, dataInput);
-        reference_kind = dataInput.readShort();
-        reference_index = dataInput.readShort();
+        reference_kind = dataInput.readUnsignedShort();
+        reference_index = dataInput.readUnsignedShort();
     }
 
     @Override
@@ -35,19 +33,19 @@ public class ConstantMethodHandleInfo implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getReference_kind() {
+    public int getReference_kind() {
         return reference_kind;
     }
 
-    public void setReference_kind(short reference_kind) {
+    public void setReference_kind(int reference_kind) {
         this.reference_kind = reference_kind;
     }
 
-    public short getReference_index() {
+    public int getReference_index() {
         return reference_index;
     }
 
-    public void setReference_index(short reference_index) {
+    public void setReference_index(int reference_index) {
         this.reference_index = reference_index;
     }
 }

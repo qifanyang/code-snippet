@@ -7,24 +7,20 @@ import java.io.DataInput;
 import java.io.IOException;
 
 /**
- * Title:
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
 public class ConstantMethodRefInfo implements IConstantPoolParser {
     byte tag = 10;
-    short class_index;
-    short name_and_type_index;
+    int class_index;
+    int name_and_type_index;
 
     @Override
     public void parse(DataInput dataInput) throws Exception {
 //        Utils.readFromDataInput(this, dataInput);
-        class_index = dataInput.readShort();
-        name_and_type_index = dataInput.readShort();
+        class_index = dataInput.readUnsignedShort();
+        name_and_type_index = dataInput.readUnsignedShort();
     }
 
     @Override
@@ -36,19 +32,19 @@ public class ConstantMethodRefInfo implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getClass_index() {
+    public int getClass_index() {
         return class_index;
     }
 
-    public void setClass_index(short class_index) {
+    public void setClass_index(int class_index) {
         this.class_index = class_index;
     }
 
-    public short getName_and_type_index() {
+    public int getName_and_type_index() {
         return name_and_type_index;
     }
 
-    public void setName_and_type_index(short name_and_type_index) {
+    public void setName_and_type_index(int name_and_type_index) {
         this.name_and_type_index = name_and_type_index;
     }
 }

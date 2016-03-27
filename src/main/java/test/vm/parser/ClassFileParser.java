@@ -6,9 +6,6 @@ import java.io.*;
 
 /**
  * Title:class文件解析器
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
  *
  * @author yangqf
  * @version 1.0 2016/3/26
@@ -115,7 +112,7 @@ public class ClassFileParser {
                     break;
                 case 9:
                     //constant_fieldref
-                    constantPoolParser = new ConstantFieldrefInfo();
+                    constantPoolParser = new ConstantFieldRefInfo();
                     break;
                 case 10:
                     //constant_methodref

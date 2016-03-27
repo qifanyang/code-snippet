@@ -6,23 +6,17 @@ import java.io.DataInput;
 import java.io.IOException;
 
 /**
- * Title:
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
 public class ConstantClassInfo implements IConstantPoolParser {
     byte tag = 7;//在cp_info中已经有tag, 所以这里的tag只可以确定
-    short name_index;
-//    byte bytes[];
+    int name_index;//常量池索引,指向constant_utf8_info
 
     @Override
     public void parse(DataInput dataInput) throws IOException {
-//        tag = dataInput.readByte();
-        name_index = dataInput.readShort();
+        name_index = dataInput.readUnsignedShort();
     }
 
     public byte getTag() {
@@ -33,11 +27,11 @@ public class ConstantClassInfo implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getName_index() {
+    public int getName_index() {
         return name_index;
     }
 
-    public void setName_index(short name_index) {
+    public void setName_index(int name_index) {
         this.name_index = name_index;
     }
 }

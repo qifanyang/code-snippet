@@ -4,11 +4,7 @@ import org.aopalliance.intercept.MethodInterceptor;
 import test.vm.parser.cp.ConstantPoolInfo;
 
 /**
- * Title:字节码数据结构
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
- *
+ * 字节码数据结构
  * @author yangqf
  * @version 1.0 2016/3/26
  */

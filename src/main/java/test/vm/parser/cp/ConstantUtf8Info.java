@@ -7,18 +7,14 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
- * Title:字符串表示,采用utf8编码
- * Description:
- * Copyright: Copyright (c) 2012
- * Company: shishike Technology(Beijing) Chengdu Co. Ltd.
  *
  * @author yangqf
  * @version 1.0 2016/3/26
  */
 public class ConstantUtf8Info implements IConstantPoolParser {
     byte tag = 1;
-    short length;//bytes长度
-    byte bytes[];
+    int length;//bytes长度
+    byte bytes[];//utf8编码的字节数组
 
     /**
      * 读取class文件的时候解析
@@ -27,7 +23,7 @@ public class ConstantUtf8Info implements IConstantPoolParser {
      */
     public void parse(DataInput dataInput) throws IOException {
 //        tag = dataInput.readByte();
-        length = dataInput.readShort();
+        length = dataInput.readUnsignedShort();
         bytes = new byte[length];
         dataInput.readFully(bytes);
     }
@@ -35,7 +31,7 @@ public class ConstantUtf8Info implements IConstantPoolParser {
     public byte[] convert2Bytes(){
         int len = 1 + 2 + bytes.length;
         ByteBuffer buffer = ByteBuffer.allocate(len);
-        buffer.put(tag).putShort(length).put(bytes);
+//        buffer.put(tag).putShort(length).put(bytes);
         return buffer.array();
     }
 
@@ -47,11 +43,11 @@ public class ConstantUtf8Info implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public short getLength() {
+    public int getLength() {
         return length;
     }
 
-    public void setLength(short length) {
+    public void setLength(int length) {
         this.length = length;
     }
 
