@@ -1,6 +1,7 @@
 package test.vm.parser.cp;
 
 import test.vm.parser.IConstantPoolParser;
+import test.vm.parser.Utils;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.nio.ByteBuffer;
 public class ConstantUtf8Info implements IConstantPoolParser {
     byte tag = 1;
     int length;//bytes长度
-    byte bytes[];//utf8编码的字节数组
+    int bytes[];//utf8编码的字节数组
 
     /**
      * 读取class文件的时候解析
@@ -24,8 +25,8 @@ public class ConstantUtf8Info implements IConstantPoolParser {
     public void parse(DataInput dataInput) throws IOException {
 //        tag = dataInput.readByte();
         length = dataInput.readUnsignedShort();
-        bytes = new byte[length];
-        dataInput.readFully(bytes);
+        bytes = new int[length];
+        Utils.readUnsignedBytes(bytes, dataInput);
     }
 
     public byte[] convert2Bytes(){
@@ -51,11 +52,11 @@ public class ConstantUtf8Info implements IConstantPoolParser {
         this.length = length;
     }
 
-    public byte[] getBytes() {
+    public int[] getBytes() {
         return bytes;
     }
 
-    public void setBytes(byte[] bytes) {
+    public void setBytes(int[] bytes) {
         this.bytes = bytes;
     }
 }

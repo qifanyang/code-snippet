@@ -9,9 +9,15 @@ public class HexFormat {
 
     private int offset;//换行
 
-    public void format(byte b){
+    /**
+     * 格式化输出无符号byte,截取低8位
+     * @param s
+     */
+    public void formatUnsignedByte(short s){
+//        byte high = (byte) ((s & 0xF0) >> 8);
+        short b = (short) (s & 0xFF);
         format();
-        String hexString = Integer.toHexString(b);
+        String hexString = Integer.toHexString(b).toUpperCase();
         if(hexString.length() == 1){
             hexString = "0"+hexString;
         }
@@ -19,23 +25,20 @@ public class HexFormat {
         offset++;
     }
 
-    public void format(short s){
-        byte high = (byte) ((s & 0xF0) >> 8);
-        byte low = (byte) (s & 0x0F);
-        format(high);
-        format(low);
-    }
-
-    public void format(int i){
-        short high = (short) (i & 0xFF00 >> 16);
+    /**
+     * 格式化输出无符号short,截取低16位
+     * @param i
+     */
+    public void formatUnsignedShort(int i){
+        short high = (short) ((i & 0xFF00) >> 8);
         short low = (short) (i & 0xFF);
-        format(high);
-        format(low);
+        formatUnsignedByte(high);
+        formatUnsignedByte(low);
     }
 
     public void format(byte[] bytes){
         for(byte b : bytes){
-            format(b);
+            formatUnsignedByte(b);
         }
     }
 
@@ -50,6 +53,6 @@ public class HexFormat {
 
     public static void main(String[] args) {
         HexFormat hexFormat = new HexFormat();
-        hexFormat.format((byte)202);
+        hexFormat.formatUnsignedShort(51966);
     }
 }

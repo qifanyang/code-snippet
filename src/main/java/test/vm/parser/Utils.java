@@ -3,6 +3,7 @@ package test.vm.parser;
 import test.vm.parser.cp.ConstantUtf8Info;
 
 import java.io.DataInput;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 
@@ -18,7 +19,7 @@ public class Utils {
      * @param info
      * @return
      */
-    public static byte[] convert2Bytes(Object info) throws Exception {
+    public static int[] convert2Bytes(Object info) throws Exception {
 
         Field[] fields = info.getClass().getDeclaredFields();
         int len = 0;
@@ -31,8 +32,8 @@ public class Utils {
                 len+=2;
             }else if(value instanceof Integer){
                 len+=4;
-            }else if(value instanceof byte[]){
-                byte[] bytes = (byte[]) value;
+            }else if(value instanceof int[]){
+                int[] bytes = (int[]) value;
                 len+=bytes.length;
             }
         }
@@ -46,12 +47,14 @@ public class Utils {
                 buffer.putShort((Short) value);
             }else if(value instanceof Integer){
                 buffer.putInt((Integer) value);
-            }else if(value instanceof byte[]){
-                byte[] bytes = (byte[]) value;
-                buffer.put(bytes);
+            }else if(value instanceof int[]){
+                int[] bytes = (int[]) value;
+                for(int b : bytes) {
+                    buffer.putInt(b);
+                }
             }
         }
-        return buffer.array();
+        return buffer.asIntBuffer().array();
     }
 
     public static void readFromDataInput(Object info, DataInput dataInput) throws Exception {
@@ -85,22 +88,28 @@ public class Utils {
         }
     }
 
+    public static void readUnsignedBytes(int bytes[], DataInput dataInput) throws IOException {
+        for(int i = 0; i < bytes.length; i++){
+            bytes[i] = dataInput.readUnsignedByte();
+        }
+    }
+
     public static void main(String[] args) throws Exception {
         ConstantUtf8Info utf8Info = new ConstantUtf8Info();
         String s = "hello world";
         byte[] bytes = s.getBytes("utf-8");
         utf8Info.setLength((short) bytes.length);
-        utf8Info.setBytes(bytes);
+//        utf8Info.setBytes(bytes);
 
         byte[] bytes1 = utf8Info.convert2Bytes();
-        byte[] bytes2 = Utils.convert2Bytes(utf8Info);
+        int[] bytes2 = Utils.convert2Bytes(utf8Info);
         for(byte b1 : bytes1){
             System.out.print(b1);
         }
         System.out.println();
-        for(byte b1 : bytes2){
-            System.out.print(b1);
-        }
+//        for(byte b1 : bytes2){
+//            System.out.print(b1);
+//        }
 
     }
 }

@@ -1,6 +1,7 @@
 package test.vm.parser.cp;
 
 import test.vm.parser.IConstantPoolParser;
+import test.vm.parser.Utils;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -12,11 +13,11 @@ import java.io.IOException;
  */
 public class ConstantFloatInfo  implements IConstantPoolParser {
     byte tag = 4;
-    byte bytes[] = new byte[4];//Big-Endian
+    int bytes[] = new int[4];//Big-Endian
 
     public void parse(DataInput dataInput) throws Exception {
 //        tag = dataInput.readByte();
-        dataInput.readFully(bytes);
+        Utils.readUnsignedBytes(bytes,dataInput);
     }
 
     public byte getTag() {
@@ -27,11 +28,11 @@ public class ConstantFloatInfo  implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public byte[] getBytes() {
+    public int[] getBytes() {
         return bytes;
     }
 
-    public void setBytes(byte[] bytes) {
+    public void setBytes(int[] bytes) {
         this.bytes = bytes;
     }
 }

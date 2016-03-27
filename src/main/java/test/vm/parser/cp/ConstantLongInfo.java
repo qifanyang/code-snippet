@@ -1,6 +1,7 @@
 package test.vm.parser.cp;
 
 import test.vm.parser.IConstantPoolParser;
+import test.vm.parser.Utils;
 
 import java.io.DataInput;
 import java.io.IOException;
@@ -12,13 +13,13 @@ import java.io.IOException;
  */
 public class ConstantLongInfo implements IConstantPoolParser {
     byte tag = 5;
-    byte high_bytes[] = new byte[4];
-    byte low_bytes[] = new byte[4];
+    int high_bytes[] = new int[4];
+    int low_bytes[] = new int[4];
 
     public void parse(DataInput dataInput) throws IOException {
 //        tag = dataInput.readByte();
-        dataInput.readFully(high_bytes);
-        dataInput.readFully(low_bytes);
+        Utils.readUnsignedBytes(high_bytes,dataInput);
+        Utils.readUnsignedBytes(low_bytes,dataInput);
     }
 
     public byte getTag() {
@@ -29,19 +30,19 @@ public class ConstantLongInfo implements IConstantPoolParser {
         this.tag = tag;
     }
 
-    public byte[] getHigh_bytes() {
+    public int[] getHigh_bytes() {
         return high_bytes;
     }
 
-    public void setHigh_bytes(byte[] high_bytes) {
+    public void setHigh_bytes(int[] high_bytes) {
         this.high_bytes = high_bytes;
     }
 
-    public byte[] getLow_bytes() {
+    public int[] getLow_bytes() {
         return low_bytes;
     }
 
-    public void setLow_bytes(byte[] low_bytes) {
+    public void setLow_bytes(int[] low_bytes) {
         this.low_bytes = low_bytes;
     }
 }

@@ -7,7 +7,7 @@ package test.vm.parser.cp;
  */
 public class ConstantPoolInfo {
     byte tag;
-    byte info[];
+    int info[];
 
     public byte getTag() {
         return tag;
@@ -17,11 +17,11 @@ public class ConstantPoolInfo {
         this.tag = tag;
     }
 
-    public byte[] getInfo() {
+    public int[] getInfo() {
         return info;
     }
 
-    public void setInfo(byte[] info) {
+    public void setInfo(int[] info) {
         this.info = info;
     }
 }
