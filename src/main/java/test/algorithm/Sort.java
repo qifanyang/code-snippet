@@ -4,10 +4,13 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
+ * https://segmentfault.com/a/1190000002595152
  * @author yangqf
  * @version 1.0 2016/4/11
  */
 public class Sort{
+
+    public static int[] a = {5,8,2,33};
 
     /**
      * divide-and-conquer 分而治之
@@ -45,46 +48,9 @@ public class Sort{
             quickSort(arr, i, right);
     }
 
-    /**
-     * John von Neumann in 1945 invented
-     * @param a
-     */
-    public static void mergeSort(int a[], int b[], int n){
-        topDownSplitMerge(a, 0, n, b);
-    }
 
-    private static void topDownSplitMerge(int[] A, int iBegin, int iEnd, int[] B){
-        if(iEnd - iBegin < 2)                       // if run size == 1
-            return;                                 //   consider it sorted
-        // recursively split runs into two halves until run size == 1,
-        // then merge them and return back up the call chain
-        int iMiddle = (iEnd + iBegin) / 2;              // iMiddle = mid point
-        topDownSplitMerge(A, iBegin, iMiddle, B);  // split / merge left  half
-        topDownSplitMerge(A, iMiddle, iEnd, B);  // split / merge right half
-        topDownMerge(A, iBegin, iMiddle, iEnd, B);  // merge the two half runs
-        copyArray(B, iBegin, iEnd, A);              // copy the merged runs back to A
-    }
 
-    private static void copyArray(int[] B, int iBegin, int iEnd, int[] A){
-        for(int k = iBegin; k < iEnd; k++)
-            A[k] = B[k];
-    }
 
-    private static void topDownMerge(int[] A, int iBegin, int iMiddle, int iEnd, int[] B){
-        int i = iBegin, j = iMiddle;
-
-        // While there are elements in the left or right runs...
-        for (int k = iBegin; k < iEnd; k++) {
-            // If left run head exists and is <= existing right run head.
-            if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
-                B[k] = A[i];
-                i = i + 1;
-            } else {
-                B[k] = A[j];
-                j = j + 1;
-            }
-        }
-    }
 
     /**
      * 复杂度n+k, 其实2n+k
@@ -141,6 +107,8 @@ public class Sort{
         }
     }
 
+    //多路归并排序
+
     public static void printArrayValue(int arrayValue[]){
         System.out.print("[");
         for(int i = 0; i < arrayValue.length; i++){
@@ -160,12 +128,13 @@ public class Sort{
         {
             a[i] = rand.nextInt(1000);
         }
+        Arrays.sort(a);
         int[] B = Arrays.copyOf(a, a.length);
 //        printArrayValue(a);
         long start = System.nanoTime();
         quickSort(a, 0, a.length-1);
         System.out.println(System.nanoTime() - start);
-//        mergeSort(a, new int[a.length], a.length);
+        MergeSort.mergeSort(a, new int[a.length], a.length);
 //        countingSort(a, new int[a.length], 11);
         start = System.nanoTime();
         countingSortBetter(B, 1000);//100w数据计数排序快于快排
