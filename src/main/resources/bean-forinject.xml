@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:t="http://www.springframework.org/schema/task"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd
+    http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/task
+    http://www.springframework.org/schema/task/spring-task.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd"
+        default-lazy-init="false">
+    <!-- bean definition 按模块放在多个文件中,方便管理 -->
+    <!--<import resource="services.xml"/>-->
+    <!--<import resource="resources/messageSource.xml"/>-->
+    <!--<import resource="/resources/themeSource.xml"/>-->
+
+    <context:annotation-config/>
+ <bean id="beanset" class="test.spring.bean.BeanForSetInject">
+     <property name="name" value="ggggg"></property>
+ </bean>
+
+    <bean id="beanconstrctor" class="test.spring.bean.BeanForConstructorInject">
+        <constructor-arg index="0" value="fff" type="java.lang.String"/>
+        <constructor-arg index="1" value="23"/>
+    </bean>
+
+    <bean id="beanautowire" class="test.spring.bean.BeanForAutowiredInject"/>
+
+    <bean id="circlea" class="test.spring.circle.CircleA"/>
+    <bean id="circleb" class="test.spring.circle.CircleB"/>
+</beans>

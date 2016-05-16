@@ -28,6 +28,6 @@ public class RegisterBF implements BeanDefinitionRegistryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-
+        //这个方法用于修改bean定义,bean实例还没有实例化
     }
 }

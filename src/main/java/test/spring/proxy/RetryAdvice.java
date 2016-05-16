@@ -18,8 +18,9 @@ public class RetryAdvice implements MethodInterceptor {
     //必须要实现MethodInterceptor,动态代理的时候会生成
 //    @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
+        //MethodInvocation ---> ReflectiveMethodInvocation
         System.out.println("call methodInterceptor");
-        invocation.proceed();
+        invocation.proceed();//继续嵌套调用,并不是遍历调用, 中间任意一个MethodInterceptor可以决定是否继续调用
         return null;
     }
 }

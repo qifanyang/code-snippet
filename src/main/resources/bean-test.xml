@@ -23,7 +23,9 @@
     <bean id="pb" class="test.spring.PrototypeBean" scope="prototype">
         <property name="inner" ref="pbinner"/>
     </bean>
-    <bean id="simpleBean" class="test.spring.SimpleBean"/>
+    <bean id="simpleBean" class="test.spring.SimpleBean">
+        <property name="forSetter" value="setter注入测试"/>
+    </bean>
     <bean id="user" class="test.spring.User">
         <lookup-method name="getPb"></lookup-method>
     </bean>
@@ -49,6 +51,7 @@
             <!--<aop:before method="bb" pointcut-ref="dd"/>-->
             <!--<aop:after method="aa" pointcut-ref="dd"/>-->
         <!--</aop:aspect>-->
+        <!-- advisor是指包含一个advice的切面-->
         <aop:advisor advice-ref="mymethodinterceptor" pointcut-ref="interceptorPointCuts"/>
     </aop:config>
 

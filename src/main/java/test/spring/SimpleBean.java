@@ -18,8 +18,18 @@ public class SimpleBean {
     @Autowired
     private ForAutowireBean fab;
 
+    private String forSetter;
+
     public void test(){
         System.out.println("call simplebean test()");
-        fab.say();
+//        fab.say();
+    }
+
+    public void setForSetter(String forSetter){
+        this.forSetter = forSetter;
+    }
+
+    public String getForSetter(){
+        return forSetter;
     }
 }
