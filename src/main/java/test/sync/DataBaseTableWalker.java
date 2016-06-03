@@ -8,9 +8,9 @@ import java.sql.*;
  */
 public class DataBaseTableWalker{
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String passwrod = "";
-    private static String userName = "";
-    private static String url = "";
+    private static String passwrod = "8p6j9ObLxtTOmrpv9O0L";
+    private static String userName = "dev_calm_sync";
+    private static String url = "jdbc:mysql://rdst5ai4d32fe3qd6if46public.mysql.rds.aliyuncs.com:3306/calm_dev?useUnicode=true&amp;characterEncoding=utf-8/";
 
 
     public static void walk(String tableName, ResultSetWalker walker){
@@ -56,7 +56,7 @@ public class DataBaseTableWalker{
                 i++;
             }else{
                 if(isUpperFirstChar && i == 0){
-                    sb.append(new String(chars, i+1, 1).toUpperCase());
+                    sb.append(new String(chars, 0, 1).toUpperCase());
                 }else {
                     sb.append(chars[i]);
                 }

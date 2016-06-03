@@ -34,4 +34,8 @@
 
     <bean id="circlea" class="test.spring.circle.CircleA"/>
     <bean id="circleb" class="test.spring.circle.CircleB"/>
+
+    <bean id="beanforwrapper" class="test.spring.bean.BeanForWrapper">
+        <property name="a" value="wowowo"/>
+    </bean>
 </beans>

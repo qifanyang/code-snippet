@@ -11,7 +11,7 @@ import java.sql.*;
 public class GenerateDbBean{
     public static void main(String[] args){
 
-        DataBaseTableWalker.walk("market_plan_commercial_rel", new ResultSetWalker(){
+        DataBaseTableWalker.walk("market_plan_commercial_sync", new ResultSetWalker(){
             @Override
             public void beforeWalk(String tableName){
                 System.out.println("package com.keruyun.calm.entity;");
@@ -37,7 +37,7 @@ public class GenerateDbBean{
             public void walk(ResultSet resultSet) throws SQLException{
                 String columnName = resultSet.getString("COLUMN_NAME");
                 String columnType = resultSet.getString("TYPE_NAME").toLowerCase();
-                String REMARKS = resultSet.getString("REMARKS");
+                String REMARKS = resultSet.getString("REMARKS").replace("\r\n","");
 
                 // bigint --> long
                 // tinyint int --> Integer
@@ -47,9 +47,11 @@ public class GenerateDbBean{
 
                 if(columnName.equals("id")){
                     System.out.println("\t@Id");
-                    System.out.print("\tprivate Long id");
-                    System.out.println("//"+REMARKS);
+                    System.out.println("\tprivate Long id;//" + REMARKS);
                 }else {
+                    if(columnName.equals("recycle_status")){
+//                        System.out.println(columnType);
+                    }
                     System.out.println("\t@Column(\""+columnName+"\")");
                     String type = "XXX";
                     if(columnType.equals("bigint")){
@@ -59,9 +61,13 @@ public class GenerateDbBean{
                     }else if(columnType.equals("varchar")){
                         type = "String";
                     }else if(columnType.equals("timestamp")){
-                        type = "TimeStamp";
+                        type = "Timestamp";
                     }else if(columnType.equals("decimal")){
                         type = "BigDecimal";
+                    }else if(columnType.equals("date")){
+                        type = "Date";
+                    }else if(columnType.equals("bit")){
+                        type = "Integer";
                     }
                     System.out.println("\tprivate "+type+" "+DataBaseTableWalker.hengXianToTuoFeng(columnName)+";//"+REMARKS);
                 }

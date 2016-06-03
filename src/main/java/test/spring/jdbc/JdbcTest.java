@@ -28,7 +28,7 @@ public class JdbcTest {
         ClassPathXmlApplicationContext applicationContext = new ClassPathXmlApplicationContext("bean-jdbc.xml");
 
         MultipleThreadCAS bean = applicationContext.getBean(MultipleThreadCAS.class);
-        bean.test();
+//        bean.test();
         AgeDao ageDao = applicationContext.getBean(AgeDao.class);
 
         System.out.println(singleValue(ageDao.selectIntegerTest()));

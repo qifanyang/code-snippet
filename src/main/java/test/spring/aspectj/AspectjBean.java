@@ -2,6 +2,7 @@ package test.spring.aspectj;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
 
 /**
  * Title:
@@ -22,6 +23,14 @@ public class AspectjBean {
     public void interceptor(JoinPoint joinPoint){
         System.out.println(joinPoint.getTarget());
         System.out.println("call interceptor...");
+        if(joinPoint instanceof MethodInvocationProceedingJoinPoint){
+            MethodInvocationProceedingJoinPoint mijpoint = (MethodInvocationProceedingJoinPoint) joinPoint;
+            try{
+                mijpoint.proceed();
+            }catch(Throwable throwable){
+                throwable.printStackTrace();
+            }
+        }
     }
 
 

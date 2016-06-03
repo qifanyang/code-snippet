@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:wowo="http://www.mycompany.com/schema/myns"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.mycompany.com/schema/myns
+http://www.mycompany.com/schema/myns/myns.xsd">
+    <!-- as a top-level bean -->
+
+    <wowo:xxxx age="12" name="qifanyang"/><!-- 加载一个XfBean definition到spring容器中-->
+</beans>
