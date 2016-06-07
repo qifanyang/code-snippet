@@ -14,6 +14,7 @@ import org.w3c.dom.Element;
 public class XfBeanDefinitionParser implements BeanDefinitionParser{
     @Override
     public BeanDefinition parse(Element element, ParserContext parserContext){
+        Object o = parserContext.extractSource(element);
         String age = element.getAttribute("age");
         String name = element.getAttribute("name");
 
