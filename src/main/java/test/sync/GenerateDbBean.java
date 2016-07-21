@@ -11,7 +11,7 @@ import java.sql.*;
 public class GenerateDbBean{
     public static void main(String[] args){
 
-        DataBaseTableWalker.walk("market_plan_commercial_sync", new ResultSetWalker(){
+        DataBaseTableWalker.walk("account_subject", new ResultSetWalker(){
             @Override
             public void beforeWalk(String tableName){
                 System.out.println("package com.keruyun.calm.entity;");

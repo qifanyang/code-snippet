@@ -1,11 +1,15 @@
 package test.sync;
 
+import java.util.Date;
+
 /**
  * @author yangqf
  * @version 1.0 2016/5/19
  */
 public class Xxx{
     public static void main(String[] args){
+        Date date = new Date(1960, 3, 1);
+        System.out.println(date.getTime());
         StringBuilder sqlBuilder = new StringBuilder();
         sqlBuilder.append("SELECT  ")
                 .append("mdc.id as id,")

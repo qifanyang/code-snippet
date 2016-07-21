@@ -7,9 +7,9 @@ package test.algorithm;
 public class TopK{
     public static void main(String[] args){
         // 源数据
-        int[] data = {56, 275, 12, 6, 45, 478, 41, 1236, 456, 12, 546, 45};
+        int[] data = {56, 456, 275, 12, 6, 45, 478, 41, 1236, 456, 12, 546, 45};
 
-// 获取Top5
+        // 获取Top5
         int[] topm = topK(data, 5);
 
         for(int i = topm.length - 1; i >= 0; i--){

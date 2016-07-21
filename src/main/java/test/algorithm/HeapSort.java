@@ -73,8 +73,8 @@ public class HeapSort{
     }
 
     public static void main(String[] args){
-        int[] a = {4, 1, 3, 2, 16, 9, 10, 14, 8, 7};
-        MaxHeap.buildMaxHeap(a);
+        int[] a = {4, 1, 3, 2, 16, 9, 10, 9, 8, 7};
+        MaxHeap.buildMaxHeap(a); //虽然符合最大堆条件, 但是一个节点的两个子节点没有顺序
         for(int i = 0; i < a.length; i++)
             System.out.print(a[i] + " ");
         System.out.println();
