@@ -37,17 +37,14 @@ public final class $Proxy0 extends Proxy implements IProxy
         }
     }
 
-    public final String toString()
-    {
-        try
-        {
-            return (String)this.h.invoke(this, m2, null);
-        }
-        catch (Error|RuntimeException localError)
-        {
+    public final String toString(){
+        try{
+            return (String) this.h.invoke(this, m2, null);
+        }catch(Error  localError){
             throw localError;
-        }
-        catch (Throwable localThrowable)
+        }catch(RuntimeException localError1){
+            throw localError1;
+        }catch (Throwable localThrowable)
         {
             throw new UndeclaredThrowableException(localThrowable);
         }
@@ -60,7 +57,7 @@ public final class $Proxy0 extends Proxy implements IProxy
             this.h.invoke(this, m3, null);
             return;
         }
-        catch (Error|RuntimeException localError)
+        catch (Error localError)
         {
             throw localError;
         }
@@ -76,7 +73,7 @@ public final class $Proxy0 extends Proxy implements IProxy
         {
             return ((Integer)this.h.invoke(this, m0, null)).intValue();
         }
-        catch (Error|RuntimeException localError)
+        catch (Error localError)
         {
             throw localError;
         }

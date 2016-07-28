@@ -8,7 +8,7 @@ import java.lang.ref.WeakReference;
  */
 public class WeakRefrenceTest{
     public static void main(String[] args){
-        WeakReference<String> wr = new WeakReference<>(new String("ffff"));
+        WeakReference<String> wr = new WeakReference<String>(new String("ffff"));
         System.out.println(wr.get());
         System.gc();
         System.out.println(wr.enqueue());
