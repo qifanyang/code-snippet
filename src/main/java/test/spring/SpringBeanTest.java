@@ -30,7 +30,7 @@ public class SpringBeanTest {
 
         //SimpleBean 通过动态代理创建
         SimpleBean bean = applicationContext.getBean(SimpleBean.class);
-        bean.test();
+//        bean.test();
 
         //注入,
         // 1.setter注入,没有set方法无法完成

@@ -19,13 +19,14 @@
     <!--<import resource="resources/messageSource.xml"/>-->
     <!--<import resource="/resources/themeSource.xml"/>-->
 
+    <bean id="simpleBean" class="test.spring.SimpleBean">
+        <property name="forSetter" value="setter注入测试"/>
+    </bean>
     <bean id="pbinner" class="test.spring.PrototypeBeanInner" scope="prototype"/>
     <bean id="pb" class="test.spring.PrototypeBean" scope="prototype">
         <property name="inner" ref="pbinner"/>
     </bean>
-    <bean id="simpleBean" class="test.spring.SimpleBean">
-        <property name="forSetter" value="setter注入测试"/>
-    </bean>
+
     <bean id="user" class="test.spring.User">
         <lookup-method name="getPb"></lookup-method>
     </bean>

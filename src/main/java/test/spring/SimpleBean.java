@@ -3,6 +3,8 @@ package test.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Title:
  * Description:
@@ -20,6 +22,7 @@ public class SimpleBean {
 
     private String forSetter;
 
+    @PostConstruct
     public void test(){
         System.out.println("call simplebean test()");
 //        fab.say();
