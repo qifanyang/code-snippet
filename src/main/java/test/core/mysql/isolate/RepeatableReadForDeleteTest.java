@@ -9,23 +9,11 @@ import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 可重复读,是指一个事务重复读取一个数据,值应该是一致的,不论另外一个修改该数据的事务是否提交
- *
- * mysql innodb 可重复读实现采用多版本并发控制实现(mvcc),每条记录有额外的两个隐式字段<br>
- * 创建时间,删除时间, 值为事务id, 没个事务开启时mysql都会分配一个递增的事务id<br>
- *     查询:返回创建时间小于或等于当前事务id, 并且删除时间为空或大于当前事务id<br>
- *     插入:创建时间为当前事务id,删除时间为空<br>
- *     删除:删除时间为当前事务id<br>
- *     更新:被修改的记录删除时间为当前事务id(当前事务不会读取到老记录,老记录用于其他事务读取),插入一条数据创建时间为当前事务id<br>
- * mvcc解决了并发访问时不用加锁,类似java中的CopyOnWriteArrayList,修改时拷贝一个副本出来修改,线程安全<br>
- *
- *
- *
- *
+ * t2事务id小于t1事务id,  t1删除一行数据, t2查询该记录, 因为记录的删除标识大于当前,所以返回被删除的数据
  * @author yangqf
  * @version 1.0 2016/8/5
  */
-public class RepeateableReadTest extends BaseDB{
+public class RepeatableReadForDeleteTest extends BaseDB{
 
     public static void main(String[] args) throws InterruptedException{
 
@@ -33,19 +21,18 @@ public class RepeateableReadTest extends BaseDB{
             @Override
             public void run(){
                 try{
+                    TimeUnit.SECONDS.sleep(2);//事务1
+                    System.out.println("t1 开始事务");
                     Connection connection = getConnection();
                     connection.setAutoCommit(false);
                     Statement stmt = connection.createStatement();
-                    System.out.println("t1 开始事务");
-                    stmt.execute("SELECT 1");
-                    TimeUnit.SECONDS.sleep(2);//事务1
+                    stmt.execute("SELECT  * FROM castest");//数据库开始事务了
                     ResultSet resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     while(resultSet.next()){
                         System.out.println("t1 删除之前的age = "+resultSet.getInt("age"));
                     }
                     TimeUnit.SECONDS.sleep(2);
-//                    stmt.executeUpdate("DELETE FROM user where id=20");
-                    stmt.execute("UPDATE user set age = age + 1 WHERE id=20");
+                    stmt.executeUpdate("DELETE FROM user where id=20");
                     resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     if(resultSet.next()){
                         System.out.println("t1 更新之后的age  = "+resultSet.getInt("age"));
@@ -67,23 +54,26 @@ public class RepeateableReadTest extends BaseDB{
             @Override
             public void run(){
                 try{
-                    TimeUnit.SECONDS.sleep(2);//事务2
+                    System.out.println("t2 开始事务");
                     Connection connection = getConnection();
+                    connection.setTransactionIsolation(Connection.TRANSACTION_REPEATABLE_READ);
                     connection.setAutoCommit(false);
                     Statement stmt = connection.createStatement();
-                    System.out.println("t2 开始事务");
-                    stmt.execute("SELECT  1");
+                    stmt.execute("SELECT  * FROM castest");//数据库开始事务了,不要用select 1
+                    TimeUnit.SECONDS.sleep(2);//事务2
                     ResultSet resultSet;
                     //read-consistent-view,多次读取相同的记录,mysql要保证结果一致
                     //如果这里读取id=20的记录,在下一次读取时,其他事务删除该记录并提交事务,重复读取值不受影响
                     //如果这里不读取的话不会创建read-view
-                    resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
-                    while(resultSet.next()){
-                        System.out.println("t2 删除之前的age = "+resultSet.getInt("age"));
-                    }
+//                    resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
+//                    while(resultSet.next()){
+//                        System.out.println("t2 删除之前的age = "+resultSet.getInt("age"));
+//                    }
                     TimeUnit.SECONDS.sleep(2);
                     System.out.println("t2 执行查询前等待t1修改数据");
                     TimeUnit.SECONDS.sleep(3);
+                    //t2事务先开始,所以事务id小, t1事务id大,当t1删除数据,行删除标识为t1的事务id
+                    //select将返回删除标识大于当前事务的记录
                     resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     if(resultSet.next()){
                         System.out.println("t2 读取到的age = "+resultSet.getInt("age"));
@@ -100,15 +90,8 @@ public class RepeateableReadTest extends BaseDB{
                     //t1删除了数据,但是t2还可以读取到,但是t1事务id比t2小,所以删除的记录删除id比当前事务id小
                     //按mvcc查询不会返回删除时间比当前事务id小的数据(小于当前事务说明在当前事务开始之前已经删除了)
 
-//                    stmt.execute("INSERT INTO user (id, age) VALUE (20, 77)");
-                    //可重复读导致没有读取到其它事务更新的结果,但是如果依赖最新值修改是会用到数据库中最新的结果的
-                    stmt.execute("UPDATE  user  set age = age + 1 WHERE  id=20");
-                    resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
-                    if(resultSet.next()){
-                        System.out.println("t2 读取到的age = "+resultSet.getInt("age"));
-                    }else {
-                        System.out.println("t2 读取不到数据");
-                    }
+                    stmt.execute("INSERT INTO user (id, age) VALUE (20, 77)");
+
                     connection.commit();
 
                 }catch(SQLException e){
