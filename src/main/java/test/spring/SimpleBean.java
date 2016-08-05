@@ -22,7 +22,6 @@ public class SimpleBean {
 
     private String forSetter;
 
-    @PostConstruct
     public void test(){
         System.out.println("call simplebean test()");
 //        fab.say();

@@ -33,6 +33,12 @@ public class ConsistentHashDemo1{
 //        m1(3428) : 1
 //        m2(3429) : 0
 //        m3(3430) : 0
+
+
+        System.out.println("aaa".hashCode());
+        System.out.println("aaaa".hashCode());
+        System.out.println("aaaaa".hashCode());
+        System.out.println("aaaaaaaaa".hashCode());
     }
 
 

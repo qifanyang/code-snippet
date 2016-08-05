@@ -19,6 +19,9 @@ public class DataBaseTableWalker{
 //            Class.forName(driver);
             Connection conn = DriverManager.getConnection(url, userName, passwrod);
 
+            Statement statement = conn.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM ccccccccccccc");
+
             DatabaseMetaData metaData = conn.getMetaData();
             String columnName;
             String columnType;

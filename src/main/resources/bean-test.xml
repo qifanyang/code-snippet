@@ -19,7 +19,7 @@
     <!--<import resource="resources/messageSource.xml"/>-->
     <!--<import resource="/resources/themeSource.xml"/>-->
 
-    <bean id="simpleBean" class="test.spring.SimpleBean">
+    <bean id="simpleBean" class="test.spring.SimpleBean" init-method="test">
         <property name="forSetter" value="setter注入测试"/>
     </bean>
     <bean id="pbinner" class="test.spring.PrototypeBeanInner" scope="prototype"/>

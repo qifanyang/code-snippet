@@ -7,34 +7,7 @@ import java.util.concurrent.CountDownLatch;
  * @author yangqf
  * @version 1.0 2016/7/20
  */
-public class CASTest{
-    private static String driver = "com.mysql.jdbc.Driver";
-    private static String passwrod = "";
-    private static String userName = "root";
-    private static String url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8";
-
-
-    public static Connection getConnection(){
-
-        try{
-//            Class.forName(driver);
-            Connection conn = DriverManager.getConnection(url, userName, passwrod);
-
-           return conn;
-
-//            if(conn != null){
-//                try{
-//                    conn.close();
-//                }catch(SQLException e){
-//                    e.printStackTrace();
-//                }
-//            }
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-
-        return null;
-    }
+public class CASTest extends BaseDB{
 
     public static void concurrentUpdate(){
         new Thread(){

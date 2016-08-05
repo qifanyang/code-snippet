@@ -15,7 +15,7 @@ import org.aopalliance.intercept.MethodInvocation;
 public class MyMethodInterceptor implements MethodInterceptor {//方法拦截器也是一个Advice
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
-        System.out.println("call mymethodinterceptor...");
+        System.out.println("call mymethodinterceptor vvvv...");
         return invocation.proceed();
     }
 }
