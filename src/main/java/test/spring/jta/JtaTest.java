@@ -19,7 +19,8 @@ public class JtaTest{
 
         jtaService.save();
 
-        //不能够直接调用,dao方法,会当做两个事务
+        //不能够直接调用,会当做两个事务,应为事务传播特性存在的缘故,
+        //退出savea时会提交事务,执行saveb时当前没有事务然后又创建一个事务
 //        jtaService.savea();
 //        jtaService.saveb();
 //        jtaTransactionManager.getUserTransaction().commit();
