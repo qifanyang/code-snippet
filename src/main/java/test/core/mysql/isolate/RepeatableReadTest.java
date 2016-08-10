@@ -33,11 +33,12 @@ public class RepeatableReadTest extends BaseDB{
             @Override
             public void run(){
                 try{
+                    TimeUnit.SECONDS.sleep(2);
                     Connection connection = getConnection();
                     connection.setAutoCommit(false);
                     Statement stmt = connection.createStatement();
                     System.out.println("t1 开始事务");
-                    stmt.execute("SELECT 1");
+                    stmt.execute("SELECT  * from castest");
                     TimeUnit.SECONDS.sleep(2);//事务1
                     ResultSet resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     while(resultSet.next()){
@@ -67,16 +68,16 @@ public class RepeatableReadTest extends BaseDB{
             @Override
             public void run(){
                 try{
-                    TimeUnit.SECONDS.sleep(2);//事务2
+//                    TimeUnit.SECONDS.sleep(2);//事务2
                     Connection connection = getConnection();
                     connection.setAutoCommit(false);
                     Statement stmt = connection.createStatement();
                     System.out.println("t2 开始事务");
-                    stmt.execute("SELECT  1");
+                    stmt.execute("SELECT  * from castest");
                     ResultSet resultSet;
                     //read-consistent-view,多次读取相同的记录,mysql要保证结果一致
                     //如果这里读取id=20的记录,在下一次读取时,其他事务删除该记录并提交事务,重复读取值不受影响
-                    //如果这里不读取的话不会创建read-view
+                    //如果这里不读取的话不会创建read-view,可重复读可能造成不能及时读取到其它事务提交的数据
                     resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     while(resultSet.next()){
                         System.out.println("t2 删除之前的age = "+resultSet.getInt("age"));
@@ -102,7 +103,8 @@ public class RepeatableReadTest extends BaseDB{
 
 //                    stmt.execute("INSERT INTO user (id, age) VALUE (20, 77)");
                     //可重复读导致没有读取到其它事务更新的结果,但是如果依赖最新值修改是会用到数据库中最新的结果的
-                    stmt.execute("UPDATE  user  set age = age + 1 WHERE  id=20");
+                    stmt.execute("UPDATE  user  set age = 996 WHERE  id=20");
+//                    connection.rollback();
                     resultSet = stmt.executeQuery("SELECT age FROM user where id=20");
                     if(resultSet.next()){
                         System.out.println("t2 读取到的age = "+resultSet.getInt("age"));
