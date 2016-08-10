@@ -55,33 +55,6 @@
         <property name="minPoolSize"><value>1</value></property>
     </bean>
 
-    <!--<bean id="entityManagerFactoryA" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
-        <!--<property name="persistenceXmlLocation">-->
-            <!--<value>classpath*:persistence.xml</value>-->
-        <!--</property>-->
-        <!--<property name="persistenceUnitName" value="PersistenceUnitA" />-->
-        <!--<property name="dataSource" ref="dataSourceA" />-->
-        <!--<property name="jpaVendorAdapter">-->
-            <!--<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
-                <!--<property name="showSql" value="true" />-->
-                <!--<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />-->
-            <!--</bean>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="entityManagerFactoryB" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">-->
-        <!--<property name="persistenceXmlLocation">-->
-            <!--<value>classpath*:persistence.xml</value>-->
-        <!--</property>-->
-        <!--<property name="persistenceUnitName" value="PersistenceUnitB" />-->
-        <!--<property name="dataSource" ref="dataSourceB" />-->
-        <!--<property name="jpaVendorAdapter">-->
-            <!--<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">-->
-                <!--<property name="showSql" value="true" />-->
-                <!--<property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />-->
-            <!--</bean>-->
-        <!--</property>-->
-    <!--</bean>-->
-
     <bean id="atomikosTransactionManager" class="com.atomikos.icatch.jta.UserTransactionManager" init-method="init" destroy-method="close">
         <property name="forceShutdown" value="false" />
     </bean>

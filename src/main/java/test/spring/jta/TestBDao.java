@@ -25,6 +25,6 @@ public class TestBDao{
     public void save(){
         String sql = "INSERT INTO counts (id, num) VALUE (21, 1111)";
         jdbcTemplate.execute(sql);
-        throw new RuntimeException("test");
+//        throw new RuntimeException("test");
     }
 }

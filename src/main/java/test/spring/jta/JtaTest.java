@@ -13,12 +13,15 @@ public class JtaTest{
     public static void main(String[] args) throws SystemException, NotSupportedException, HeuristicRollbackException, HeuristicMixedException, RollbackException{
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean-jta.xml");
 
-        JtaTransactionManager jtaTransactionManager = context.getBean(JtaTransactionManager.class);
-        jtaTransactionManager.getUserTransaction().begin();
+//        JtaTransactionManager jtaTransactionManager = context.getBean(JtaTransactionManager.class);
+//        jtaTransactionManager.getUserTransaction().begin();
         JtaService jtaService = context.getBean(JtaService.class);
 
-        jtaService.savea();
-        jtaService.saveb();
-        jtaTransactionManager.getUserTransaction().commit();
+        jtaService.save();
+
+        //不能够直接调用,dao方法,会当做两个事务
+//        jtaService.savea();
+//        jtaService.saveb();
+//        jtaTransactionManager.getUserTransaction().commit();
     }
 }

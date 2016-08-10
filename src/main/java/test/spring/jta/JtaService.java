@@ -25,4 +25,9 @@ public class JtaService{
     public void saveb(){
         testBDao.save();
     }
+
+    public void save(){
+        savea();
+        saveb();
+    }
 }
