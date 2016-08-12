@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/test/java/com/keruyun/onmobile/controller/TradeControllerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/CalmRouter/calm_biz/biz_trade/src/main/java/com/keruyun/calm/service/v1/impl/TradeBaseService.java">
           <value>
             <set />
@@ -23,7 +28,62 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/infrastructure/src/main/java/com/keruyun/calm/dao/TradeDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/core/base/DefaultDirectMomeryTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/JpaTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/User.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/UserDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/UserRepository.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/UserService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/UserServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/bean-jpa.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/resources/persistence.xml">
           <value>
             <set />
           </value>

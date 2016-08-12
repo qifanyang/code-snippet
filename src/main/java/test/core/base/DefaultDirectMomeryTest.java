@@ -23,6 +23,7 @@ public class DefaultDirectMomeryTest{
         //http://bugs.java.com/bugdatabase/view_bug.do?bug_id=4391499
         //返回值不等于设置值
         System.out.println(Runtime.getRuntime().totalMemory());
+        System.out.println(Runtime.getRuntime().maxMemory());
 //        TimeUnit.SECONDS.sleep(10000000);
 
         //对于大量使用直接内存,如果堆内进行垃圾回收,如果直接内存不会垃圾回收,
