@@ -12,8 +12,8 @@ public class User{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    @Column
     private Integer age;
+    private Integer num ;
 
     public Long getId(){
         return id;
@@ -29,5 +29,13 @@ public class User{
 
     public void setAge(Integer age){
         this.age = age;
+    }
+
+    public Integer getNum(){
+        return num;
+    }
+
+    public void setNum(Integer num){
+        this.num = num;
     }
 }

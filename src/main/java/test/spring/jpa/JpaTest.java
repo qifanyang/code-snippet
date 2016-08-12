@@ -13,7 +13,7 @@ public class JpaTest{
 
         UserService userService = context.getBean(UserService.class);
 
-        userService.createUser(33L, 55);
+        userService.createUser(33L, 6);
 
         context.close();//不关闭的话,使用了hibernate不会退出程序
 
