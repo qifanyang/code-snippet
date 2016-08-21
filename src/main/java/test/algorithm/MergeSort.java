@@ -1,8 +1,5 @@
 package test.algorithm;
 
-import java.util.Arrays;
-import java.util.Random;
-
 /**
  * 归并排序是唯一O(nlogn)稳定的排序算法.java collections.sort使用归并来排序引用类型顺序
  * 1.分解输入到两个子序列,

@@ -1,6 +1,5 @@
 package test.sync;
 
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.sql.*;
 

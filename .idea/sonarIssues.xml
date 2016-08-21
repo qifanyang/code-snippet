@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/test/java/com/keruyun/onmobile/controller/TradeControllerTest.java">
           <value>
             <set />
@@ -33,12 +38,92 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/config/src/main/resources/applicationContext.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/jdbc/ShardingDataSource.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/jdbc/unsupported/AbstractUnsupportedOperationConnection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/pom.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/AnonymousInnerClassTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/AnoymousInnerClassTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/core/base/DefaultDirectMomeryTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/GetMethodTyepInfoTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/TT.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/TryResourceTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/CreashTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/client/Buffer.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/client/DataBase.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/client/Main.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/client/Session.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/json/JsonBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/json/fastjson/JsonBeanListTest.java">
           <value>
             <set />
           </value>
@@ -69,6 +154,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/spring/jpa/UserServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/sync/GenerateDbBean.java">
           <value>
             <set />
           </value>
