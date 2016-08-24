@@ -13,7 +13,72 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_base/src/main/java/com/calm/service/v0/MessageService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_booking/src/main/java/com/calm/service/v0/BookingService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/dao/TradePrivilegeDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/test/java/com/keruyun/onmobile/controller/TradeControllerTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/dao/OnMobilePaymentDAO.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/service/impl/OnMobilePaymentServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/service/impl/PayServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/service/impl/PaymentItemExtraServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/service/impl/PaymentServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/util/RSATool4Android.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/util/RSAUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_pay/src/main/java/com/keruyun/onmobile/web/editor/Integer2BigDecimalEditor.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_trade/src/main/java/com/keruyun/calm/service/v1/impl/GatewayServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_trade/src/main/java/com/keruyun/calm/service/v1/impl/PaymentServiceImpl.java">
           <value>
             <set />
           </value>
@@ -33,7 +98,17 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_trade/src/main/java/com/keruyun/calm/web/v1/TradeFastfoodController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/CalmRouter/calm_biz/infrastructure/src/main/java/com/keruyun/calm/dao/TradeDao.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/infrastructure/src/test/java/com/keruyun/calm/service/impl/ServerTimeServiceImplTest.java">
           <value>
             <set />
           </value>
@@ -63,6 +138,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/SunTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/core/base/AnonymousInnerClassTest.java">
           <value>
             <set />
@@ -78,7 +158,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/FatherTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/core/base/GetMethodTyepInfoTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/base/SunTest.java">
           <value>
             <set />
           </value>
@@ -94,6 +184,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/CreashTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/core/mysql/GetData.java">
           <value>
             <set />
           </value>

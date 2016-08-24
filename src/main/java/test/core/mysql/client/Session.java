@@ -5,15 +5,13 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.nio.ByteOrder;
+import java.nio.charset.Charset;
 import java.util.Properties;
 
 /**
@@ -22,6 +20,8 @@ import java.util.Properties;
  * @version 1.0 2016/8/19
  */
 public class Session{
+
+    private final static Charset utf8 = Charset.forName("utf-8");
 
     private Socket socket;
     DataInputStream io;
@@ -182,6 +182,8 @@ public class Session{
         send(sendBuf);
 //      sendBuf.writeBytes(authBuf); //密码为空,所以没有把fromServer东西写到toServer中
 
+        //jdbc driver连接成功后会查询数据库元数据,这里忽略,直接执行sql查询
+
 
 
     }
@@ -192,12 +194,20 @@ public class Session{
      * @throws IOException
      */
     private ByteBuf readPacket() throws IOException{
-        int count = io.read(packetHeaderBuf);
-        if(count < packetHeaderBuf.length){
-            //mysql 返回的数据有问题,关掉连接
+        try{
+            //mysqlio重写了DataInputStream.readFully这个方法,加了个读取字节返回值
+            //注意read(bytes)和readFully(bytes),前者可能只读取了部分,后者是读取全部
+            io.readFully(packetHeaderBuf);
+        }catch(EOFException e){
+           //mysql 返回的数据有问题,关掉连接
             io.close();
             return null;
         }
+//        if(count < packetHeaderBuf.length){
+//            //mysql 返回的数据有问题,关掉连接
+//            io.close();
+//            return null;
+//        }
 
         int packetLength = (this.packetHeaderBuf[0] & 0xff) + ((this.packetHeaderBuf[1] & 0xff) << 8) + ((this.packetHeaderBuf[2] & 0xff) << 16);
 
@@ -284,11 +294,34 @@ public class Session{
     }
 
 
-    private void sendComand(){
-    }
+    private void sendComand(int cmd, String query) throws IOException{
+        // We don't know exactly how many bytes we're going to get from the query. Since we're dealing with Unicode, the max is 2, so pad it
+        // (2 * query) + space for headers
+        int packLength = 4 + 1 + (query.length() * 3) + 2;
+        ByteBuf sendByteBuf = createSendByteBuf(packLength);
+        sendByteBuf.writeByte(3);//MysqlDefs.QUERY
+        sendByteBuf.writeBytes(query.getBytes(utf8));//写入查询语句
+        clearInputSteam();
+        send(sendByteBuf);//发送查询语句,如果有错误server会返回错误信息,客户端根据返回值第一个byte==0xff判断是否发生错误,不是0xff那么带包查询返回的列
 
-    //MysqlIO发送实际的命令
-    //发出select查询命令,然后server返回结果,如果有数据线返回有多少列,然后在
+        //准备读取返回结果集,先读取列信息,列名,数据类型,表名等等,每一列都是一个packet,
+        // 然后开始读取每一行数据,使用二维数组来存储,首先根据列来创建[colNum}[],然后读取每行长度,创建二维数组的行,然后readFully,返回ByteArrayRow
+        // 当读取一行数据完毕后,继续读取,如果没有数据只会返回服务状态作为结束读取
+
+        //执行查询excel构造结果集,可以参照这里,
+        //查询出来的结果集默认是只读的,也可以修改更新结果集的值,那么就可以更新数据库对应的值(JDBC4UpdatableResultSet)
+        //结果集中从网络中读取的数据都是字节数组,当使用getString()等方法的时候,再从字节数组转换为目标值,所以实现结果集解析
+        //也只是一些同网络编程一样的工作
+
+
+        //MysqlIO发送实际的命令
+        //发出select查询命令,然后server返回结果,如果有数据线返回有多少列.返回值中serverStatus很重要,
+        //可以标识出事务状态,是否多结果集等
+
+        //mysql采用发送-->读取响应-->发送-->读取响应的模式,单双工模式,不会同时两个方向发送数据
+
+
+    }
 
 
 
