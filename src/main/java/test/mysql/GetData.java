@@ -11,7 +11,7 @@ import java.sql.*;
  */
 public class GetData{
     public static void main(String[] args) throws Exception{
-        Connection connection = DriverManager.getConnection("jdbc:mysql://rdst5ai4d32fe3qd6if46public.mysql.rds.aliyuncs.com:3306/calm_gld", "uprd_stf_qry", "dZZglXoOrJ5WfgvVOnPh");
+        Connection connection = DriverManager.getConnection("jdbc:mysql://", "", "");
         Statement stmt = connection.createStatement();
         String sql = "SELECT commercialID, commercialAdress,cityName,commercialName,brandID,status FROM commercial WHERE cityName='重庆市' ";
         String s = "SELECT count(*) FROM commercial";
