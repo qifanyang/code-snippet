@@ -1,4 +1,4 @@
-package test.core.mysql;
+package test.mysql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

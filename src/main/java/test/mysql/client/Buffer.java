@@ -1,4 +1,4 @@
-package test.core.mysql.client;
+package test.mysql.client;
 
 import com.mysql.jdbc.*;
 

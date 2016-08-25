@@ -1,4 +1,4 @@
-package test.core.mysql;
+package test.mysql;
 
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;

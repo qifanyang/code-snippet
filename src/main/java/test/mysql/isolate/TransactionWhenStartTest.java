@@ -1,6 +1,6 @@
-package test.core.mysql.isolate;
+package test.mysql.isolate;
 
-import test.core.mysql.BaseDB;
+import test.mysql.BaseDB;
 
 import java.sql.Connection;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-package test.core.mysql;
+package test.mysql;
 
 import java.sql.*;
 import java.util.concurrent.TimeUnit;

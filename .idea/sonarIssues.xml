@@ -123,12 +123,32 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/api/rule/BindingTableRule.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/jdbc/ShardingDataSource.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/jdbc/unsupported/AbstractUnsupportedOperationConnection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-core/src/main/java/com/dangdang/ddframe/rdb/sharding/router/strategy/SingleKeyShardingAlgorithm.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-example/pom.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/calm/sharding-jdbc/sharding-jdbc-example/sharding-jdbc-example-jdbc/src/main/java/com/dangdang/ddframe/rdb/sharding/example/jdbc/Main.java">
           <value>
             <set />
           </value>
@@ -219,6 +239,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/json/fastjson/JsonBeanListTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/CreashTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/client/Session.java">
           <value>
             <set />
           </value>
