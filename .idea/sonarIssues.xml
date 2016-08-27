@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="/a.dummy">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/fragment.java">
           <value>
             <set />
@@ -19,6 +24,11 @@
           </value>
         </entry>
         <entry key="D:/git/CalmRouter/calm_biz/biz_booking/src/main/java/com/calm/service/v0/BookingService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_customer/src/main/java/com/calm/service/v0/MemberService.java">
           <value>
             <set />
           </value>
@@ -253,6 +263,66 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/BaseParser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/BinLog.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/BinlogReader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/BinlogReaderTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/ByteArrayReversTest.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/EventHeaderParser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/EventHeaderPaser.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/FDELogEvent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/LogEvent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/LogEventData.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/LogEventHeader.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/event/FDELogEvent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/mysql/client/Session.java">
           <value>
             <set />
@@ -289,6 +359,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/sync/GenerateDbBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/utils/HexDump.java">
           <value>
             <set />
           </value>
