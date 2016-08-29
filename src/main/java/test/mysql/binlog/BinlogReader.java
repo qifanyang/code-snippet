@@ -1,6 +1,7 @@
 package test.mysql.binlog;
 
 import lombok.Data;
+import test.mysql.binlog.event.FDELogEvent;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -21,6 +22,12 @@ public class BinlogReader{
 
     public BinlogReader(InputStream is){
         this.dis = new DataInputStream(is);
+        try{
+            System.out.println("available = " + dis.available());
+            System.out.println("markSupported = " + dis.markSupported());
+        }catch(IOException e){
+            e.printStackTrace();
+        }
     }
 
     public byte readByte() throws IOException{
@@ -90,6 +97,34 @@ public class BinlogReader{
         while(offset < position){
             dis.readByte();
             ++offset;
+        }
+    }
+
+    public void readBinlog(BinLog binLog) throws IOException{
+        while(dis.available() > 0){
+            //没有magic number
+            int timestamp = readInt();
+            byte eventType = readByte();
+
+            LogEvent logEvent = null;
+            //根据事件类型创建
+            switch(eventType){
+                case LogEventType.FORMAT_DESCRIPTION_EVENT:
+                    logEvent = new FDELogEvent();
+                    break;
+                case LogEventType.QUERY_EVENT:
+
+                    break;
+
+                default:
+                    throw new IllegalStateException("unknown event type ...");
+
+            }
+            logEvent.getHeader().setTimestamp(timestamp);
+            logEvent.getHeader().setEventLength(eventType);
+            logEvent.parse(this);
+
+
         }
     }
 

@@ -35,8 +35,7 @@ public class BinLog{
         binLog.setMagicNumber(reader.readInt());
 
         LogEvent fdeEvent = new FDELogEvent();
-        fdeEvent.getHeader().parse(reader);
-        fdeEvent.getData().parse(reader);
+        fdeEvent.parse(reader);
 
         //
 

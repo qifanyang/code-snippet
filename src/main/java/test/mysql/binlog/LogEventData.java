@@ -18,9 +18,6 @@ public abstract class LogEventData{
     //上面三个字段,v1,v3,v4 都含有, 叫做fixed-size,
     private byte headerLength;//该值减去19 等于extra_headers的长度, FDE extra_headers为0, 所以这里值为0x13
 
-    //接下来的字段根据event type 不同而不一样
-    private String[] string;        //FDE a array indexed by Binlog Event Type - 1 to extract the length of the event specific header.
-
     public void parse(BinlogReader reader) throws IOException{
         this.setBinlogVersion(reader.readShort());
         this.setServerVersion(reader.readStringUTF8(50));

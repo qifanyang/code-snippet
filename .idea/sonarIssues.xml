@@ -318,6 +318,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/LogEventType.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/mysql/binlog/event/FDELogEvent.java">
           <value>
             <set />

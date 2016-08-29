@@ -2,6 +2,8 @@ package test.mysql.binlog;
 
 import lombok.Data;
 
+import java.io.IOException;
+
 /**
  *
  * @author yangqf
@@ -14,5 +16,10 @@ public abstract class LogEvent{
     private LogEventHeader header = new LogEventHeader();
 
     public abstract LogEventData getData();
+
+    public void parse(BinlogReader reader) throws IOException{
+        getHeader().parse(reader);
+        getData().parse(reader);
+    }
 
 }
