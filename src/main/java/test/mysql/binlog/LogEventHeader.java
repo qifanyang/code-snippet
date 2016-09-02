@@ -23,9 +23,8 @@ public class LogEventHeader{
     //关于将解析方法写在何处,可以为每个event type单独写个parser, 也可以将方法放在event类中,因为
     //event类有多个,为了方便查看event字段,将解析方法放在event类中
     public void parse(BinlogReader reader) throws IOException{
-        //timestamp 和 event type在外面读取
-//        this.setTimestamp(reader.readInt());
-//        this.setTypeCode(reader.readByte());
+        this.setTimestamp(reader.readInt());
+        this.setTypeCode(reader.readByte());
         this.setServerId(reader.readInt());
         this.setEventLength(reader.readInt());
         this.setNextPosition(reader.readInt());

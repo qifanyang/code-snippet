@@ -15,10 +15,10 @@ import java.io.IOException;
  * @version 1.0 2016/8/27
  */
 @Data
-public class FDELogEvent extends LogEvent{
+public class FormatDescriptionEvent extends LogEvent{
     private FDEEventData data;
 
-    public FDELogEvent(){
+    public FormatDescriptionEvent(){
         data = new FDEEventData();
     }
 
@@ -34,8 +34,7 @@ public class FDELogEvent extends LogEvent{
         @Override
         public void parse(BinlogReader reader) throws IOException{
             super.parse(reader);
-            int nextPosition = getHeader().getNextPosition();
-            reader.skipToPosition(nextPosition);//TODO 忽略event type header length数据
+            skipToNextEvent(reader);
         }
     }
 }

@@ -19,9 +19,10 @@ public abstract class LogEventData{
     private byte headerLength;//该值减去19 等于extra_headers的长度, FDE extra_headers为0, 所以这里值为0x13
 
     public void parse(BinlogReader reader) throws IOException{
-        this.setBinlogVersion(reader.readShort());
-        this.setServerVersion(reader.readStringUTF8(50));
-        this.setCreateTimestamp(reader.readInt());
-        this.setHeaderLength(reader.readByte());
+//        this.setBinlogVersion(reader.readShort());
+//        this.setServerVersion(reader.readStringUTF8(50));
+//        this.setCreateTimestamp(reader.readInt());
+//        this.setHeaderLength(reader.readByte());
+
     }
 }

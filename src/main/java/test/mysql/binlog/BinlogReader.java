@@ -1,7 +1,7 @@
 package test.mysql.binlog;
 
 import lombok.Data;
-import test.mysql.binlog.event.FDELogEvent;
+import test.mysql.binlog.event.*;
 
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -15,12 +15,13 @@ import java.io.InputStream;
 @Data
 public class BinlogReader{
 
-    private DataInputStream dis;
+    private DataInputStream dis;//包装
     private boolean reverse = false;//是否反转多字节,java默认大端,如果读取小端需要反转,默认不反转
 
     private int offset = 0;
 
     public BinlogReader(InputStream is){
+        //BufferedInputStream  class loader getResourceAsStream return
         this.dis = new DataInputStream(is);
         try{
             System.out.println("available = " + dis.available());
@@ -103,27 +104,42 @@ public class BinlogReader{
     public void readBinlog(BinLog binLog) throws IOException{
         while(dis.available() > 0){
             //没有magic number
+            dis.mark(offset);
             int timestamp = readInt();
             byte eventType = readByte();
+            dis.reset();
+            offset -= 5;
 
             LogEvent logEvent = null;
-            //根据事件类型创建
+            //根据事件类型创建, 向一个map中注册Event, 然后调用比case好看点
             switch(eventType){
                 case LogEventType.FORMAT_DESCRIPTION_EVENT:
-                    logEvent = new FDELogEvent();
+                    logEvent = new FormatDescriptionEvent();
                     break;
                 case LogEventType.QUERY_EVENT:
-
+                    logEvent = new QueryEvent();
                     break;
-
+                case LogEventType.TABLE_MAP_EVENT:
+                    logEvent = new TableMapEvent();
+                    break;
+                case LogEventType.UPDATE_ROWS_EVENT:
+                    logEvent = new UpdateRowsEvent();
+                    break;
+                case LogEventType.XID_EVENT:
+                    logEvent = new XidEvent();
+                    break;
+                case LogEventType.STOP_EVENT:
+                    logEvent = new StopEvent();
+                    break;
+                case LogEventType.ROTATE_EVENT:
+                    logEvent = new RotateEvent();
+                    break;
                 default:
                     throw new IllegalStateException("unknown event type ...");
 
             }
-            logEvent.getHeader().setTimestamp(timestamp);
-            logEvent.getHeader().setEventLength(eventType);
             logEvent.parse(this);
-
+            binLog.getLogEvents().add(logEvent);
 
         }
     }

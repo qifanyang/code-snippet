@@ -1,6 +1,9 @@
 package test.sync;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author yangqf
@@ -30,5 +33,17 @@ public class Xxx{
         }
         sqlBuilder.append("  ORDER BY mpcs.server_update_time,mdc.id ASC LIMIT ?");
         System.out.println(sqlBuilder);
+
+        Map<Integer, Integer> map = new HashMap<>();
+        map.put(1, null);
+        System.out.println(map.containsKey(1));
+        System.out.println(map.containsKey(null));
+        map.put(null, 1);
+        System.out.println(map.containsKey(null));
+
+        BigDecimal bigDecimal = new BigDecimal(100);
+        BigDecimal x = bigDecimal.add(BigDecimal.TEN.negate());
+        System.out.println(bigDecimal);
+        System.out.println(x.divide(new BigDecimal(100)));
     }
 }

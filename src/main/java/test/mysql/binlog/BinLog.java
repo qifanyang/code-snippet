@@ -1,12 +1,14 @@
 package test.mysql.binlog;
 
 import lombok.Data;
-import test.mysql.binlog.event.FDELogEvent;
+import test.mysql.binlog.event.FormatDescriptionEvent;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -26,16 +28,22 @@ public class BinLog{
     private int magicNumber;
     private List<LogEvent> logEvents = new ArrayList<>();
 
+    private static final Map<Integer, LogEvent> LOG_EVENT_CLASS_MAP = new HashMap<>();
+    static {
+
+    }
+
     public static void main(String[] args) throws IOException{
-        InputStream ras = BinLog.class.getClassLoader().getResourceAsStream("mysql-bin.000022");
+        InputStream ras = BinLog.class.getClassLoader().getResourceAsStream("mysql-bin.000023");
         BinlogReader reader = new BinlogReader(ras);
         reader.setReverse(true);
 
         BinLog binLog = new BinLog();
         binLog.setMagicNumber(reader.readInt());
 
-        LogEvent fdeEvent = new FDELogEvent();
-        fdeEvent.parse(reader);
+//        LogEvent fdeEvent = new FormatDescriptionEvent();
+//        fdeEvent.parse(reader);
+        reader.readBinlog(binLog);
 
         //
 

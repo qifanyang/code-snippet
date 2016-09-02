@@ -38,6 +38,36 @@
             <set />
           </value>
         </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/service/TradeService.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/service/impl/TradeServiceImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/web/TableController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/web/TradeController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/web/req/BatchUpdateDiscountReq.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/main/java/com/keruyun/onmobile/web/v2/MindController.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="D:/git/CalmRouter/calm_biz/biz_on_mobile_order/src/test/java/com/keruyun/onmobile/controller/TradeControllerTest.java">
           <value>
             <set />
@@ -363,7 +393,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/sync/DataBaseTableWalker.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/src/main/java/test/sync/GenerateDbBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/main/java/test/sync/GenerateWiki.java">
           <value>
             <set />
           </value>
