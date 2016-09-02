@@ -22,11 +22,11 @@
     <!--启用@aspectj -->
     <aop:aspectj-autoproxy/>
 
-    <bean id="aspectbean" class="test.spring.aspectj.AspectjBean"/>
+    <bean id="aspectbean" class="spring.aspectj.AspectjBean"/>
 
-    <bean id="sb" class="test.spring.SimpleBean"/>
+    <bean id="sb" class="spring.SimpleBean"/>
 
-    <bean id="user" class="test.spring.User">
+    <bean id="user" class="spring.User">
         <lookup-method name="getPb"></lookup-method>
     </bean>
 

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
-    <file url="file://$PROJECT_DIR$/src/main/java/test/core/proxy/jdk/DynamicProxy.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/test/core/proxy/jdk/IProxy.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/test/core/proxy/jdk/StaticProxy.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/test/core/reflect/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/core/proxy/jdk/DynamicProxy.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/core/proxy/jdk/IProxy.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/core/proxy/jdk/StaticProxy.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/core/reflect/Main.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

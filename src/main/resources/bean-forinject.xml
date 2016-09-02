@@ -21,21 +21,21 @@
     <!--<import resource="/resources/themeSource.xml"/>-->
 
     <context:annotation-config/>
- <bean id="beanset" class="test.spring.bean.BeanForSetInject">
+ <bean id="beanset" class="spring.bean.BeanForSetInject">
      <property name="name" value="ggggg"></property>
  </bean>
 
-    <bean id="beanconstrctor" class="test.spring.bean.BeanForConstructorInject">
+    <bean id="beanconstrctor" class="spring.bean.BeanForConstructorInject">
         <constructor-arg index="0" value="fff" type="java.lang.String"/>
         <constructor-arg index="1" value="23"/>
     </bean>
 
-    <bean id="beanautowire" class="test.spring.bean.BeanForAutowiredInject"/>
+    <bean id="beanautowire" class="spring.bean.BeanForAutowiredInject"/>
 
-    <bean id="circlea" class="test.spring.circle.CircleA"/>
-    <bean id="circleb" class="test.spring.circle.CircleB"/>
+    <bean id="circlea" class="spring.circle.CircleA"/>
+    <bean id="circleb" class="spring.circle.CircleB"/>
 
-    <bean id="beanforwrapper" class="test.spring.bean.BeanForWrapper">
+    <bean id="beanforwrapper" class="spring.bean.BeanForWrapper">
         <property name="a" value="wowowo"/>
     </bean>
 </beans>

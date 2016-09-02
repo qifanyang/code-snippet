@@ -19,19 +19,19 @@
     <!--<import resource="resources/messageSource.xml"/>-->
     <!--<import resource="/resources/themeSource.xml"/>-->
 
-    <bean id="simpleBean" class="test.spring.SimpleBean" init-method="test">
+    <bean id="simpleBean" class="spring.SimpleBean" init-method="test">
         <property name="forSetter" value="setter注入测试"/>
     </bean>
-    <bean id="pbinner" class="test.spring.PrototypeBeanInner" scope="prototype"/>
-    <bean id="pb" class="test.spring.PrototypeBean" scope="prototype">
+    <bean id="pbinner" class="spring.PrototypeBeanInner" scope="prototype"/>
+    <bean id="pb" class="spring.PrototypeBean" scope="prototype">
         <property name="inner" ref="pbinner"/>
     </bean>
 
-    <bean id="user" class="test.spring.User">
+    <bean id="user" class="spring.User">
         <lookup-method name="getPb"></lookup-method>
     </bean>
-    <bean id="aspectjBean" class="test.spring.aspectj.AspectjBean"/>
-    <bean id="beanpostprocessor" class="test.spring.beanpost.BeanPostProcessorTest"/>
+    <bean id="aspectjBean" class="spring.aspectj.AspectjBean"/>
+    <bean id="beanpostprocessor" class="spring.beanpost.BeanPostProcessorTest"/>
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
@@ -43,12 +43,12 @@
         </tx:attributes>
     </tx:advice>
 
-    <bean id="mymethodinterceptor" class="test.spring.MyMethodInterceptor"/>
+    <bean id="mymethodinterceptor" class="spring.MyMethodInterceptor"/>
     <aop:config>
-        <aop:pointcut id="interceptorPointCuts" expression="execution(* test.spring.*.*(..))"/>
+        <aop:pointcut id="interceptorPointCuts" expression="execution(* spring.*.*(..))"/>
         <!--<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts"/>-->
         <!--<aop:aspect ref="aspectjBean">-->
-            <!--<aop:pointcut id="dd" expression="execution(* test.spring.*.*(..))"></aop:pointcut>-->
+            <!--<aop:pointcut id="dd" expression="execution(* spring.*.*(..))"></aop:pointcut>-->
             <!--<aop:before method="bb" pointcut-ref="dd"/>-->
             <!--<aop:after method="aa" pointcut-ref="dd"/>-->
         <!--</aop:aspect>-->

@@ -47,12 +47,12 @@
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
-    <bean id="ageDao" class="test.spring.jdbc.AgeDao">
+    <bean id="ageDao" class="spring.jdbc.AgeDao">
         <property name="jdbc" ref="jdbcTemplate"/>
         <property name="transactionTemplate" ref="transactionTemplate"/>
     </bean>
 
-    <bean id="multithredtest" class="test.spring.jdbc.MultipleThreadCAS">
+    <bean id="multithredtest" class="spring.jdbc.MultipleThreadCAS">
         <property name="jdbcTemplate" ref="jdbcTemplate"/>
     </bean>
 </beans>

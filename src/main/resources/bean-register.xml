@@ -16,7 +16,7 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="registerbf" class="test.spring.bean.RegisterBF"/>
+    <bean id="registerbf" class="spring.bean.RegisterBF"/>
 
 
 </beans>
