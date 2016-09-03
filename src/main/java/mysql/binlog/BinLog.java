@@ -1,6 +1,7 @@
 package mysql.binlog;
 
 import lombok.Data;
+import mysql.binlog.event.FormatDescriptionEvent;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +32,23 @@ public class BinLog{
     static {
 
     }
+
+    //util method
+    public FormatDescriptionEvent getFDE(){
+        FormatDescriptionEvent fde = (FormatDescriptionEvent) logEvents.get(0);
+        return fde;
+    }
+
+    public byte[] eventTypeHeaderLength(){
+        return getFDE().getData().getEventTypeHeaderLength();
+    }
+
+    public byte eventPostHeaderLength(LogEvent logEvent){
+        byte[] bytes = eventTypeHeaderLength();
+        byte typeCode = logEvent.getHeader().getEventType();
+        return bytes[typeCode - 1];
+    }
+
 
     public static void main(String[] args) throws IOException{
         InputStream ras = BinLog.class.getClassLoader().getResourceAsStream("mysql-bin.000023");

@@ -1,6 +1,8 @@
 package mysql.binlog;
 
 import lombok.Data;
+import mysql.binlog.datatype.Integer3;
+import mysql.binlog.datatype.Integer6;
 import mysql.binlog.event.*;
 
 import java.io.DataInputStream;
@@ -65,6 +67,49 @@ public class BinlogReader{
         byte[] bytes = new byte[exceptLength];
         read(bytes);
         return bytes;
+    }
+
+    /**
+     * 读取3字节的Integer, 采用小端字节序
+     * @return
+     * @throws IOException
+     */
+    public Integer3 readInteger3() throws IOException{
+        byte[] bytes = read(3);
+        return new Integer3(bytes);
+    }
+
+    public Integer6 readInteger6() throws IOException{
+        byte[] bytes = read(6);
+        return new Integer6(bytes);
+    }
+
+    //int length encode integer type
+
+    /**
+     * 读取带长度编码的整形数值, copy from mysql jdbc Buffer
+     * @return
+     * @throws IOException
+     */
+    public long readFieldLength() throws IOException{
+        int sw = readByte() & 0xff;
+
+        switch (sw) {
+            case 251:
+                return -1;
+
+            case 252:
+                return readShort();//2 bytes
+
+            case 253:
+                return readInteger3().value(); //3 bytes
+
+            case 254:
+                return readInt();
+
+            default:
+                return sw;//1 byte
+        }
     }
 
     public String readStringEOF(int exceptLength) throws IOException{

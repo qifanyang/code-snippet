@@ -21,7 +21,7 @@ public abstract class LogEvent{
     //v4 event header格式比较固定
     private LogEventHeader header;
 
-    //自定义LogEvent信息,不属于binlog文件中的信息
+    //自定义LogEvent信息,方便解析,不属于binlog文件中的信息
     private int eventOffset;
     private BinLog binLog;
 

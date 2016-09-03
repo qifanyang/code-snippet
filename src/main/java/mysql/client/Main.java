@@ -14,9 +14,12 @@ import java.util.concurrent.TimeUnit;
  */
 public class Main{
     public static void main(String[] args) throws Exception{
-        Session session = new Session();
-        session.doHandshake();
-        TimeUnit.SECONDS.sleep(1000);
+//        Session session = new Session();
+//        session.doHandshake();
+//        TimeUnit.SECONDS.sleep(1000);
+
+        testByteBuf();
+
     }
 
     private static void testInetAdrress() throws UnknownHostException{
@@ -38,13 +41,28 @@ public class Main{
         System.out.println("本地字节序 = " + ByteOrder.nativeOrder());//高位低字节为 BIG-ENDIAN
         byte[] b = new byte[4];
         b[0] = -115;
-        System.out.println(Integer.toBinaryString(141));//java是带符号扩展
-        System.out.println(Integer.toBinaryString(-115));//java是带符号扩展
+        System.out.println("141 binary string = "+Integer.toBinaryString(141));//java是带符号扩展, 正数符号位为0,输出不会显示左边的0
+        System.out.println("-115 binary string = "+Integer.toBinaryString(-115));//java是带符号扩展
+        System.out.println("115 binary string = "+Integer.toBinaryString(115));//java是带符号扩展
         System.out.println((byte) 141);
+        System.out.println(Integer.toBinaryString(0xffffffff));
+
+        //输出-128
+        //原码 0x80 > 1000 0000 编译是当做整形那么符号位为0,正数反码补码一样
+        //反码 0... 1000 0000
+        //补码 0... 1000 0000
+        //强转byte,则截取低8bit, 1000 0000 ,  java是带符号扩展结果为 1... 1000 0000
+        //反码1... 0111 1111
+        //原码10.. 1000 0000
+        //所以结果为-128
+        System.out.println((byte)0x80);
+
+        System.out.println(0x80);
 
         System.out.println("(int)b[0]&0xff = " + ((int) b[0] & 0x000000ff));//发生了什么?
-        //-115 在内存中扩展为int 11111111111111111111111110001101
-        //11111111111111111111111110001101 & ff 取低八位 --->  10001101
+        //-115原码 1111 0011  > 反码 1000 1100 > 补码 1000 1101
+        //java带符号扩展 -115 在内存中扩展为int 11111111111111111111111110001101
+        //11111111111111111111111110001101 & 0x000000ff 取低八位 --->  10001101
         //做 | 运算  结果为000000000000000000000000 10001101 --->141
         //mysql readLong 把低字节放在低位
         System.out.println("0xff == 0x000000ff is " + (0xff == 0x000000ff));
