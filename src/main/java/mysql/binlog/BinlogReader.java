@@ -8,6 +8,7 @@ import mysql.binlog.event.*;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.BitSet;
 
 /**
  * binlog reader , 包装{@link java.io.DataInputStream},方便扩展和改变实现
@@ -161,6 +162,38 @@ public class BinlogReader{
     }
 
     /**
+     * 状态个数, 比如列数量
+     * @param len
+     * @return
+     */
+    public BitSet readBitmap(int len) throws IOException{
+        //为什么是(x+7)/8 ?
+        //因为一个字节是8bit,使用位图即一个bit代表一个标识,但是计算机网络传输等使用最小单位是字节(8bit)
+        // 所以使用(x+7)/8 来转换为整数个字节
+        //比如 x = 1, 需要1个bit来标识, 至少需要一个字节所以加7/8,
+        //还可以使用x/8 + 1, 单这种情况,x = 8 时会浪费一个字节, 需要额外判断能否整除
+
+        //(x+7)/8 , 用篮子装鸡蛋来描述, x为鸡蛋个数, 一个篮子可以装8个鸡蛋, 就是计算需要多少个篮子?
+        //(x+7)/8 > x/8 + (x%8+7)/8   ,   x/8 + 1
+        byte[] bytes = read((len + 7) / 8);
+        BitSet nullBitmap = new BitSet(len);
+        int pos = 0;
+        for (int bit = 0; bit < len; bit += 8) {
+            int f = ((int) bytes[pos++]) & 0xff;
+            if (f == 0) continue;//没有设置值
+            if ((f & 0x01) != 0) nullBitmap.set(bit);
+            if ((f & 0x02) != 0) nullBitmap.set(bit + 1);
+            if ((f & 0x04) != 0) nullBitmap.set(bit + 2);
+            if ((f & 0x08) != 0) nullBitmap.set(bit + 3);
+            if ((f & 0x10) != 0) nullBitmap.set(bit + 4);
+            if ((f & 0x20) != 0) nullBitmap.set(bit + 5);
+            if ((f & 0x40) != 0) nullBitmap.set(bit + 6);
+            if ((f & 0x80) != 0) nullBitmap.set(bit + 7);
+        }
+        return nullBitmap;
+    }
+
+    /**
      * 跳到指定位置
      * @param position
      * @throws IOException
@@ -206,7 +239,7 @@ public class BinlogReader{
                     logEvent = new TableMapEvent();
                     break;
                 case LogEventType.UPDATE_ROWS_EVENT:
-                    logEvent = new UpdateRowsEvent();
+                    logEvent = new UpdateRowEvent();
                     break;
                 case LogEventType.XID_EVENT:
                     logEvent = new XidEvent();

@@ -2,6 +2,7 @@ package mysql.binlog;
 
 import lombok.Data;
 import mysql.binlog.event.FormatDescriptionEvent;
+import mysql.binlog.event.TableMapEvent;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -27,6 +28,8 @@ import java.util.Map;
 public class BinLog{
     private int magicNumber;
     private List<LogEvent> logEvents = new ArrayList<>();
+
+    private Map<Long, TableMapEvent> tableMapEventMap = new HashMap<>();
 
     private static final Map<Integer, LogEvent> LOG_EVENT_CLASS_MAP = new HashMap<>();
     static {

@@ -13,7 +13,7 @@ import java.io.IOException;
 @Data
 public class LogEventHeader{
     private int timestamp;//statement 开始执行的时间,单位秒
-    private byte eventType;//FORMAT_DESCRIPTION_EVENT = 15, event type在enum Log_event_type定义,链接:http://dev.mysql.com/doc/internals/en/event-classes-and-types.html
+    protected byte eventType;//FORMAT_DESCRIPTION_EVENT = 15, event type在enum Log_event_type定义,链接:http://dev.mysql.com/doc/internals/en/event-classes-and-types.html
     private int serverId;//创建log event的服务器id,还可以避免--log-slave-updates,循环同步数据
     private int eventLength;//log event长度,包含header+data,大多数事件长度小于1000,LOAD DATA INFILE除外
     private int nextPosition;//eventLength=116 nextPosition=120, 表示Offset to the end of the event,下一事件offset为当前值+1
