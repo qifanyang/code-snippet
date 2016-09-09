@@ -11,7 +11,10 @@ import java.io.InputStream;
 import java.util.BitSet;
 
 /**
- * binlog reader , 包装{@link java.io.DataInputStream},方便扩展和改变实现
+ * binlog reader , 包装{@link java.io.DataInputStream},方便扩展和改变实现,比如binlog来自文件,还可以来自网络
+ * canal采用基于Buffer的形式,先从文件或网络中读取数据到Buffer中,再来解析binlog
+ * 读取文件是是每次读取16K,没处理一个event然后判断再读取,每个event大小不可能这么大所以没问题
+ * 读取网络按照mysql server返回的包为单元来处理,最大包16M
  * @author yangqf
  * @version 1.0 2016/8/27
  */
@@ -83,6 +86,14 @@ public class BinlogReader{
     public Integer6 readInteger6() throws IOException{
         byte[] bytes = read(6);
         return new Integer6(bytes);
+    }
+
+    public Long readLong() throws IOException{
+        long l = dis.readLong();
+        if(reverse){
+            return Long.reverseBytes(l);
+        }
+        return l;
     }
 
     //int length encode integer type
@@ -162,7 +173,7 @@ public class BinlogReader{
     }
 
     /**
-     * 状态个数, 比如列数量
+     * 状态个数, 比如列数量, 读取的字节数为(len+7)/8
      * @param len
      * @return
      */
@@ -240,6 +251,7 @@ public class BinlogReader{
                     break;
                 case LogEventType.UPDATE_ROWS_EVENT:
                     logEvent = new UpdateRowEvent();
+                    System.out.println("准备解析Update Event...");
                     break;
                 case LogEventType.XID_EVENT:
                     logEvent = new XidEvent();
@@ -251,7 +263,7 @@ public class BinlogReader{
                     logEvent = new RotateEvent();
                     break;
                 default:
-                    throw new IllegalStateException("unknown event type ...");
+                    throw new IllegalStateException("unknown event type = " + eventType);
 
             }
             logEvent.setEventOffset(offset);

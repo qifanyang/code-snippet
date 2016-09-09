@@ -4,3 +4,7 @@ http://dev.mysql.com/doc/internals/en/basic-types.html
 http://dev.mysql.com/doc/internals/en/mysql-packet.html
 通信包结构,也就是协议设计, 结构:header_length(int<3>)+sequence_id(int<1>)+payload
 
+mysql 5.7新增目录libbiglogevents把5.6中log_event.h中的row_event和map_event移动到此处
+
+
+mysql 5.6 binlog event类位置  https://github.com/mysql/mysql-server/blob/5.6/sql/log_event.h#L4005

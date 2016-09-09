@@ -16,5 +16,7 @@ public class Just{
         System.out.println(bs.get(3));
 
         System.out.println(~0);
+
+        System.out.println(257&0xff);
     }
 }
