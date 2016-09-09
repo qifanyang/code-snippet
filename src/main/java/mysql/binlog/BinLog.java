@@ -54,7 +54,7 @@ public class BinLog{
 
 
     public static void main(String[] args) throws IOException{
-        InputStream ras = BinLog.class.getClassLoader().getResourceAsStream("mysql-bin.000026");
+        InputStream ras = BinLog.class.getClassLoader().getResourceAsStream("mysql-bin.000022");
         BinlogReader reader = new BinlogReader(ras);
         reader.setReverse(true);
 

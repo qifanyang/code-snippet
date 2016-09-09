@@ -90,6 +90,7 @@ public class BinlogReader{
 
     public Long readLong() throws IOException{
         long l = dis.readLong();
+        offset += 8;
         if(reverse){
             return Long.reverseBytes(l);
         }
@@ -239,7 +240,7 @@ public class BinlogReader{
 
             LogEvent logEvent;
             //根据事件类型创建, 向一个map中注册Event, 然后调用比case好看点
-            switch(eventType){
+            switch((int)eventType){
                 case LogEventType.FORMAT_DESCRIPTION_EVENT:
                     logEvent = new FormatDescriptionEvent();
                     break;
@@ -251,7 +252,10 @@ public class BinlogReader{
                     break;
                 case LogEventType.UPDATE_ROWS_EVENT:
                     logEvent = new UpdateRowEvent();
-                    System.out.println("准备解析Update Event...");
+//                    System.out.println("准备解析Update Event...");
+                    break;
+                case LogEventType.DELETE_ROWS_EVENT:
+                    logEvent = new DeleteRowEvent();
                     break;
                 case LogEventType.XID_EVENT:
                     logEvent = new XidEvent();
@@ -262,11 +266,15 @@ public class BinlogReader{
                 case LogEventType.ROTATE_EVENT:
                     logEvent = new RotateEvent();
                     break;
+                case LogEventType.ANNOTATE_ROWS_EVENT:
+                    logEvent = new AnnotationRowsEvent();
+                    break;
                 default:
                     throw new IllegalStateException("unknown event type = " + eventType);
 
             }
             logEvent.setEventOffset(offset);
+//            System.out.println("offset = " + offset);
             logEvent.setBinLog(binLog);
             logEvent.parse(this);
             binLog.getLogEvents().add(logEvent);

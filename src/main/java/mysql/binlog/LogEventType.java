@@ -43,5 +43,7 @@ public class LogEventType{
     public static final byte GTID_LOG_EVENT = 33;
     public static final byte ANONYMOUS_GTID_LOG_EVENT = 34;
     public static final byte PREVIOUS_GTIDS_LOG_EVENT = 35;
+
+    public static final int    ANNOTATE_ROWS_EVENT                      = 160;
   /* end marker */
 }

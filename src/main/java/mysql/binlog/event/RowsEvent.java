@@ -8,7 +8,6 @@ import mysql.binlog.LogEventType;
 
 import java.io.IOException;
 import java.util.BitSet;
-import java.util.IllegalFormatException;
 
 /**
  * https://github.com/mysql/mysql-server/blob/5.7/libbinlogevents/include/rows_event.h#L482
@@ -17,7 +16,7 @@ import java.util.IllegalFormatException;
  */
 @Data
 public abstract class RowsEvent extends LogEvent{
-    private UpdateRowsEventData data = new UpdateRowsEventData();
+    private RowsEventData data = new RowsEventData();
     private long columnsNum;
     private BitSet columnsPresentBitmap1;//before
     private BitSet columnsPresentBitmap2;//after
@@ -25,7 +24,7 @@ public abstract class RowsEvent extends LogEvent{
     private BitSet nullBitmap2;//after
 
 
-    public class UpdateRowsEventData extends LogEventData{
+    public class RowsEventData extends LogEventData{
         @Override
         public void parse(BinlogReader reader) throws IOException{
             byte postHeaderLength = getBinLog().eventPostHeaderLength(RowsEvent.this);
@@ -66,7 +65,8 @@ public abstract class RowsEvent extends LogEvent{
             //begin to repeat to read row data until the end of current event
             //没一行的格式如下
             //Null_bit_mask(4)|field-1|field-2|field-3|field 4
-            while(reader.getOffset() < getHeader().getNextPosition()){//只要当前位置小于下一个事件位置,就表示当前事件没有读取完毕
+            //减去4因为有checksum
+            while(reader.getOffset() < getHeader().getNextPosition() - 4){//只要当前位置小于下一个事件位置,就表示当前事件没有读取完毕
                 //注意nullBitmap的长度并不是是(列数+7)/8,而是(bits set in 'columns-present-bitmap1'+7)/8
                 //也就是指有在columns-present-bitmap1中为true个个数
                 int nullBitmapLen = 0;
@@ -89,9 +89,7 @@ public abstract class RowsEvent extends LogEvent{
                     //读取列数据根据列数据类型和列元数据从row data中解析
                     parseRowData(reader, tableMapEvent.getColumnTypeDef()[i], tableMapEvent.getColumnMetaDef()[i]);
                 }
-                if(reader.getOffset() >= getHeader().getNextPosition()){
-                    break;
-                }
+
                 System.out.println("=======column after image=========");
                 //value of each field as defined in table map
                 //需要通过table map去查找value, row event 通过判断tableId和table map event的tableId是否相等来关联
