@@ -257,6 +257,9 @@ public class BinlogReader{
                 case LogEventType.DELETE_ROWS_EVENT:
                     logEvent = new DeleteRowEvent();
                     break;
+                case LogEventType.WRITE_ROWS_EVENT:
+                    logEvent = new WriteRowEvent();
+                    break;
                 case LogEventType.XID_EVENT:
                     logEvent = new XidEvent();
                     break;

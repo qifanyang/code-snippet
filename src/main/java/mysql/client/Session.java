@@ -57,6 +57,10 @@ public class Session{
         }
     }
 
+    public void connect(){
+
+    }
+
     //连接建立后,开始认证
     public void doHandshake() throws Exception{
 
@@ -69,7 +73,7 @@ public class Session{
         long threadId = buf.readUnsignedInt();
         System.out.println("threadId = " + threadId);
         String seed;
-        if (protocolVersion > 9) {
+        if (protocolVersion > 9) {//fuck 参照mysql jdbc 写的还要考虑兼容,真麻烦,参考mysql internal manual写V10最新版本
             // read auth-plugin-data-part-1 (string[8])
              seed = readString(buf,"ASCII", 8);//种子用来认证是加密用的,使用ssl的话不用这个
             // read filler ([00])
@@ -77,9 +81,10 @@ public class Session{
             System.out.println("seed=" + seed);
         } else {
             // read scramble (string[NUL])
-             seed = readString(buf, "ASCII");
+             seed = readString(buf, "ASCII");//v9版本的 handshake到此结束,没有其它数据了
         }
 
+        //v10 版本才有下面扩展数据
 
         int serverCapabilities = 0;
         // read capability flags (lower 2 bytes)
@@ -94,16 +99,22 @@ public class Session{
         //接下来不做任何判断,根据debug路径,直接读取信息
         int serverCharsetIndex = buf.readByte();
         int serverStatus = buf.readShort();
-        serverCapabilities |= buf.readShort() << 16;
+        serverCapabilities |= buf.readShort() << 16;//服务器支持的功能还用两字节表示,很明显这两字节是后面加的
+
 
         int clientParam = 3842703;//该值是根据服务器返回值serverCapabilities和本地connection设置共同确定
 //        clientParam |= 0x00200000;
         clientParam &=~0x00100000; // ignore connection attributes
-        int authPluginDataLength = buf.readByte();
+//        if capabilities & CLIENT_PLUGIN_AUTH {
+//            1              length of auth-plugin-data
+//        } else {
+//            1              [00]
+//        }
+        int authPluginDataLength = buf.readByte();//length of auth-plugin-data
 
         // next 10 bytes are reserved (all [00])
 //        buf.setPosition(buf.getPosition() + 10);
-        buf.readerIndex(buf.readerIndex() + 10);
+        buf.readerIndex(buf.readerIndex() + 10);//跳过10字节保留数据
         String seed2 = readString(buf, "ASCII", authPluginDataLength - 8);
         seed += seed2;
         System.out.println("seed =" +seed );
@@ -123,6 +134,8 @@ public class Session{
         int packLength = ((userLength + passwordLength + databaseLength) * 3) + 7 + 4 + 33;
 
         String pluginName = readString(buf, "ASCII");
+        //initial handshake packet 读取完毕,准备发送Handshake response packet
+
         ByteBuf fromServer = buf.alloc().buffer(seed.getBytes().length).writeBytes(seed.getBytes());
 
         byte[] bytes = Security.scramble411(password, seed, "utf-8");
@@ -145,7 +158,7 @@ public class Session{
         sendBuf.writeByte(33);//CharsetMapping.MYSQL_COLLATION_INDEX_utf8;
         sendBuf.writeBytes(new byte[23]);
 
-        //写user
+        //写user  string<null>
         sendBuf.writeBytes(user.getBytes());
         sendBuf.writeByte(0);
 
@@ -225,6 +238,14 @@ public class Session{
         return byteBuf;
     }
 
+    /**
+     * 读取string<NULL>
+     * @param buf
+     * @return
+     */
+    public String readNullTerminalString(ByteBuf buf){
+        return "";
+    }
     final String readString(ByteBuf buf,String encoding) throws Exception {
         int i = buf.readerIndex();
         int len = 0;

@@ -42,12 +42,12 @@ public class BinLog{
         return fde;
     }
 
-    public byte[] eventTypeHeaderLength(){
+    public byte[] eventPostHeaderLength(){
         return getFDE().getData().getEventTypeHeaderLength();
     }
 
     public byte eventPostHeaderLength(LogEvent logEvent){
-        byte[] bytes = eventTypeHeaderLength();
+        byte[] bytes = eventPostHeaderLength();
         byte typeCode = logEvent.getHeader().getEventType();
         return bytes[typeCode - 1];
     }
