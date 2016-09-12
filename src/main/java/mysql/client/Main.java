@@ -14,9 +14,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class Main{
     public static void main(String[] args) throws Exception{
-        Session session = new Session();
+        Session_Old session = new Session_Old();
         session.doHandshake();
-//        TimeUnit.SECONDS.sleep(1000);
+        TimeUnit.SECONDS.sleep(1000);
 
         testByteBuf();
 
