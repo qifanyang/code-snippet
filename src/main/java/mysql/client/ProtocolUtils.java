@@ -23,15 +23,17 @@ public class ProtocolUtils{
      * @return
      */
     public static ByteBuf createEmptyPacket(){
-        ByteBuf buf = createLittleByteBuf();
+        return createEmptyPacket(256);
+    }
+
+    public static ByteBuf createEmptyPacket(int size){
+        ByteBuf buf = createLittleByteBuf(size);
         buf.writeInt(0);
         return buf;
     }
 
     public static ByteBuf createLittleByteBuf(){
-        ByteBuf buf = allocator.buffer();
-        buf = buf.order(ByteOrder.LITTLE_ENDIAN);
-        return buf;
+        return createLittleByteBuf(256);
     }
 
     public static ByteBuf createLittleByteBuf(int size){
@@ -71,4 +73,42 @@ public class ProtocolUtils{
             buf.readerIndex(buf.readerIndex()+expectedLength);
         }
     }
+
+    public static String readLenencString(ByteBuf buf){
+        long len = readIntLenenc(buf);
+        return readFixLengthString(buf, (int) len);
+    }
+
+    public static long readIntLenenc(ByteBuf buf){
+        int sw = buf.readByte() & 0xff;
+
+        switch (sw) {
+            case 251:
+                return -1;//特殊值表示空 null_length
+
+            case 252:
+                return buf.readShort();
+
+            case 253:{
+                byte b0 = buf.readByte();
+                byte b1 = buf.readByte();
+                byte b2 = buf.readByte();
+                return (b0 | b1 << 8 | b2 << 16);
+            }
+            case 254:{
+                byte b0 = buf.readByte();
+                byte b1 = buf.readByte();
+                byte b2 = buf.readByte();
+                byte b3 = buf.readByte();
+                byte b4 = buf.readByte();
+                byte b5 = buf.readByte();
+                byte b6 = buf.readByte();
+                byte b7 = buf.readByte();
+                return (b0 | b1 << 8 | b2 << 16| b3 << 24| b4 << 32| b5 << 40| b6 << 48| b7 << 56);
+            }
+            default:
+                return sw;
+        }
+    }
+
 }

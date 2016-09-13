@@ -5,6 +5,7 @@
     <file url="file://$PROJECT_DIR$/src/main/java/core/proxy/jdk/IProxy.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/core/proxy/jdk/StaticProxy.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/core/reflect/Main.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/mysql/client/doc.md" charset="UTF-16" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

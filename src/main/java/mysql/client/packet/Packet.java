@@ -17,7 +17,7 @@ public interface Packet{
     int CLIENT_INTERACTIVE = 0x00000400;//1024 wait_timeout versus wait_interactive_timeout.
     int CLIENT_PROTOCOL_41 = 0x00000200;//512
     int CLIENT_CONNECT_WITH_DB = 0x00000008;//在handshake_response_packet中指明数据包名
-    int CLIENT_LONG_FLAG = 0x00000004;
+    int CLIENT_LONG_FLAG = 0x00000004;//
     int CLIENT_LONG_PASSWORD = 0x00000001;
 
     int HEADER_LENGTH = 4;

@@ -13,6 +13,8 @@ public class MainNew{
         Session session = new Session();
         session.connect();
 
+        session.executeSQL("SELECT * FROM user WHERE id = 20");
+
         TimeUnit.SECONDS.sleep(10000);
 
     }

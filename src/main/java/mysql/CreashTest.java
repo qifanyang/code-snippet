@@ -12,6 +12,7 @@ public class CreashTest extends BaseDB{
     public static void main(String[] args) throws SQLException, InterruptedException{
         Connection connection = getConnection();
         connection.setAutoCommit(false);
+        //使用ConnectionImpl创建statementImpl,采用默认resultType和resultSetConcurrency
         Statement statement = connection.createStatement();
 
         ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id = 20");

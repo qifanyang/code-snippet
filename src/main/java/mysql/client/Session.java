@@ -1,6 +1,6 @@
 package mysql.client;
 
-import com.mysql.jdbc.*;
+import com.mysql.jdbc.MysqlDefs;
 import io.netty.buffer.ByteBuf;
 import lombok.Data;
 import mysql.client.packet.HandshakeResponsePacket;
@@ -14,6 +14,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -95,13 +96,13 @@ public class Session{
         int userLength = (user != null) ? user.length() : 0;
         int databaseLength = (database != null) ? database.length() : 0;
 
-        //*3 是因为使用utf8编码?
+        //*3 是因为使用utf8编码, mysql每个字符最大长度编码为3个字节
         int packLength = ((userLength + passwordLength + databaseLength) * 3) + 7 + Packet.HEADER_LENGTH + Packet.AUTH_411_OVERHEAD;
 
         //if use SSL 发送SSLConnection
 
         ByteBuf fromServer = null;
-        ArrayList<ByteBuf> toServer = new ArrayList<ByteBuf>();
+        ArrayList<ByteBuf> toServer = new ArrayList<>();
         Boolean done = null;//是否完成认证
         int counter = 100;
         //server 5.6.28-log
@@ -118,7 +119,7 @@ public class Session{
 //                            }
 
                         }
-                        byte[] seedBytes = initialHandshakePacket.getSeed().getBytes();
+                        byte[] seedBytes = initialHandshakePacket.getSeed().getBytes(ProtocolUtils.charset_utf8);
                         fromServer = ProtocolUtils.createLittleByteBuf(seedBytes.length).writeBytes(seedBytes);
                     }else {
                         // no challenge so this is a changeUser call
@@ -128,18 +129,22 @@ public class Session{
                 }else {
                     //已经done,进行过认证,检查认证结果
                     ByteBuf authResult = decoder.readPacket();
+                    this.packetSequence++;
                     byte ret = authResult.readByte();
                     if((ret & 0xff) == 0xff){
                         int errno = authResult.readShort();
                         String serverErrorMessage = ProtocolUtils.readNullTerminalString(authResult);
                         System.out.println("errno = " + errno +" , errror message = " + serverErrorMessage);
-                    }
-                    if((ret & 0xff) == 0){
+                    }else if((ret & 0xff) == 0){
                         if(!done){
                             throw new SQLException("认证失败");
                         }
                         System.out.println("认证成功...");
                         break;
+                    }else if((ret & 0xff) == 0xfe){//client和server都具备插件认证能力,服务器可以inform client switch to another auth method
+//                        1              [fe]
+//                        string[NUL]    plugin name
+//                        string[EOF]    auth plugin data
                     }
 
                 }
@@ -151,7 +156,9 @@ public class Session{
 
             //发送 handshakeRespone, 完成握手
             //注意握手阶段packetSequence需要增加,否则server会断开连接,因为该次会话没有完成,所以序列号需要自增
-            decoder.sendPacket(handshakeResponse, ++packetSequence, packLength);
+            ++packetSequence;
+            decoder.setPacketSequence(packetSequence);
+            decoder.sendPacket(handshakeResponse, packLength);
 
         }
 
@@ -160,5 +167,50 @@ public class Session{
         }
 
     }
+
+    public void resetPacketSequence(){
+        this.packetSequence = 0;
+        decoder.setPacketSequence(packetSequence);
+    }
+
+    public void checkErr(ByteBuf buf) throws SQLException{
+        if((buf.getByte(0) & 0xff) == 0xff){
+            buf.readByte();
+            int errno = buf.readShort();
+            String serverErrorMessage = ProtocolUtils.readNullTerminalString(buf);
+            System.out.println("errno = " + errno + " , errror message = " + serverErrorMessage);
+            throw new SQLException("check err failed !");
+        }
+    }
+
+    public void executeSQL(String sql) throws SQLException{
+        resetPacketSequence();
+        int packLength = 4 + 1 + (sql.length() * 3) + 2;
+        ByteBuf sendBuf = ProtocolUtils.createEmptyPacket(packLength);
+        sendBuf.writeByte(Command.QUERY);
+        sendBuf.writeBytes(sql.getBytes(ProtocolUtils.charset_utf8));
+        try{
+            decoder.send(sendBuf, sendBuf.writerIndex());
+            ByteBuf resultBuf = decoder.readPacket();
+            checkErr(resultBuf);
+            //TODO check err packet
+            //读取结果集数据
+            int columnCount = (int) ProtocolUtils.readIntLenenc(resultBuf);
+            //读取字段数据包
+            //解析>catalogName,databaseName,tableName,originalTableNameStart,originalTableNameLength 不转换为string
+            //Name,originaColum,>skipbyte> charSetNumber>colLength>colTypebyte>colflag>colDecimal>defaultvaluestart(采用string<lenenc>)>
+            //
+            Field[] fields = new Field[columnCount];
+            for(int i = 0; i < columnCount; i++){
+                ByteBuf fieldBuf = decoder.readPacket();
+                fields[i] = new Field();
+                fields[i].deserialized(fieldBuf);
+            }
+
+        }catch(IOException e){
+            throw new SQLException("执行sql发生异常, e = " + e);
+        }
+    }
+
 
 }

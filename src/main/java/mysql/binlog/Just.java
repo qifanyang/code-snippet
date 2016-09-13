@@ -9,6 +9,8 @@ import java.util.BitSet;
 public class Just{
     public static void main(String[] args){
         System.out.println((2<<23) - 1);
+        byte[] bb = {0x5c,0x49, 0x4d, 0x5e,0x4e, 0x58, 0x4f, 0x47};
+        System.out.println(new String(bb));
         BitSet bs = new BitSet(10);
         System.out.println(bs.size());
         bs.set(3);

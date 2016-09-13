@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public abstract class BaseDB{
 
     private static String driver = "com.mysql.jdbc.Driver";
-    private static String passwrod = "";
+    private static String passwrod = "123456";
     private static String userName = "root";
     private static String url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8";
 

@@ -1,14 +1,11 @@
 package mysql.client.packet;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufAllocator;
-import io.netty.buffer.UnpooledByteBufAllocator;
 import mysql.client.ProtocolUtils;
 
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.Socket;
-import java.nio.ByteOrder;
 
 /**
  * 类似Netty的各种Coder
@@ -22,6 +19,11 @@ public class MySQLPacketDecoder{
     private byte[] packetHeaderBytes = new byte[4];
     private Socket socket;
     private DataInputStream io;
+    private int packetSequence;
+
+    public void setPacketSequence(int packetSequence){
+        this.packetSequence = packetSequence;
+    }
 
     public MySQLPacketDecoder(Socket socket){
         this.socket = socket;
@@ -53,8 +55,12 @@ public class MySQLPacketDecoder{
         return byteBuf;
     }
 
-    public void sendPacket(Packet packet, int packetSequence, int packetLength) throws IOException{
+    public void sendPacket(Packet packet, int packetLength) throws IOException{
         ByteBuf buf = packet.serialized();
+        send(buf, packetLength);
+    }
+
+    public void send(ByteBuf buf, int packetLength) throws IOException{
         int position = buf.writerIndex();
         buf.readerIndex(0);
         buf.writerIndex(0);
@@ -70,7 +76,7 @@ public class MySQLPacketDecoder{
         buf.writeByte((byte) (size >>> 16));
         buf.writeByte(packetSequence);
 
-        socket.getOutputStream().write(buf.array());
+        socket.getOutputStream().write(buf.array(), 0, packetLength);//带上长度,不要多发数据
         socket.getOutputStream().flush();
     }
 
