@@ -26,7 +26,7 @@ public class Session{
 
     private String url;
     private String user = "root";
-    private String passwd = "";
+    private String passwd = "123456";
     private String database = "test";
 
     private MySQLPacketDecoder decoder;
@@ -119,14 +119,29 @@ public class Session{
 
                         }
                         byte[] seedBytes = initialHandshakePacket.getSeed().getBytes();
-                        fromServer = ProtocolUtils.allocator.buffer(seedBytes.length).writeBytes(seedBytes);
+                        fromServer = ProtocolUtils.createLittleByteBuf(seedBytes.length).writeBytes(seedBytes);
                     }else {
                         // no challenge so this is a changeUser call
                         // 改变用户不用challege
                     }
 
                 }else {
-                    //XXX
+                    //已经done,进行过认证,检查认证结果
+                    ByteBuf authResult = decoder.readPacket();
+                    byte ret = authResult.readByte();
+                    if((ret & 0xff) == 0xff){
+                        int errno = authResult.readShort();
+                        String serverErrorMessage = ProtocolUtils.readNullTerminalString(authResult);
+                        System.out.println("errno = " + errno +" , errror message = " + serverErrorMessage);
+                    }
+                    if((ret & 0xff) == 0){
+                        if(!done){
+                            throw new SQLException("认证失败");
+                        }
+                        System.out.println("认证成功...");
+                        break;
+                    }
+
                 }
 
                 //call plugin
@@ -135,7 +150,8 @@ public class Session{
             handshakeResponse.setToServer(toServer.get(0));
 
             //发送 handshakeRespone, 完成握手
-            decoder.sendPacket(handshakeResponse, packetSequence);
+            //注意握手阶段packetSequence需要增加,否则server会断开连接,因为该次会话没有完成,所以序列号需要自增
+            decoder.sendPacket(handshakeResponse, ++packetSequence, packLength);
 
         }
 

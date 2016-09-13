@@ -1,8 +1,6 @@
 package mysql.client;
 
-import mysql.client.packet.MySQLPacketDecoder;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 

@@ -8,6 +8,7 @@ import java.util.BitSet;
  */
 public class Just{
     public static void main(String[] args){
+        System.out.println((2<<23) - 1);
         BitSet bs = new BitSet(10);
         System.out.println(bs.size());
         bs.set(3);

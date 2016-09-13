@@ -14,7 +14,7 @@ public class HandshakeResponsePacket implements Packet{
     //客户端具备的功能,CLIENT_PROTOCOL_41 always set
     private int clientCapability = CLIENT_LONG_PASSWORD | CLIENT_LONG_FLAG | CLIENT_CONNECT_WITH_DB
             | CLIENT_PROTOCOL_41 | CLIENT_TRANSACTIONS | CLIENT_SECURE_CONNECTION | CLIENT_PLUGIN_AUTH;
-    private int maxPacketSize = 1 << 24;//最大包大小,一般2^24
+    private int maxPacketSize = (2<<23) - 1;//最大包大小,一般2^24
     private byte charactSet = 33;//utf8
     private byte[] reserved = new byte[23];//string[23]
     private String userName;//string[NULL]
@@ -27,6 +27,9 @@ public class HandshakeResponsePacket implements Packet{
     @Override
     public ByteBuf serialized(){
         ByteBuf buf = ProtocolUtils.createEmptyPacket();
+        clientCapability = 3842703;//该值是根据服务器返回值serverCapabilities和本地connection设置共同确定
+//        clientParam |= 0x00200000;
+        clientCapability &=~0x00100000; // ignore connection attributes
         buf.writeInt(clientCapability)
                 .writeInt(maxPacketSize)
                 .writeByte(charactSet)
@@ -35,6 +38,7 @@ public class HandshakeResponsePacket implements Packet{
                 .writeByte(0);
 
         buf.writeByte(toServer.writerIndex()).writeBytes(toServer.array());
+//        buf.writeByte(0);
 
         buf.writeBytes(database.getBytes(ProtocolUtils.charset_utf8)).writeByte(0);
         buf.writeBytes("mysql_native_password".getBytes(ProtocolUtils.charset_utf8)).writeByte(0);

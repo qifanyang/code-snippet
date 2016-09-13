@@ -41,26 +41,30 @@ public class MySQLPacketDecoder{
         int packetLength = (this.packetHeaderBytes[0] & 0xff) + ((this.packetHeaderBytes[1] & 0xff) << 8) + ((this.packetHeaderBytes[2] & 0xff) << 16);
 
         byte[] bytes = new byte[packetLength + 1];
-        int realReadCount = io.read(bytes);
+       io.readFully(bytes, 0, packetLength);
         bytes[packetLength] = 0;//其实数据只有packetLength, 末尾补全一个0, 应为c++ 字符串/0 结尾么?
-        if(realReadCount != packetLength){
-            io.close();
-            throw new IllegalStateException("mysql 返回数据不完整,和包头length不比配");
-        }
+//        if(realReadCount != packetLength){
+//            io.close();
+//            throw new IllegalStateException("mysql 返回数据不完整,和包头length不比配, excepted length = " + );
+//        }
 
-        ByteBuf byteBuf = ProtocolUtils.allocator.heapBuffer(bytes.length);
+        ByteBuf byteBuf = ProtocolUtils.createLittleByteBuf(bytes.length);
         byteBuf.writeBytes(bytes);
-        byteBuf = byteBuf.order(ByteOrder.LITTLE_ENDIAN);//mysql 协议用的小端字节序
         return byteBuf;
     }
 
-    public void sendPacket(Packet packet, int packetSequence) throws IOException{
+    public void sendPacket(Packet packet, int packetSequence, int packetLength) throws IOException{
         ByteBuf buf = packet.serialized();
         int position = buf.writerIndex();
         buf.readerIndex(0);
         buf.writerIndex(0);
 
-        int size = position - 4;
+        int size;
+        if(packetLength > 0){
+            size = packetLength - 4;
+        }else {
+            size = position - 4;
+        }
         buf.writeByte((byte) (size & 0xff));
         buf.writeByte((byte) (size >>> 8));
         buf.writeByte((byte) (size >>> 16));

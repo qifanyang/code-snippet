@@ -6,6 +6,7 @@ import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.UnpooledByteBufAllocator;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.ByteOrder;
 import java.nio.charset.Charset;
 
 /**
@@ -15,11 +16,27 @@ import java.nio.charset.Charset;
 public class ProtocolUtils{
 
     public static Charset charset_utf8 = Charset.forName("utf-8");
-    public static ByteBufAllocator allocator = new UnpooledByteBufAllocator(false);
+    private static ByteBufAllocator allocator = new UnpooledByteBufAllocator(false);
 
+    /**
+     *  3 bytes of packet length is zero, and the forth byte value is zero
+     * @return
+     */
     public static ByteBuf createEmptyPacket(){
-        ByteBuf buf = allocator.buffer();
+        ByteBuf buf = createLittleByteBuf();
         buf.writeInt(0);
+        return buf;
+    }
+
+    public static ByteBuf createLittleByteBuf(){
+        ByteBuf buf = allocator.buffer();
+        buf = buf.order(ByteOrder.LITTLE_ENDIAN);
+        return buf;
+    }
+
+    public static ByteBuf createLittleByteBuf(int size){
+        ByteBuf buf = allocator.buffer(size);
+        buf = buf.order(ByteOrder.LITTLE_ENDIAN);
         return buf;
     }
 

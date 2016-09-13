@@ -22,10 +22,10 @@ public class MysqlNativePasswordPlugin{
             ByteBuf bresp = null;
 
             if (fromServer == null || pwd == null || pwd.length() == 0) {
-                bresp = ProtocolUtils.allocator.buffer(0);
+                bresp = ProtocolUtils.createLittleByteBuf(0);
             } else {
                 byte[] bytes = MySQLEncrypted.scramble411(pwd, ProtocolUtils.readNullTerminalString(fromServer));
-                bresp = ProtocolUtils.allocator.buffer(bytes.length).writeBytes(bytes);
+                bresp = ProtocolUtils.createLittleByteBuf(bytes.length).writeBytes(bytes);
             }
             toServer.add(bresp);
 
