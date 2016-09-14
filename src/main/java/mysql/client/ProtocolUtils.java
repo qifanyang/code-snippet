@@ -75,11 +75,11 @@ public class ProtocolUtils{
     }
 
     public static String readLenencString(ByteBuf buf){
-        long len = readIntLenenc(buf);
+        long len = readLenencInt(buf);
         return readFixLengthString(buf, (int) len);
     }
 
-    public static long readIntLenenc(ByteBuf buf){
+    public static long readLenencInt(ByteBuf buf){
         int sw = buf.readByte() & 0xff;
 
         switch (sw) {

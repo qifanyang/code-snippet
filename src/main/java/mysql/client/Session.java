@@ -1,6 +1,5 @@
 package mysql.client;
 
-import com.mysql.jdbc.MysqlDefs;
 import io.netty.buffer.ByteBuf;
 import lombok.Data;
 import mysql.client.packet.HandshakeResponsePacket;
@@ -14,7 +13,6 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -195,7 +193,7 @@ public class Session{
             checkErr(resultBuf);
             //TODO check err packet
             //读取结果集数据
-            int columnCount = (int) ProtocolUtils.readIntLenenc(resultBuf);
+            int columnCount = (int) ProtocolUtils.readLenencInt(resultBuf);
             //读取字段数据包
             //解析>catalogName,databaseName,tableName,originalTableNameStart,originalTableNameLength 不转换为string
             //Name,originaColum,>skipbyte> charSetNumber>colLength>colTypebyte>colflag>colDecimal>defaultvaluestart(采用string<lenenc>)>
@@ -205,6 +203,19 @@ public class Session{
                 ByteBuf fieldBuf = decoder.readPacket();
                 fields[i] = new Field();
                 fields[i].deserialized(fieldBuf);
+            }
+            
+            //checkServerStatusForResult
+            resultBuf = decoder.readPacket();
+
+            //准备读取row data, JDBC42ResultSet  RowDataStatic
+            byte[][] rowData = new byte[columnCount][];//一行,多条记录使用List
+            ByteBuf rowBuf = decoder.readPacket();
+            checkErr(rowBuf);
+            for(int i = 0; i < columnCount; i++){
+                int len = (int) ProtocolUtils.readLenencInt(rowBuf);
+                rowData[i] = new byte[len];
+                rowBuf.readBytes(rowData[i]);
             }
 
         }catch(IOException e){
