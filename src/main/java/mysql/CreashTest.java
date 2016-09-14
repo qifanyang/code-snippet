@@ -16,6 +16,7 @@ public class CreashTest extends BaseDB{
         Statement statement = connection.createStatement();
 
         ResultSet rs = statement.executeQuery("SELECT * FROM user WHERE id = 20");
+//        rs.getLong(1);
         ResultSetMetaData rsmd = rs.getMetaData();
         int nrOfColumns = rsmd.getColumnCount();
         System.out.println(nrOfColumns);

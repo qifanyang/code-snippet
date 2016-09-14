@@ -13,7 +13,11 @@ public class MainNew{
         Session session = new Session();
         session.connect();
 
-        session.executeSQL("SELECT * FROM user WHERE id = 20");
+//        ResultSetX resultSetX = session.executeSQL("SELECT * FROM user WHERE id = 20");
+        ResultSetX resultSetX = session.executeSQL("SELECT * FROM user");
+        while(resultSetX.next()){
+            System.out.println("id = " + resultSetX.getLong(1) + ",age = " + resultSetX.getLong(2)+",num = " + resultSetX.getLong(3));
+        }
 
         TimeUnit.SECONDS.sleep(10000);
 

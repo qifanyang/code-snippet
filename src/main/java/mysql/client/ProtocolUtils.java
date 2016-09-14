@@ -17,6 +17,7 @@ public class ProtocolUtils{
 
     public static Charset charset_utf8 = Charset.forName("utf-8");
     private static ByteBufAllocator allocator = new UnpooledByteBufAllocator(false);
+    public static byte[] EMPTY_BYTE_ARRAY = new byte[0];
 
     /**
      *  3 bytes of packet length is zero, and the forth byte value is zero
