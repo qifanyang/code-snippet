@@ -10,7 +10,7 @@ import java.sql.*;
 public class GenerateDbBean{
     public static void main(String[] args){
 
-        DataBaseTableWalker.walk("discount_shop", new ResultSetWalker(){
+        DataBaseTableWalker.walk("add_item_batch", new ResultSetWalker(){
             @Override
             public void beforeWalk(String tableName){
                 System.out.println("package com.keruyun.calm.entity;");
