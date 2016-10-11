@@ -13,6 +13,8 @@ import java.lang.reflect.Field;
  */
 public class StringTest {
     public static void main(String[] args) throws Exception {
+        String zhushi = "sdfdf /*sdfdsf*/";
+//        System.out.println(zhushi.regionMatches(true, 0, ));
         String a = "aaa";
         String na = new String("aaa");
 

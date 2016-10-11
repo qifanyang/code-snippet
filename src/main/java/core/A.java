@@ -10,4 +10,14 @@ package core;
  * @version 1.0 2016/1/29
  */
 public class A {
+
+    public static void main(String[] args){
+        Integer integer = get();
+        System.out.println(integer);
+
+    }
+
+    public static Integer get(){
+        return (Integer)null;
+    }
 }
