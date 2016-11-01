@@ -40,12 +40,12 @@ public class PowerOfTwo{
         //那么initialCapacity要为7,这样做真心没必要,所以对于小容量默认16就可以了,节约几个数组长度没必要
 
         //对于map容量很快就会变得很大的,初始化可以采用手动计算threshold,防止多次resize,提升效率
+        //当容量大于16, threshold计算不在依赖load_factor,而是直接*2, 所以map容量很大最好不要resize
 
         map.put(1, 1);// 初始化 resize
         map.put(2, 1);// 不会 resize
         map.put(3, 1);//不会 resize
         map.put(4, 1);//initialCapacity 3, 真是capacity 4, threshold 3 所以这里会resize
-        //
     }
 
     /**
