@@ -67,6 +67,12 @@ public class FloatTest{
         //舍入处理
         //1.10110011001100110011011
 
+        //规格化处理
+
+
+        //最终结果
+        //0.20000002f = 0 01111100 10011001100110011001110
+
         //TODO 计算没有完成
         //浮点数到十进制转换, 小数部分使用2^-1, 2^-2 次方
 
@@ -90,6 +96,7 @@ public class FloatTest{
         float x1 = 0.3f;
         System.out.println("0.3f = "+Integer.toBinaryString(Float.floatToIntBits(x1)));
         System.out.println("0.1f = "+Integer.toBinaryString(Float.floatToIntBits(0.1f)));
+        System.out.println("0.20000002f = "+Integer.toBinaryString(Float.floatToIntBits(0.20000002f)));
         System.out.println("vvv = "+Integer.toBinaryString(20014999));
 
     }
