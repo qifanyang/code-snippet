@@ -40,6 +40,16 @@ public class MethodHandleTest{
 
         MethodHandles.Lookup lookup = MethodHandles.lookup();
         System.out.println(lookup.lookupClass());
+        A.cc();
+    }
+
+    static class A{
+        public A(Class<?> c){
+
+        }
+        public static void cc(){
+            new A(Reflection.getCallerClass());
+        }
     }
 
 }
