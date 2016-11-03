@@ -86,6 +86,8 @@ public class FloatTest{
         //1.float采用23bit来存储,通过8bit的值来表示小数点移动的位数, 相当于23bit尾数M作为一个基数,然后2^M作为移动小数点位数
         //2.在尾数运算中遇到进位等,精度发生改变
 
+        //最更本原因还是小数转为二进制可能存在无限循环,然后运算会有精度丢失
+
         float yy = 20014999;
         System.out.println(yy);
         System.out.println(Float.MAX_VALUE);
