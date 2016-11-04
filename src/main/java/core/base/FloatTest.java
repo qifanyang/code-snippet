@@ -8,10 +8,8 @@ package core.base;
  */
 public class FloatTest{
     public static void main(String[] args){
-        float uu = 0.3f;
-        System.out.println(uu);
         //浮点数的含义,就是小数点浮动,通过左右移动小数点来表示小数,移动小数点通过科学计数法, 比如10^3 向做移动3个小数点
-
+        System.out.println((12.0f-11.9f));//输出: 0.10000038  这个例子简单些不用对阶
         System.out.println((0.3f-0.1f));//输出: 0.20000002
         //问题为什么0.3f-0.1f不等于0.2f?
         /**
@@ -99,7 +97,23 @@ public class FloatTest{
         System.out.println("0.3f = "+Integer.toBinaryString(Float.floatToIntBits(x1)));
         System.out.println("0.1f = "+Integer.toBinaryString(Float.floatToIntBits(0.1f)));
         System.out.println("0.20000002f = "+Integer.toBinaryString(Float.floatToIntBits(0.20000002f)));
-        System.out.println("vvv = "+Integer.toBinaryString(20014999));
+
+        //1001100010110011110010111   25bit
+        //规格化 1.001100010110011110010111*2^24  , 所以M=24+127=151=10010111(2进制)
+        //尾数长度24为,但是单精度尾数有效位数为23bit, 所以进位001100010110011110010111->00110001011001111001100
+        //(-1)^0*1.00110001011001111001100*2^24-->1001100010110011110011000(小数点后面23bit,但是乘以2^24,所以在末尾补一个0)
+        //1001100010110011110011000-->20015000, 所以最终结果输出20015000
+        //所以浮点数表示的整数,二进制长度大于24位,会有精度丢失问题,所以虽然float表示的范围比int大,但是中间有很多数字是无法表示的
+        System.out.println("20014999 binary = "+Integer.toBinaryString(20014999));
+
+        //0 10010111 00110001011001111001100
+        //0 151-127=24
+        System.out.println("20014999 float binary = "+Integer.toBinaryString(Float.floatToIntBits(20014999)));
+
+
+        //二进制小数转换成十进制小数
+        //0.00011001100110011010=0.10000038  这个转换笔算比较麻烦的
+        //
 
     }
 }
