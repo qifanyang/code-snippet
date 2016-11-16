@@ -23,8 +23,26 @@ public class BigDecimalTest{
         //当数字比较小时BigDecimal内部可以不用BigInteger, 使用long就可以了,效率更高
         //BigDecimal常用方法BigDecimal(String s)或者BigDecimal.valueOf(double d)
 
+
+        BigDecimal c = new BigDecimal("44444.10000000000000000000000000000000000000000000000");
+        //this.intCompact = INFLATED;  使用long存储整形
+//        this.scale = 47;  小数点位数
+//        this.intVal = bigInteger;
+//        this.precision = 52 数字位数6
+//        this.stringCache = "0"
+        c.toString();
         BigDecimal a = new BigDecimal("0.1");
+        //this.intCompact = 1;
+//        this.scale = 1;
+//        this.intVal = null;
+//        this.precision = 1  //以0开头 值和scale相等
+//        this.stringCache = "0.1"
         BigDecimal b = new BigDecimal("0.10");
+        //this.intCompact = 10; 字符串长度小于19,使用long存储,不使用BigInteger
+//        this.scale = 2; 缩放10^2次方
+//        this.intVal = null; 比使用BigInteger存储,所以为null
+//        this.precision = 2
+//        this.stringCache = "0.10"
         //结果false, BIgDecimal equals不仅比较值而且还比较scale, 所以0.1 != 0.10
         //感觉有点不合理,但是从BigDecimal实现来看,本来就是由整形部分和scale来组成
         //如果要让0.1==0.10 那么就先要将scale调整到一样,如同浮点数减法的对阶,然后再来比较整形部分
@@ -41,6 +59,8 @@ public class BigDecimalTest{
 //        this.intCompact = val;
 //        this.scale = 0;
 //        this.intVal = null;
+//        this.precision =
+//        this.stringCache
         System.out.println(bd);
         BigDecimal bb1 = new BigDecimal("0.55");
 
