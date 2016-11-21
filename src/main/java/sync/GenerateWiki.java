@@ -9,7 +9,7 @@ import java.sql.SQLException;
  */
 public class GenerateWiki{
     public static void main(String[] args){
-        DataBaseTableWalker.walk("discount_shop", new ResultSetWalker(){
+        DataBaseTableWalker.walk("dish_brand_media", new ResultSetWalker(){
             @Override
             public void beforeWalk(String tableName){
                 System.out.println("|_.字段名称|_.数据类型|_.是否必需|_.备注|");
