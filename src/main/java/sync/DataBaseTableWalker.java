@@ -10,7 +10,7 @@ public class DataBaseTableWalker{
     private static String driver = "com.mysql.jdbc.Driver";
     private static String passwrod = "8p6j9ObLxtTOmrpv9O0L";
     private static String userName = "dev_calm_sync";
-    private static String url = "jdbc:mysql://rdst5ai4d32fe3qd6if46public.mysql.rds.aliyuncs.com:3306/calm_dev?useUnicode=true&amp;characterEncoding=utf-8/";
+    private static String url = "jdbc:mysql://test.rdsmaster.cnhz.shishike.com:3306/calm_dev?useUnicode=true&amp;characterEncoding=utf-8/";
 
 
     public static void walk(String tableName, ResultSetWalker walker){
