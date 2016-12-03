@@ -120,20 +120,26 @@ public class Sort{
         System.out.println("]");
     }
 
+    public static int[] reset(){
+       return new int[]{11, 2, 4, 8, 3};
+    }
+
     public static void main(String[] args){
-        int a[] = {11,2,4,8,3};
-        a = new int[1000000];
-        Random rand = new Random();
-        for (int i = 0; i < a.length; i++)
-        {
-            a[i] = rand.nextInt(1000);
-        }
-        Arrays.sort(a);
+        int a[] = reset();
+//        a = new int[1000000];
+//        Random rand = new Random();
+//        for (int i = 0; i < a.length; i++)
+//        {
+//            a[i] = rand.nextInt(1000);
+//        }
+//        Arrays.sort(a);
         int[] B = Arrays.copyOf(a, a.length);
 //        printArrayValue(a);
         long start = System.nanoTime();
         quickSort(a, 0, a.length-1);
+        printArrayValue(a);
         System.out.println(System.nanoTime() - start);
+        a = reset();
         MergeSort.mergeSort(a, new int[a.length], a.length);
 //        countingSort(a, new int[a.length], 11);
         start = System.nanoTime();

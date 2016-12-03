@@ -53,7 +53,10 @@ public class MergeSort{
         // While there are elements in the left or right runs...
         for (int k = iBegin; k < iEnd; k++) {
             // If left run head exists and is <= existing right run head.
-            if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {//j>=iEnd说明右边的序列全部放入B中了,直接把左边的序列放入B中
+                //j>=iEnd说明右边的序列全部放入B中了,直接把左边的序列放入B中,所以归并排序可能比较交换次数最少
+            //所以java对于引用型集合排序,默认采用归并排序,应为调用对象的比较方法,可能开销较大,一个复杂对象
+            //的比较可能比较复杂,比如有20属性,则可能需要一个一个比较,so 归并排序更加合适
+            if (i < iMiddle && (j >= iEnd || A[i] <= A[j])) {
                 B[k] = A[i];
                 i = i + 1;
             } else {
