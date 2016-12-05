@@ -2,3 +2,4 @@ target/*
 .idea/*
 .idea/libraries/*
 snippet
+snippet.iml
