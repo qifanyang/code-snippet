@@ -12,6 +12,7 @@ import java.util.Collection;
  * @author yangqf
  * @version 1.0 2016/2/15
  */
+
 public class SelectTest {
 
     private static <T> T singleValue(ArrayList<T> results) {
