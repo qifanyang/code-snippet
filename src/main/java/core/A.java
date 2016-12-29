@@ -1,6 +1,8 @@
 package core;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -18,6 +20,9 @@ import java.util.regex.Pattern;
 public class A {
 
     public static void main(String[] args){
+        LocalDateTime now = LocalDateTime.now();
+        String format = now.format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
+        System.out.println(format);
         System.out.println(new Timestamp(new Date().getTime()).getTime());
         Integer vv = new Integer(777);
         System.out.println(vv.equals(777));
