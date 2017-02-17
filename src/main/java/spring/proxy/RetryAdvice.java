@@ -20,6 +20,7 @@ public class RetryAdvice implements MethodInterceptor {
     public Object invoke(MethodInvocation invocation) throws Throwable {
         //MethodInvocation ---> ReflectiveMethodInvocation
         System.out.println("call methodInterceptor");
+        //这里可以决定是否继续调用拦截器链,不调用的话这里的返回值成为最终返回值
         invocation.proceed();//继续嵌套调用,并不是遍历调用, 中间任意一个MethodInterceptor可以决定是否继续调用
         return null;
     }
