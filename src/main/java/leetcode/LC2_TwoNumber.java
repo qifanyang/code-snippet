@@ -53,6 +53,30 @@ public class LC2_TwoNumber{
         return r;
     }
 
+    public ListNode addTwoNumbersGood(ListNode l1, ListNode l2) {
+        ListNode c1 = l1;
+        ListNode c2 = l2;
+        ListNode sentinel = new ListNode(0);
+        ListNode d = sentinel;
+        int sum = 0;
+        while (c1 != null || c2 != null) {//只要有一个不为空就应该继续执行加法
+            sum /= 10;//使用整除来作为进位,进位作为高位的初始值
+            if (c1 != null) {//可能一个链表长一个链表端,所以需要判断是否为空并移动
+                sum += c1.val;
+                c1 = c1.next;
+            }
+            if (c2 != null) {
+                sum += c2.val;
+                c2 = c2.next;
+            }
+            d.next = new ListNode(sum % 10);//进位后的值
+            d = d.next;//用于继续新增节点存储加法结果
+        }
+        if (sum / 10 == 1)
+            d.next = new ListNode(1);//5 + 5
+        return sentinel.next;
+    }
+
 
     public static void main(String[] args){
         ListNode a = make(9,1,6);
