@@ -1,7 +1,5 @@
 package leetcode;
 
-import leetcode.struct.ListNode;
-
 /**
  * @author yangqf
  * @version 1.0 2017/2/18

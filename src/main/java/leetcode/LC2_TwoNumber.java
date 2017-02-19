@@ -1,7 +1,5 @@
 package leetcode;
 
-import leetcode.struct.ListNode;
-
 /**
  * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 0 -> 8
@@ -73,33 +71,16 @@ public class LC2_TwoNumber{
 
 
     public static void main(String[] args){
-        ListNode a = make(9,1,6);
-        ListNode b = make(0);
+        ListNode a = LC.makeSingleLinkedList(9,1,6);
+        ListNode b = LC.makeSingleLinkedList(0);
 
-        a = make(5);
-        b = make(5);
-        print(a);
-        print(b);
-        print(addTwoNumbers(a, b));
+//        a = LC.makeSingleLinkedList(5);
+//        b = LC.makeSingleLinkedList(5);
+        LC.print(a);
+        LC.print(b);
+        LC.print(addTwoNumbers(a, b));
     }
 
-    static ListNode make(int... v){
-        if(v.length == 0)return null;
-        ListNode h = new ListNode(v[0]);
-        ListNode temp = h;
-        for(int i = 1; i < v.length; i++){
-            temp.next = new ListNode(v[i]);
-            temp = temp.next;
-        }
-        return h;
-    }
-
-    static void print(ListNode l){
-        for(;l.next != null;l = l.next){
-            System.out.print(l.val + "->");
-        }
-        System.out.println(l.val);
-    }
 
 
 }

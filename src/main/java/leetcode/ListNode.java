@@ -1,6 +1,4 @@
-package leetcode.struct;
-
-import leetcode.LC2_TwoNumber;
+package leetcode;
 
 /**
  * @author yangqf

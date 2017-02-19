@@ -1,7 +1,5 @@
 package leetcode;
 
-import leetcode.struct.ListNode;
-
 /**
  * Naver China interview problem
  * 没办法删除最后一个节点,如果需要删除最后一个节点还是需要根据head遍历,
