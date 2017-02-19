@@ -1,5 +1,7 @@
 package leetcode;
 
+import leetcode.struct.ListNode;
+
 /**
  * Input: (2 -> 4 -> 3) + (5 -> 6 -> 4)
  * Output: 7 -> 0 -> 8
@@ -9,14 +11,6 @@ package leetcode;
  * @version 1.0 2017/2/17
  */
 public class LC2_TwoNumber{
-    static class ListNode{
-        public int val;
-        ListNode next;
-        ListNode(int x){
-            val = x;
-        }
-    }
-
     /**
      * java中实现BigInteger是采用数组实现
      * @param l1
