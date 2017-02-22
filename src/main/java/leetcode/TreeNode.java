@@ -5,8 +5,8 @@ package leetcode;
  * @version 1.0 2017/2/19
  */
 public class TreeNode{
-    public int val;
+    public Integer val;
     public TreeNode left;
     public TreeNode right;
-    public TreeNode(int x) { val = x; }
+    public TreeNode(Integer x) { val = x; }
 }

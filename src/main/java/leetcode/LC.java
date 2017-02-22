@@ -27,9 +27,13 @@ public class LC{
         System.out.println(l.val);
     }
 
-    public static TreeNode makeTreeNode(TreeNode root, int left, int right){
-        root.left = new TreeNode(left);
-        root.right = new TreeNode(right);
+    public static TreeNode makeTreeNode(TreeNode root, Integer left, Integer right){
+        if(left != null){
+            root.left = new TreeNode(left);
+        }
+        if(right != null){
+            root.right = new TreeNode(right);
+        }
         return root;
     }
 }
