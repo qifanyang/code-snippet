@@ -13,6 +13,11 @@ public class MaxHeap{
         return i * 2 + 2;
     }
 
+    /**
+     * 保持最大堆性质,从下往上把大的值往上升,类似冒泡排序,大的值上升
+     * @param a
+     * @param i
+     */
     public static void maxHeapify(int[] a, int i, int length){
         int l = left(i);
         int r = right(i);

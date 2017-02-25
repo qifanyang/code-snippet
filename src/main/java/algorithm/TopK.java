@@ -1,5 +1,7 @@
 package algorithm;
 
+import java.util.Arrays;
+
 /**
  * @author yangqf
  * @version 1.0 2016/4/14
@@ -7,14 +9,14 @@ package algorithm;
 public class TopK{
     public static void main(String[] args){
         // 源数据
-        int[] data = {56, 456, 275, 12, 6, 45, 478, 41, 1236, 456, 12, 546, 45};
+        int[] data = {56, 456, 275, 12, 6, 45, 478, 41, 1236, 444, 12, 546, 45};
+        Arrays.sort(data);
+        System.out.println(Arrays.toString(data));
 
         // 获取Top5
         int[] topm = topK(data, 5);
 
-        for(int i = topm.length - 1; i >= 0; i--){
-            System.out.println(topm[i]);
-        }
+        System.out.println(Arrays.toString(topm));
     }
 
     // 从data数组中获取最大的k个数

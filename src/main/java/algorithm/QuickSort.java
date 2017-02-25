@@ -32,7 +32,6 @@ public class QuickSort{
                 j--;
             }
         }
-        ;
 
       /* recursion */
         if(left < j)//最终递归到两个元素,left==j, 然后终止
