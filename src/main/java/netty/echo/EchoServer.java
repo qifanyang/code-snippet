@@ -65,7 +65,7 @@ public final class EchoServer {
                         p.addLast(sslCtx.newHandler(ch.alloc()));
                     }
                     //p.addLast(new LoggingHandler(LogLevel.INFO));
-                    //没新建立一个连接都会创建一个handler
+                    //每新建立一个连接都会创建一个handler
                     p.addLast(new EchoServerHandler());
                 }
             });
@@ -73,8 +73,12 @@ public final class EchoServer {
             // Start the server.
             //bind时使用NioServerSocketChannel创建ServerSocket
             ChannelFuture f = b.bind(PORT).sync();
+            //ChannelFuture.result, 注册成功result值为Signal SUCCESS = Signal.valueOf(DefaultPromise.class, "SUCCESS");,
+            // 调用sync()方法不会阻塞,立即返回
 
             // Wait until the server socket is closed.
+            //closeFuture.result没有值需要等待关闭通知该future才会返回
+            //使用时不能阻塞启动线程,不能这么用,这里只是为了防止主线程退出
             f.channel().closeFuture().sync();
         } finally {
             // Shut down all event loops to terminate all threads.
