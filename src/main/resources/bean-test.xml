@@ -20,7 +20,7 @@
     <!--<import resource="/resources/themeSource.xml"/>-->
 
     <bean id="simpleBean" class="spring.SimpleBean" init-method="test">
-        <property name="forSetter" value="setter注入测试"/>
+        <!--<property name="forSetter" value="setter注入测试"/>-->
     </bean>
     <bean id="pbinner" class="spring.PrototypeBeanInner" scope="prototype"/>
     <bean id="pb" class="spring.PrototypeBean" scope="prototype">

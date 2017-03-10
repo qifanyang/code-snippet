@@ -34,6 +34,7 @@ public class DhtBalance {
 
         Random random = new Random();
         int segmentNum = 10;
+        int maxConfictCount =  100*segmentNum;
         int step = Integer.MAX_VALUE / segmentNum;
         for(int i = 0; i < segmentNum; i++){
            int hash = step*i + random.nextInt(step);
@@ -44,6 +45,10 @@ public class DhtBalance {
                 list.add(virtualNode);
             }else{
                 System.out.println("virtual node conflict ...");
+                i--;//to generate enough virtual node, the count value i minus one
+                if(maxConfictCount-- < 0){
+                    throw new IllegalStateException("when creating virtual node, too many confict events happend");
+                }
             }
         }
 

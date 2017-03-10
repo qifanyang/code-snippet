@@ -1,0 +1,81 @@
+Netty
+
+1.单线程监听连接请求,当有连接建立时ServerSocket.accept(),将channel注册到其它selector上,来完成数据读写
+
+2.采用多个selector,每个selector对应一个线程(netty叫做EventLoop),在多核CPU上具备更好的可伸缩性
+
+3.NioEventLoopGroup是MultithreadEventExecutorGroup子类,可以包含一个或者多个EventExecutor.所谓的多线程
+并不是在MultithreadEventExecutorGroup实现了多线程,最终EventLoop是在Executor中执行其run方法,而run方法
+中有for(;;)循环来完成selector.select().默认的Executor为ThreadPerTaskExecutor,可以自己指定Executor
+
+4.Channel继承体系之NIO
+Channel-->AbstractChannel(a skeletal Channel implementation)-->AbstractNioChannel(包含Nio SelectableChannel)
+-->AbstractNioMessageChannel(ServerSocket处理连接消息)/AbstractNioByteChannel(用来处理数据读写)
+
+AbstractNioMessageChannel-->NioServerSocketChannel 对应UnSafe.read处理连接事件,然后使用
+
+AbstractNioByteChannel-->NioSocketChannel 对应UnSafe.read处理数据读取
+
+5.当NioEventLoop.run()执行select处理SelectKey会调用unsafe.read()方法,对应的unsafe实现处理IO事件
+
+6.不管是NioServerSocketChannel还是NioSocketChannel都需要注册到EventLoop中,然后才能够使用selector的
+就绪检查,每个channel都有对应的unsafe实例,当IO事件发生时调用unsafe.read()
+
+7.关于register channel 到selector,在AbstractChannel中实现,注册成功后调用pipeline.fireChannelRegisterd().然后开始读取数据
+
+8.服务器处理连接过程
+a.NioSocketServerChannel对应的NioEventLoop收到connect事件,调用(NioMessageUnsafe)unsafe.read
+b.SocketChannel ch = SocketUtils.accept(javaChannel());获取新建立的连接,包装创建对应的unsafe和pipeline
+c. pipeline.fireChannelRead(readBuf.get(i));通知NioServerSocketChannel.pipeline处理
+d.ChannelPipeline.fireChannelRead(obj),默认执行AbstractChannelHandlerContext.invokeChannelRead(head, msg);
+e.然后遍历执行pipeline中的handlerContext的handler.channelRead(this, msg);//this为handlerContext
+f.步骤e获取的第一个handler假如是ServerBootstrapAcceptor,其中msg一定是新建立的连接
+g.将childHandler,也就是客户端与服务器新建立连接的ChannelInitializer添加到,新连接的pipeline中
+h.注册childGroup.register(child),其中childGroup就是多启动时设置的多线程NioEventLoopGroup,这里会选择一个NioEventLoop注册
+m.当注册channel时会调用pipeline.fireChannelRegister(),AbstractChannelHandlerContext.invokeChannelRegistered(head);
+如果handler有ChannelInitializer,则会调用对应的initChannel方法,然后将自己从pipeline中移除
+n.所以服务器handler在处理连接会向新的channel pipeline中添加childrenHandler(ChannelInitializer)
+当注册到对应eventLoop后,执行对应的initChannel(用来注册逻辑handler)后,会把ChannelInitializer从新连接的pipeline中移除
+
+9.关于ChannelInitializer, 该类也是一个ChannelHandler在register到EventLoop时调用initChannel方法,然后会从
+pipeline中移除该ChannelInitializer,只会执行一次
+
+
+
+
+
+
+1.ServerSocketChannel创建
+serverBootstrap.bind(port)
+
+根据配置的NioServerSocketChannel创建其实例,newScoket()默认创建java nio ServerSocketChannel,并在父类AbstractChannel
+创建对应的unsafe和channelPipeline.默认使用DefaultChannelPipeline.
+
+创建DefaultChannelPipeline会创建tailContext和headContext, 他们是ChannelHandlerContext
+
+ChannelHandlerContext是用来完成ChannelHandler和ChannelPipeline通信
+
+2.ServerBootstrapAcceptor是一个ChannelInboundHandler
+当收到读的消息时,调用对应的channel.pipeline().addLast(childHandler);并注册到childrenGroup中
+
+
+3.EventExecutorChooser 有多个workEventLoop,所以使用一个chooser策略接口
+
+4.NioEventLoopGroup创建
+NioEventLoopGroup为MultithreadEventExecutorGroup子类
+没指定线程数则默认为处理器数量乘以2
+没指定Executor则默认ThreadPerTaskExecutor
+根据线程数量创建EventExecutor数组,数组长度为线程数量,EventExecutor实现为NioEventLoop
+当从bossGroup分发请求时,直接调用EventLoopGroup的 childGroup.next()分发到EventLoop中
+
+NioEventLoop.run方法一直运行监听网络事件,然后通过pipeline.fire*通知到ChannelHandler,默认从head开始通知
+每个Channel有对应的channelPipeline
+每个ChannelHandler都有一个ChannelHandlerContext包装
+
+建立新的连接时,ServerSocket.accept()获取到SocketChannel后注册到workGroup的selector上
+
+
+
+
+
+

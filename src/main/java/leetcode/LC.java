@@ -36,4 +36,13 @@ public class LC{
         }
         return root;
     }
+
+    public static void main(String[] args) {
+        System.out.println(cc(5));
+    }
+
+    private static int cc(int n){
+        if(n == 0)return 0;
+        return n + cc(n - 1);
+    }
 }

@@ -34,8 +34,8 @@ public class SpringBeanTest {
 
         //注入,
         // 1.setter注入,没有set方法无法完成
-        SimpleBean bb = applicationContext.getBean(SimpleBean.class);
-        System.out.println(bb.getForSetter());
+//        SimpleBean bb = applicationContext.getBean(SimpleBean.class);
+//        System.out.println(bb.getForSetter());
     }
 
 

@@ -17,21 +17,21 @@ import javax.annotation.PostConstruct;
 @Component
 public class SimpleBean {
 
-    @Autowired
-    private ForAutowireBean fab;
-
-    private String forSetter;
-
+//    @Autowired
+//    private ForAutowireBean fab;
+//
+//    private String forSetter;
+//
     public void test(){
         System.out.println("call simplebean test()");
 //        fab.say();
     }
-
-    public void setForSetter(String forSetter){
-        this.forSetter = forSetter;
-    }
-
-    public String getForSetter(){
-        return forSetter;
-    }
+//
+//    public void setForSetter(String forSetter){
+//        this.forSetter = forSetter;
+//    }
+//
+//    public String getForSetter(){
+//        return forSetter;
+//    }
 }
