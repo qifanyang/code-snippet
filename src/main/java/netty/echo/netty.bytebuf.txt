@@ -1,0 +1,7 @@
+ByteBuf
+
+1.netty使用ByteBufAllocator来统一管理读取数据的bytebuf.在启动server时创建serverSocketChannel,配置
+NioServerSocketChannelConfig时会指定会初始化DefaultChannelConfig,默认使用ByteBufAllocator.DEFAULT
+默认使用ByteBufUtil中配置PooledByteBufAllocator.
+
+2.bytebuf使用引用计数,实现接口ReferenceCounted

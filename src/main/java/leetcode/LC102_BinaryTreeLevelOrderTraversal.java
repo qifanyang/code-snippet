@@ -7,6 +7,11 @@ import java.util.Queue;
 
 /**
  *  算法题目要静下心思考,基础算法掌握好解决复杂点的算法思路更多更快
+ *
+ *  DFS, 需要一直递归下去,需要注意递归停止条件,
+ *  比如 node==null(比左边多调用一次), node.left==null&&node.right==null(少一次方法调用)
+ *
+ *  BFS, 需要先收集一个节点,然后再来一层一层收集,
  * @author yangqf
  * @version 1.0 2017/2/19
  */

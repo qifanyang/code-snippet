@@ -40,7 +40,8 @@ n.所以服务器handler在处理连接会向新的channel pipeline中添加chil
 9.关于ChannelInitializer, 该类也是一个ChannelHandler在register到EventLoop时调用initChannel方法,然后会从
 pipeline中移除该ChannelInitializer,只会执行一次
 
-
+10. NioEventLoop不仅用来读写数据,还用来调度任务,比如IdleStateHandler.在执行完selector后
+会查看任务调度,类似timerTask定时任务检查,然后执行fireUserEventTrigger
 
 
 

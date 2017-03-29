@@ -1,6 +1,14 @@
 package leetcode;
 
 /**
+ * 计算左叶子节点的和<br>
+ * 采用深度优先,DFS,node为null返回0
+ * 分别递归左子树和右子树,并返回其左叶子节点的和
+ * 当左子树不为空,然后left.left==null&&left.right==null说明为叶子节点,返回节点值
+ *
+ * 这种递归可以左右同时递归,然后汇总结果,比如中序输出就有先后顺序,先左-->根节点-->右边
+ *
+ *
  * Created by Administrator on 2017/2/25.
  */
 public class LC404_SumOfLeftLeaves {

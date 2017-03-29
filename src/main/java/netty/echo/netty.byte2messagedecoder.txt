@@ -1,0 +1,12 @@
+解码ByteToMessageDecoder
+
+1.decoder是一个inbound handler, pipeline会调用对应的channelRead()
+
+2.cumulation使用一个累积缓冲存储收到的数据,可能一次decoder没法解码出一个完成的消息对象
+
+3.解码出的消息放在一个List中,然后多次调用pipeline.fireChannelRead()通知接下来的handler
+
+4.pipeline中的TailContext负责释放bytebuf,前提是我们的handler要调用ctx.fireChannelRead()
+也可以直接调用ReferenceCountUtil.release(msg);
+
+5.对于吞吐量很大的应用,网络请求读取内存申请释放会造成gc很大的压力,so采用内存池来实现bytebuf
