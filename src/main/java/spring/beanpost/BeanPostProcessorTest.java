@@ -1,5 +1,6 @@
 package spring.beanpost;
 
+import dubbo.DemoServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 
@@ -22,6 +23,9 @@ public class BeanPostProcessorTest implements BeanPostProcessor {
     @Override
     public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         System.out.println("bean post processor postProcessAfterInitialization for bean :" + beanName);
+        if(bean instanceof DemoServiceImpl){
+            System.out.println(beanName);
+        }
         return bean;
     }
 }
