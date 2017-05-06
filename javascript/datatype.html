@@ -124,7 +124,8 @@
     //所以锁js采用原型链实现了继承
 
     //基于原型链的继承,subType.prototype=new SuperType()
-    //修改对象的prototype值,间接就是修改_proto_的指向
+    //prototype的_proto_指向SuperType的原型
+    //subType在替换原型之后,继续添加自己的方法
     //默认subType的proto指向Object, 现在指向SuperType,SuperType原型又指向Object
     //方法调用会查找实例_proto_指向的对象是否包含该方法,不包含就绪查找该对象的_proto_所指向的对象
 </script>
