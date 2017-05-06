@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>控制流</title>
+</head>
+<body>
+<script type="text/javascript">
+    //if(condition){} condition可以是任意值,会使用boolean转换函数
+    if("i am string"){
+        console.log("test string condition is true");
+    }
+
+    //for in
+    for(var p in window){
+        document.writeln(p);
+        document.writeln("<br>");
+    }
+
+    //with location挺重要的
+    with(location){
+        console.log(search);//?_ijt=s31j9bhsmvdjntlqmoa06k2q71
+        console.log(hostname);//localhost
+        console.log(host);//localhost:63342
+        console.log(href);http://localhost:63342/snippet/javascript/controlflow.html?_ijt=s31j9bhsmvdjntlqmoa06k2q71
+        console.log(pathname);///snippet/javascript/controlflow.html
+        host = "www.baidu.com";
+    }
+
+
+
+</script>
+</body>
+</html>

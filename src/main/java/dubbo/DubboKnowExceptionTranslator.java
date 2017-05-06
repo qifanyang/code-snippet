@@ -36,10 +36,12 @@ public class DubboKnowExceptionTranslator implements BeanPostProcessor {
                 }catch (Throwable e){
                     //转化为consumer知道的异常
 //                    if(e instanceof MyException){
-                        throw new MyException(e.getMessage());
+//                        throw new MyException(e.getMessage());
 //                    }
                 }
+                return null;
             }
+
         });
         return o;
     }

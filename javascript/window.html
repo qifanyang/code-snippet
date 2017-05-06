@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>window</title>
+</head>
+<body>
+<script type="text/javascript">
+    //window 即表示浏览器一个窗口, 也是ECMAScript规定的Global对象
+    //全局变量会称为window的属性
+    var n = "xxx";
+    console.log(window.n);//称为window的属性
+
+//    window.open("www.baidu.com");// 没有http开头, 默认以当前path为目录请求
+//    window.open("datatype.html");// 没有http开头, 默认以当前path为目录请求
+//    window.open("http://www.baidu.com");
+
+//    window.location.href="http://www.baidu.com"; //当前网页跳转
+//      window.location.href="datatype.html"; //当前网页跳转
+
+    //setTimeout js是单线程语言
+    setTimeout(function () {
+        alert("timer is running")
+    }, 2000); //2000表示过多久把任务添加到js任务队列,如果任务队列有其它任务,则等待
+
+//    setInterval(function () {
+//        alert("timer is running")
+//    }, 2000); //一般使用超时调用实现间歇性调用
+
+    //对话框
+    //alert,confirm,prompt是系统对话框和网页没有关系,外观由操作系统和浏览器决定
+    //而且都是模态的,显示对话框的时候会暂停js代码的执行
+
+    //最有用的location BOM对象
+    //提供当前网页的信息,地址,可以用来导航.同时数据window和document
+    //通过location对象获取地址信息,修改location属性会导致页面加载
+    //href=protocol+host/(hostname+port)+pathname+search
+
+//    location.port = 8080;//导致刷新页面, 生成浏览记录
+//    location.replace("http://www.baidu.com")//
+
+    //history
+    console.log(history.length);
+    history.back();
+</script>
+</body>
+</html>

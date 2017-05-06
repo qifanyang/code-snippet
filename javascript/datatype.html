@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据类型</title>
+</head>
+<body>
+
+<script type="text/javascript">
+    //javascript数据类型:undefined,null,boolean,number,string, object
+    //五个基本类型+一个引用类型
+    //undefined 与 null
+    console.log("=================undefined and null test")
+    var _null = null;
+    console.log(typeof _null);//输出object,null表示将要指向一个object
+
+    var un;
+    console.log(typeof un);//undefined
+
+    console.log(null == undefined);//true undefined派生于null, 所以他们相等
+    console.log(null === undefined);//false
+
+    //boolean , 只有true和false
+    console.log("=================boolean test")
+    var bb = true;
+    if(bb){
+        console.log("bb is true");
+    }
+    //boolean类型只有两个值,其它数据类型可以通过转换函数boolean(),转换为true或false
+    //转换规则编写代码需要注意
+    var s = "i am string";
+    if(s) {
+        console.log("\""+s + "\" is converted to true");
+    }
+    var undef;
+    if(!undef) {
+        console.log("undefined only can be convert to false")
+    }
+    if(!_null){
+        //null和undefined可以用于判断某个对象中是否存在某个方法,属性等
+        console.log("null is converted to false");
+    }
+    if(Boolean("s")){//转换函数,可以作用于任意类型
+        console.log("explicity call convert function")
+    }
+
+    //nubmer,采用ieee54双浮点
+    console.log("=================number and null test")
+    var n1 = 5;
+    n1.age = 4;
+    console.log(n1.constructor);//对于基本类型,该值是转换函数
+    console.log(n1.age);//输出undefined, 说明没法给基本类型number添加属性
+    console.log(n1);//5
+    var n2 = 3.4;
+    console.log(n2);//3.4
+    var n3 = Number.MAX_VALUE + Number.MAX_VALUE;
+    console.log(n3);//Infinity
+    console.log(typeof n3);//number
+    console.log("n3 is finite ? " + isFinite(n3));//number超出范围
+
+    console.log(4 / 0);//infinity
+    console.log( -4 / 0);//-infinity
+    console.log(typeof (-4 / 0));//Number, typeof 优先级高于除法,需要用括号
+    console.log( 0 / 0);//NaN
+    console.log(typeof 0 / 0);//NaN
+
+    //isNaN会尝试将参数转换为数值(如同Booelean转换),无法转换那么返回true
+    console.log(isNaN("x"));//true
+    console.log(isNaN(true))//false
+    console.log(isNaN("true"))//true
+    //number转换规则多,一般使用parsInt
+    console.log(parseInt("44"));//44 默认十进制
+    console.log(parseInt("44", 16));//68 十六进制
+    console.log(parseInt("44.5"));//44 省略小数点
+    console.log(parseInt("44fff"));//44 省略字母
+    console.log(parseInt("ff144fff"));//NaN 无法忽略开始的字母
+
+    //string, 使用16unicode表示字符序列, 可用单引号或者双引号表示
+    console.log("================string test");
+    var text = "this is string test \u03a3 \x35 ";// \u03a3 unicode字符表示, \xnn
+    console.log(text.constructor);//
+    console.log(text);
+    console.log(text.length);//长度24
+    //string 中的ascii
+    var a = 'a';
+    console.log("the ascii code of a is = " + a.charCodeAt(0));//97
+    console.log("the ascii code 65 convert to string is = " + String.fromCharCode(65));//A
+    console.log(text.substr(5, 10));//[start,
+    console.log(typeof text);//string 类型
+    text.age = 5;//给基本类型赋值,但text还是string类型,不是object类型
+    console.log(text.age);//undefined, 基本类型无法添加属性,但是不会报错,只是值未定义
+    console.log(typeof (new String(6)));// Object类型
+    console.log(text.constructor);
+
+    //Object 可以构建任意复杂度对象, 对象=数据+功能
+    //Obejct是所有对象的父类,所以其它实例都具备Object属性和方法,类似java
+    //Object属性:
+    //      constructor : 保存用于创建当前对象的函数,对于基本类型就是其转换函数, 引用类型就是构造函数
+
+    //函数都有属性prototype,构造函数也不例外,默认所有函数prototype都指向Object
+    //创建一个函数,会给该函数自动创建一个prototype属性,该属性指向函数的原型对象,举例
+    function Xxx() {} //创建函数,会为该函数创建prototye属性, 可通过函数名Xxx.prototype访问
+    console.log(Xxx);
+    console.log(typeof Xxx.prototype);
+    console.log(Xxx.prototype);//该属性指向函数的原型对象(自动为该函数创建一个原型对象)
+    var testPrototype = new Object();
+    testPrototype.constructor = Xxx; //默认继承Object.constructor
+    console.log(testPrototype);
+    //这一切都是解释器自动完成的,并且会给原型对象创建一个属性constructor指向构造函数
+    //在创建函数原型对象时,也就是创建一个对象实例,对象实例内部会有一个指针指向构造函数的原型对象
+    //默认创建原型对象是new Object,所以新函数的原型对象实例会有一个指针指向Object的原型,
+    //Object为最顶层对象,其实例有constructor没有prototype熟悉,所以不会递归
+
+    //总结
+    //1.声明函数,该函数对象自动创建prototype属性,该属性的值叫函数的原型对象
+    function Car() {} //自动创建Car.prototype属性, 值为new Object()
+
+    //2.函数原型对象和其它对象没有区别,该对象默认添加属性constructor指向步骤1声明的函数对象
+    //自动赋值 Car.prototype.constrctor = Car;
+
+    //3.js创建对象时会创建一个内部指针(函数原型对象也不例外),该指针指向构造函数的原型对象
+    //对象的内部指针chrome中名字叫_proto_, 因为函数的原型对象是new Object(),所以_proto_指向
+    //Object,Object对象自身有方法和属性,新实例对象可以访问Object方法,实现了继承
+    //所以锁js采用原型链实现了继承
+
+    //基于原型链的继承,subType.prototype=new SuperType()
+    //修改对象的prototype值,间接就是修改_proto_的指向
+    //默认subType的proto指向Object, 现在指向SuperType,SuperType原型又指向Object
+    //方法调用会查找实例_proto_指向的对象是否包含该方法,不包含就绪查找该对象的_proto_所指向的对象
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package dubbo;
 
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class DubboServer {
     public static void main(String[] args) throws Exception {
 
+//        ExtensionLoader.
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"dubbo-provider.xml"});
         context.start();
 

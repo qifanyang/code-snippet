@@ -10,7 +10,7 @@ public class DemoServiceImpl implements Provider {
         user.setName(name);
         user.setAge(44);
         if(user.getAge() == 44){
-            throw new MyException();
+            throw new MyException("");
         }
         return user;
     }

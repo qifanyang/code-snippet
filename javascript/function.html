@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>function</title>
+</head>
+<body>
+<script type="text/javascript">
+    //函数声明与函数表达式
+    function a() {}//函数声明可以不用注意声明函数位置
+    //a 只是一个地址变量, 解释器会创建一个Function对象, a指向该对象
+    //没有重载是因为js没有函数签名,重复定义函数,该变量值被覆盖
+    console.log(typeof a);//function
+    a = 5;
+    console.log(typeof a);//number  函数名字可以被覆盖
+
+    var b = function () {}//区别是先声明再可以使用
+
+    //arguments与显示参数, 就算js函数定义多个参数,方法调用时可以不传参数,显示参数值为undefined
+    function c(arg1, arg2) {
+        console.log(arg1);
+        console.log(arg2);
+        console.log(arguments.length);//实际参数个数, 可能为0
+    }
+    c();//输出undefined
+
+    //函数中的this
+    //全局中,this表示window对象, typeof this 返回object
+    console.log(this);//Window {stop: function, open: function, alert: function, confirm: function, prompt: function…}
+
+    var o = new Object();
+    //new Object中的this表示当前Object对象,对于任务构造函数 , this表示该构造函数
+
+    function Person() {
+        console.log(this);
+    }
+    Person();//this 表示window
+    var  p = new Person();// this 表示Person构造函数
+
+    console.log(p instanceof Person);//true
+    console.log(p instanceof Function);//false 通过new出来的不是, 使用typeof 为object
+    console.log(Person instanceof Function);//所有函数都是Function实例, 使用typeof 为function
+
+    //构造函数与普通函数
+    //任何函数只要通过new来调用,它就是构造函数,会改变this指向对象
+    //new 操作会经历1.创建新对象,2.将构造函数作用域赋值给this,3.执行构造函数代码,4.返回新对象
+    //其中2将构造函数作用域赋值给this,就是改变this的值为当前构造函数,当前构造函数类似window
+
+    //原型模式
+    //每个函数都有prototype属性
+    console.log(a.prototype);//基本类型没有该属性
+    console.log(Person.prototype);//Object {constructor: function}  默认指向Object对象,所以继承Object的方法
+    console.log(p.prototype);//实例对象没有该属性
+
+
+
+    var n = 9;
+    console.log(typeof o);
+    console.log(typeof this);//window 也是对象
+    //    o.prototype.ff = function () { //对象实例没有prototype
+    //        console.log(n);
+    //    }
+    o.constructor.prototype.bb = function () { //对象实例构造器有prototype
+        console.log(n + " constructor");
+    }
+
+    Object.prototype.ff = function () {
+        console.log(this);// this 表示当前对象 Object {}
+        console.log(typeof this);// this 表示当前对象
+        console.log(n);//基于作用域链,查找到window
+    }
+    o.ff();
+    o.bb();
+//    Object.ff();// function Object() { [native code] }
+
+    //函数
+</script>
+</body>
+</html>
