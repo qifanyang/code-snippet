@@ -14,13 +14,14 @@ import java.io.InputStream;
  */
 public class Main{
     public static void main(String[] args) throws IOException{
-        String resource = "test/ibatis/base/mybatis-config.xml";
+        //statement id = namespace+id, 也就是接口名+方法名, 如果方法名全局唯一,可以使用方法名
+        String resource = "ibatis/base/mybatis-config.xml";
         InputStream inputStream = Resources.getResourceAsStream(resource);
         SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try{
-            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            UserMapperExtend mapper = sqlSession.getMapper(UserMapperExtend.class);
 //            List<User> users = mapper.selectAllAuthors();
             User user = new User();
             user.setId(2);

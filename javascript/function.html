@@ -36,10 +36,9 @@
     }
     Person();//this 表示window
     var  p = new Person();// this 表示Person构造函数
-
     console.log(p instanceof Person);//true
     console.log(p instanceof Function);//false 通过new出来的不是, 使用typeof 为object
-    console.log(Person instanceof Function);//所有函数都是Function实例, 使用typeof 为function
+    console.log(Person instanceof Function);//true 所有函数都是Function实例, 使用typeof 为function
 
     //构造函数与普通函数
     //任何函数只要通过new来调用,它就是构造函数,会改变this指向对象

@@ -14,7 +14,7 @@
        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
        See the License for the specific language governing permissions and
        limitations under the License.
-
+      mybatis generator自动生成
 -->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
@@ -23,6 +23,12 @@
 <mapper namespace="ibatis.base.UserMapper">
 
     <!--<cache readOnly="true"/>-->
+    <resultMap id="iii" type="ibatis.base.User">
+
+    </resultMap>
+    <sql id="ssss">
+        SELECT * from user;
+    </sql>
 
     <select id="selectAllAuthors"
             resultType="ibatis.base.User">

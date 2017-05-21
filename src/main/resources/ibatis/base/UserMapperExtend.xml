@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+
+       Copyright 2009-2016 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+      自定义mapper,与自动生成的mapper分开,如何实现接口分开?
+      为什么不同mapper.xml文件可以使用同一个namespace? mybatis解析mapper文件创建mapperstatement,resultMap.sql
+      等都是使用id来作为标志,当从statement中<include>其它sql语句时,解析时超找也是使用当前namespace+id去查找引用的sql或resultmap
+      ,在同一个文件中是先加载sql,resultmap,如下:
+      builderAssistant.setCurrentNamespace(namespace);
+      cacheRefElement(context.evalNode("cache-ref"));
+      cacheElement(context.evalNode("cache"));
+      parameterMapElement(context.evalNodes("/mapper/parameterMap"));
+      resultMapElements(context.evalNodes("/mapper/resultMap"));
+      sqlElement(context.evalNodes("/mapper/sql"));
+      buildStatementFromContext(context.evalNodes("select|insert|update|delete"));
+
+      但是如果多个mapper使用同样的namespace需要保证读取顺序,被依赖的sql语句mapper需要先加载,所以将mybatis generator生成的文件和自己生成
+      的文件分开需要保证加载顺序,配置mybatis scanner需要先加载generator生成的文件
+
+      配额SqlSessionFactoryBean 指定mapper.xml文件的顺序可以控制mapper解析顺序
+-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ibatis.base.UserMapperExtend">
+
+    <cache readOnly="true"/>
+
+    <select id="selectSelectAllAuthors"
+            resultType="ibatis.base.User">
+        select * from user
+    </select>
+
+
+
+</mapper>

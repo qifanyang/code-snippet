@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>summary</title>
+</head>
+<body>
+<script type="text/javascript">
+    //术语:
+    //1.原型对象:同普通对象一样,只是一个对象,因为定义函数时会默认创建属性prototype指向这个对象,
+    //所以叫做原型对象,该对象有特殊用途,用来存储对象共享的属性和方法.创建原型对象时还会自动或得
+    //constructor属性,其值等于指向prototype的函数,也就是定义的函数
+    //code:
+    function A() {
+    }
+//    A.prototype = new Object(); , 原型对象
+//    A.prototype.constructor = A;
+    //上面两步在定义函数A时自动完成
+
+   //2.构造函数的原型对象: 即构造函数prototype所指向的对象, 就是A.prototype
+
+    //JavaScript中函数是first-class object, js中函数也是对象, 对象具备属性和方法,所以js中的函数
+    //类似与java中的类,也就是对象模版
+
+    //定义构造函数: function Person(){}
+    //定义对象属性: this.name = "test"
+    //定义对象方法: this.myfn = function(){}
+    //定义共享属性或方法, Person.prototype.name = "test" ; Person.prototype.myfn = function(){}
+
+    //对象创建
+    function Person() {
+    }//Person是Function实例, 所以Person._proto_指向Function的prototype, Person是Function实例名字
+    console.log(Person instanceof Function);//true 因为Person是Function的实例
+    //
+    var person = new Person();
+    //js创建对象时会创建一个内部指针(函数原型对象也不例外),该指针指向构造函数的原型对象
+    //Person的原型对象? 就是自动创建的new Object();
+    //Person.prototype = new Object();
+    //_proto_ 指向 Person.prototype;
+
+    var a = new Object();
+    var b = new Object();
+    console.log(a == b);
+    console.log(a === b);
+    console.log("test");
+
+</script>
+</body>
+</html>

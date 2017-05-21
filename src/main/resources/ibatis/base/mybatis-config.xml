@@ -15,6 +15,7 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="test/ibatis/base/UserMapper.xml"/>
+        <mapper resource="ibatis/base/UserMapper.xml"/>
+        <mapper resource="ibatis/base/UserMapperExtend.xml"/>
     </mappers>
 </configuration>
