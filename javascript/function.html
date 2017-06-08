@@ -73,6 +73,13 @@
 //    Object.ff();// function Object() { [native code] }
 
     //函数
+    var my = function myfunc(){};
+    my[a] = "fsdsf";
+    console.log(my[a]);
+    console.log(myfunc.length);
+    myfunc[0] = "sdfdsf";
+    console.log(myfunc.length);
+
 </script>
 </body>
 </html>
