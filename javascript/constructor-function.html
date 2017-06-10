@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>构造函数</title>
+</head>
+<body>
+<script>
+    //工厂模式,采用通过的对象模版Object, 无法识别对象类型
+    function createPerson(name, age) {
+        var o = {};// 不用new Object(), 虽然效果一样
+        o.name = name;
+        o.age = age;
+        o.sayName = function () {
+            console.log(this.name);//因为是新创建的对象o, 所以this指向o, 可以使用this.name
+        }
+        return o;
+    }
+
+    var person = createPerson("yangqf", 28);
+    person.sayName();
+
+    //构造函数, 没有显示new对象, 没有显示返回对象
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        this.sayName = function () {
+            console.log(this.name);
+        }
+    }
+
+    var personnew = new Person("yangqfnew", 28);
+    personnew.sayName();
+
+    //指令new
+    // 在函数调用前面添加指令new, 会改变函数的调用行为,这样描述比new创建对象更好理解
+    //a.改变函数作用域中this的指向,指向一个新对象,类似工厂模式第一步
+    //b.隐式返回新创建的this
+</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>prototype</title>
+</head>
+<body>
+<script>
+    //1.js中的函数是对象,定义一个函数就创建一个对象, 函数对象是通过构造函数Function创建
+    function test() {}
+    console.log(typeof test);//function
+    console.log(test instanceof Function);//true
+
+    //2.函数有一个特殊的属性prototype,这个属性指向一个对象,默认为new Object()
+    //prototype用来存储构造函数所有实例的共享属性和方法(实现了java中的静态变量效果)
+    //
+
+</script>
+</body>
+</html>

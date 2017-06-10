@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inherit</title>
+</head>
+<body>
+<script>
+    //js没有类,使用基于原型的继承,原型是函数对象的一个特别的属性, prototype
+    function Father() {
+        this.myname = "father";
+    }
+    Father.prototype.getName = function () {
+        return this.myname;
+    }
+
+//    console.log(Father.getName());//Father为Function对象的实例,getName不是Function构造函数的方法,所以出错
+    var father = new Father();
+    console.log(father.getName());
+
+    var s = function Sun() {
+        this.name = "sun";
+    }
+
+    s.prototype = new Father();//子构造函数prototype指向父实例
+    var sss = new s();
+    console.log(sss.getName());
+    Sun.prototype = new Father();//子构造函数prototype指向父实例
+
+    Sun.prototype.getSunName = function () {
+        return this.name;
+    }
+
+    console.log(Sun.prototype.getName())
+    var sun = new Sun();
+    console.log(sun.getName());//基于原型链
+</script>
+</body>
+</html>

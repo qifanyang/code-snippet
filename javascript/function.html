@@ -11,6 +11,7 @@
     //a 只是一个地址变量, 解释器会创建一个Function对象, a指向该对象
     //没有重载是因为js没有函数签名,重复定义函数,该变量值被覆盖
     console.log(typeof a);//function
+
     a = 5;
     console.log(typeof a);//number  函数名字可以被覆盖
 
@@ -35,7 +36,7 @@
         console.log(this);
     }
     Person();//this 表示window
-    var  p = new Person();// this 表示Person构造函数
+    var  p = new Person();// this 表示Person构造函数对象,函数是Function的实例
     console.log(p instanceof Person);//true
     console.log(p instanceof Function);//false 通过new出来的不是, 使用typeof 为object
     console.log(Person instanceof Function);//true 所有函数都是Function实例, 使用typeof 为function
@@ -49,7 +50,7 @@
     //每个函数都有prototype属性
     console.log(a.prototype);//基本类型没有该属性
     console.log(Person.prototype);//Object {constructor: function}  默认指向Object对象,所以继承Object的方法
-    console.log(p.prototype);//实例对象没有该属性
+    console.log(p.prototype);//实例对象没有该属性,实例中有个指向原型的指针
 
 
 
@@ -71,14 +72,6 @@
     o.ff();
     o.bb();
 //    Object.ff();// function Object() { [native code] }
-
-    //函数
-    var my = function myfunc(){};
-    my[a] = "fsdsf";
-    console.log(my[a]);
-    console.log(myfunc.length);
-    myfunc[0] = "sdfdsf";
-    console.log(myfunc.length);
 
 </script>
 </body>

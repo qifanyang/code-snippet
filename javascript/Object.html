@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>创建对象</title>
+</head>
+<body>
+<script>
+    //js中一切皆是对象,基本类型boolean,number,string也有对应的对象类型
+    var s = "abcdef";
+    //把基本类型当作对象类型使用,会自动调用String构造一个String对象,然后调用对应方法,然后新创建的
+    //引用对象完成方法调用后会立即被回收,所以不能继续给基本类型添加属性和方法
+    console.log(s.substr(3));
+
+    //ecma-262中对象的定义;无需属性集合,其属性可以包含基本值,对象和函数, 可以理解为散列表,其值可以是数据和函数
+    //java中对象也可以这么理解
+
+    //最简单的函数
+    //函数Object,一般不会使用直接调用Object, 会使用new的方式来使用,使用new来调用函数会改变函数的行为,通过这种方式
+    //使用的函数叫做构造函数
+    Object();//直接调用
+    var f = {};
+    var f1 = new Object();
+    Object.aaaaaaa = "dfd";
+    f.prototype = {};
+    f.prototype.a = "dddd";
+    f.prototype.getA = function () {
+        return this.a;
+    }
+    console.log(f.prototype.a);
+//    console.log(f.getA());//f是一个对象, 虽然定义了prototype,但不是js引擎创建的, 所以f.getA()失败
+    console.log(typeof Object);//function
+    console.log(Object instanceof Object);//true, 自己是自己类型的实例
+    console.log(Object instanceof Function);//true, Function = {};
+    console.log(Function instanceof Object);//true,
+    console.log(Function instanceof Function);//true,
+    //先有Object还是先有Function, 应为声明函数Object就会创建Function,
+
+    //Function和Object不是js应用程序代码,都是js引擎创建好的,然后使其关系满足js语法,所以不要用js语法去分析,不存在js语法中的谁先谁后
+    //就如果java的根类加载器一样,采用其它语言实现, js根对象方法也是由引擎实现,Object.prototype
+    console.log(Object);
+
+    var o = new Object();
+
+
+    //从js引擎角度来分析
+    //1.在解释引擎上下文中创建一个对象,可以叫做rootObject,js中叫做Object.prototype,并添加一些默认方法(根源对象,采用其它语言实现,比如c),
+    //这里类似java中Object,没有父类的类默认都继承Object,具备Object中的方法
+    //因为js中没有类,没法在编译类来继承,当js代码解释执行时,创建对象时需要知道这个对象,js引擎在在创建对象时,在引擎中运行时对象会添加
+    //属性_proto_指向根对象Object.prototype
+
+    //2.js创建对象
+    //2.1 引擎创建运行时js对象,添加属性_proto_,指向步骤1创建的根对象, 语法 var o = {};
+    //2.2 通过new Object()构造函数创建,函数调用和{}虽然效果一样, 但是引擎执行逻辑可能不一样
+
+    //3.引擎初始化函数对象
+    //3.1 解析function MyFunc(){},因为函数是对象,所以执行步骤2创建对象,可以执行默认添加的方法
+    //3.2 因为使用function修饰,所以这个对象是个函数对象,函数对象就需要改变其_proto_指向,(js语法规定 _proto_指向构造函数的原型)
+    //3.3 Function对象作为函数对象构造函数原型,但其自己并不是函数,ecma中函数对象这么定义Function = {}; 执行步骤2,
+    //改变_proto_指向,该函数对象变继承了Funciton具备的方法了
+    //3.4 改变Object函数对象_proto_指向Function实例,
+    //步骤3分析了如何解析一个函数,Object函数同自定义函数一样, js中Object构造函数和Object对象是不同的概念
+
+    //4.prototyye与_proto_
+    //4.1 prototype是函数对象才有的,通过该函数new出来的对象才可以访问在prototype对象定义的属性和方法
+    //4.2 _proto_是每个对象都隐式包含的,指向创建该对象的构造函数的原型,js引擎运行时内部使用,js程序无法使用.
+    //4.2.1 对于自定义函数,_proto_ 指向Function对象,对于new person(), _proto_指向Person的prototype
+    //总得来说就是_proto_用来执行prototype
+
+
+</script>
+</body>
+</html>
