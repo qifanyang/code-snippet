@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object-prototype</title>
+</head>
+<body>
+<script>
+    var fn = {};
+    fn.prototype = {};
+    fn.prototype.test = function () {
+        console.log("i am test");
+    }
+//    fn.test();//Uncaught TypeError: fn.test is not a function
+    //因为 对象fn先查找有没有函数test,没有继续查找_proto_指向的原型,是Object,查找不到函数
+//    fn.test = function () {
+//        console.log("i am test");
+//    }
+//    fn.test();//成功
+
+    function Sub() {
+
+    }
+
+    Sub.prototype = fn.prototype; //模拟Function, 导致Sub的实例指向fn.prototype
+    //方法调用不会查找prototype属性,只会根据对象_proto_指向的对象来查找
+    //js引擎解析函数,实例化函数对象时,将函数对象的_proto_指向定义Function.prototype,这样函数对象就具备apply方法了
+    //chrome中展示函数的_proto_为function(), 而上面的例子_proto_为Object,但是效果一样
+    //区别typeof不一样
+
+    console.log(Object.getPrototypeOf(Sub));
+    var a = new Sub();
+    console.log(Object.getPrototypeOf(a));
+    a.test();//Uncaught TypeError: fn.test is not a function
+
+
+</script>
+</body>
+</html>
