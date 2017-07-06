@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e1def8ba-7a6f-44a1-97ba-753c9b97d879" name="Default" comment="workspace">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__aopalliance_aopalliance_1_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_3_1.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__cglib_cglib_3_1.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_logging_commons_logging_1_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_4_2.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_ow2_asm_asm_4_2.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="e1def8ba-7a6f-44a1-97ba-753c9b97d879" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/snippet.iml" afterPath="$PROJECT_DIR$/snippet.iml" />
     </list>
     <ignored path="snippet.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -72,31 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dump.class" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dump.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+            <state relative-caret-position="70">
+              <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1036,14 +1010,7 @@
       <workItem from="1480324625586" duration="2069000" />
       <workItem from="1480402781059" duration="4214000" />
       <workItem from="1480559295050" duration="5560000" />
-      <workItem from="1499346096153" duration="1554000" />
-    </task>
-    <task id="LOCAL-00026" summary="堆排序&#10;">
-      <created>1469095933738</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1469095933738</updated>
+      <workItem from="1499346096153" duration="1694000" />
     </task>
     <task id="LOCAL-00027" summary="桥接方法synthetic method&#10;">
       <created>1469675209435</created>
@@ -1381,11 +1348,18 @@
       <option name="project" value="LOCAL" />
       <updated>1480664027810</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="mac下修改配置">
+      <created>1499348781852</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1499348781852</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1128438000" />
+    <option name="totallyTimeSpent" value="1128578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1483,7 +1457,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加几个binlog event" />
     <MESSAGE value="整理包目录,移除test" />
     <MESSAGE value="table_map_event parse" />
     <MESSAGE value="完善row event" />
@@ -1508,7 +1481,8 @@
     <MESSAGE value="NotifyAllTest" />
     <MESSAGE value="MapSizeSet" />
     <MESSAGE value="workspace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workspace" />
+    <MESSAGE value="mac下修改配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="mac下修改配置" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1852,56 +1826,56 @@
         <state relative-caret-position="168">
           <caret line="7" column="11" lean-forward="false" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
           <folding>
-            <marker date="1499348586000" expanded="true" signature="110334:110376" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110334:110394" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110334:110407" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110334:110422" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110457:113002" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110470:112987" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110524:110819" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110543:110804" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110606:110784" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110646:110750" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110667:110728" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110869:111178" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110888:111163" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="110965:111143" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111005:111109" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111026:111087" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111229:111494" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111248:111479" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111281:111459" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111321:111425" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111342:111403" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111537:111843" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111556:111828" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111630:111808" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111670:111774" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111691:111752" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111894:112243" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111913:112228" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="111991:112208" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112031:112174" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112052:112152" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112278:112584" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112297:112569" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112371:112549" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112411:112515" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112432:112493" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112636:112973" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112655:112958" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112760:112938" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112800:112904" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="112821:112882" ph="..." />
-            <marker date="1499348586000" expanded="true" signature="113047:113190" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110334:110376" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110334:110394" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110334:110407" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110334:110422" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110457:113002" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110470:112987" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110524:110819" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110543:110804" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110606:110784" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110646:110750" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110667:110728" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110869:111178" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110888:111163" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="110965:111143" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111005:111109" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111026:111087" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111229:111494" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111248:111479" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111281:111459" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111321:111425" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111342:111403" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111537:111843" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111556:111828" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111630:111808" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111670:111774" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111691:111752" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111894:112243" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111913:112228" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="111991:112208" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112031:112174" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112052:112152" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112278:112584" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112297:112569" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112371:112549" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112411:112515" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112432:112493" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112636:112973" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112655:112958" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112760:112938" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112800:112904" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="112821:112882" ph="..." />
+            <marker date="1499348659000" expanded="true" signature="113047:113190" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="21" column="8" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+        <state relative-caret-position="96">
+          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1914,10 +1888,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="11" lean-forward="true" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        <state relative-caret-position="70">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
