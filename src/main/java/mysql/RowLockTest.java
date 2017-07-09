@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  * tx2等tx1释放锁后,执行状态检查,能够读取到tx1提交的status值,检查到状态为已完成不执行业务逻辑
  *
  * 测试一致性读场景,在获取行锁前执行一个select查询
- * 测试结果,一致性读不会造成tx2无法读取tx1更改的status
+ * 测试结果,一致性读不会造成tx2无法读取tx1更改的status, locking read不会使用一致性读
  *
  * 行锁用于在多节点定时任务执行:
  * 当数据库中某条消息处于未处理状态,每个节点可以开启定时任务检查该消息状态
@@ -102,7 +102,9 @@ CREATE TABLE `business_data` (
                     System.out.println(resultSet1.getInt(2));
                 }
 
+
                 System.out.println(name + " 将获取行锁");
+                //Lock reading会读取到最新的数据,consistent read规则无效
                 PreparedStatement ps = connection.prepareStatement("SELECT status FROM row_lock_test where id=1 FOR  UPDATE ");
                 ResultSet resultSet = ps.executeQuery();
                 System.out.println(name + " 获取行锁OKOKOK");
