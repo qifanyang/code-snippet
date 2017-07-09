@@ -7,7 +7,7 @@ import java.util.concurrent.CountDownLatch;
  * @author yangqf
  * @version 1.0 2016/7/20
  */
-public class CASTest extends BaseDB{
+public class CASTest extends DBHelper {
 
     public static void concurrentUpdate(){
         new Thread(){

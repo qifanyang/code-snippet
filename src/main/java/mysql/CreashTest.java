@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit;
  * @author yangqf
  * @version 1.0 2016/8/8
  */
-public class CreashTest extends BaseDB{
+public class CreashTest extends DBHelper {
 
     public static void main(String[] args) throws SQLException, InterruptedException{
         Connection connection = getConnection();

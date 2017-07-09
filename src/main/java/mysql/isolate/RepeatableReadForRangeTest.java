@@ -1,6 +1,6 @@
 package mysql.isolate;
 
-import mysql.BaseDB;
+import mysql.DBHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author yangqf
  * @version 1.0 2016/8/5
  */
-public class RepeatableReadForRangeTest extends BaseDB{
+public class RepeatableReadForRangeTest extends DBHelper {
 
     public static void main(String[] args) throws InterruptedException{
 

@@ -1,6 +1,6 @@
 package mysql.jdbc;
 
-import mysql.BaseDB;
+import mysql.DBHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,7 +10,7 @@ import java.sql.Statement;
  * @author yangqf
  * @version 1.0 2016/9/26
  */
-public class SimpleTest extends BaseDB{
+public class SimpleTest extends DBHelper {
     public static void main(String[] args) throws Exception{
         Connection connection = getConnection();
         connection.setAutoCommit(false);

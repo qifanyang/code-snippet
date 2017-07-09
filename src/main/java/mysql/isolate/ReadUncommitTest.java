@@ -1,6 +1,6 @@
 package mysql.isolate;
 
-import mysql.BaseDB;
+import mysql.DBHelper;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -12,12 +12,15 @@ import java.util.concurrent.TimeUnit;
  * sql隔离级别未提交读测试<br>
  * 脏读测试验证,设置为Connection.TRANSACTION_READ_UNCOMMITTED的事务会读取到其它事务没有提交的数据
  *
- * 提交读,把事务当做一个线程理解,就是一个线程不能够理解看见另一个线程对共享变量的修改,相当于在线程
- * 栈中修改的值还未同步到主存中,其它线程还不可见
+ * mysql使用undo.log来记录数据变更,当连接的事务隔离级别设置不一样,读取数据的行为会不一样
+ * 如果设置为读未提交,则会读取最新的数据
+ * 如果设置为提交读,那么不会读取未提交事务的修改,会从undo.log中读取被未提交事务需改的旧值
+ * 如果设置为可重复读,那么会根据第一次执行select查询时间点,读取快照
+ *
  * @author yangqf
  * @version 1.0 2016/8/5
  */
-public class ReadUncommitTest extends BaseDB{
+public class ReadUncommitTest extends DBHelper {
 
 //    CREATE TABLE `user` (
 //            `id` int(11) NOT NULL,

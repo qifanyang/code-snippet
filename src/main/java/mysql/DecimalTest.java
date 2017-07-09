@@ -7,11 +7,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
+ * mysql decimal最多可以存储65个数字,存储时每9个数字暂用4个字节
  * mysql 字段decimal(10, 2)测试, 10代表precision, 2代表scale 和java的bigDecimal含义一致
  * @author yangqf
  * @version 1.0 2016/11/16
  */
-public class DecimalTest extends BaseDB{
+public class DecimalTest extends DBHelper {
 
     public static void main(String[] args) throws SQLException{
         Connection connection = getConnection();

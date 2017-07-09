@@ -1,9 +1,8 @@
 package mysql.jdbc;
 
 import com.mysql.jdbc.Statement;
-import mysql.BaseDB;
+import mysql.DBHelper;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +12,7 @@ import java.sql.SQLException;
  * @author yangqf
  * @version 1.0 2016/9/22
  */
-public class GetKeyTest extends BaseDB{
+public class GetKeyTest extends DBHelper {
 
     public static void main(String[] args) throws Exception{
 //        insertGetKey();

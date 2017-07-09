@@ -5,18 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * 数据库工具类,获取连接,创建表
  * @author yangqf
  * @version 1.0 2016/8/5
  */
-public abstract class BaseDB{
+public abstract class DBHelper {
 
     private static String driver = "com.mysql.jdbc.Driver";
     private static String passwrod = "123456";
     private static String userName = "root";
-    private static String url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&amp;characterEncoding=utf-8";
+    private static String url = "jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false";
 
 
-    public static Connection getConnection(){
+    protected static Connection getConnection(){
 
         try{
 //            Class.forName(driver);
@@ -31,7 +32,7 @@ public abstract class BaseDB{
         return null;
     }
 
-    public void closeConn(Connection conn){
+    protected void closeConnection(Connection conn){
         if(conn != null){
                 try{
                     conn.close();
@@ -40,4 +41,5 @@ public abstract class BaseDB{
                 }
             }
     }
+
 }
