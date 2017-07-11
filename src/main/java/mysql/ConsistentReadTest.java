@@ -27,6 +27,10 @@ public class ConsistentReadTest {
 
 
     public static void main(String[] args) throws InterruptedException {
+        long l = System.nanoTime();
+        long l1 = System.nanoTime();
+        System.out.println(l);
+        System.out.println(l1);
         new ConsistentReadTest().test();
     }
 

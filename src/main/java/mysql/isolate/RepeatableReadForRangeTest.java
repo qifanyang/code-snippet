@@ -2,21 +2,133 @@ package mysql.isolate;
 
 import mysql.DBHelper;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.concurrent.TimeUnit;
 
-/**
- *1. t2 开启事务--> t1开启事务,然后插入记录并提交-->t2再次查询,无法读取到新插入的记录,因为t1事务id大于t2事务id, select不返回
+/*
+ * 1. t2 开启事务--> t1开启事务,然后插入记录并提交-->t2再次查询,无法读取到新插入的记录,因为t1事务id大于t2事务id, select不返回
  * 2. t1开启事务-->t2开启事务-->t1插入数据,提交事务-->t2查询可以读取到t1新插入的数据(如果t2在t1提交事务前查询了,则为了读取一致性则无法查询到了)
  * @author yangqf
  * @version 1.0 2016/8/5
  */
 public class RepeatableReadForRangeTest extends DBHelper {
 
-    public static void main(String[] args) throws InterruptedException{
+    class Task {
+
+        private String name;
+        private int runTimeInSeconds;
+        private Connection connection;
+
+        public Task(String name, int runTimeInSeconds){
+            this.name = name;
+            this.runTimeInSeconds = runTimeInSeconds;
+            this.connection = DBHelper.getConnection();
+        }
+
+        /*
+         * 开启事务,通过执行一个查询表的数据开启事务, select 1 和 start ,
+         */
+        public void startTransaction() throws SQLException {
+            connection.setAutoCommit(false);
+            Statement stmt = connection.createStatement();
+            stmt.execute("INSERT INTO start_trx (x) VALUE (1)");
+            System.out.println(name+"开始事务");
+        }
+
+        public void sleepInSeconds(int seconds){
+            try {
+                System.out.println(name + " 休眠"+seconds+"秒");
+                TimeUnit.SECONDS.sleep(seconds);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void executeSql(String sql) throws SQLException {
+            System.out.println(name + " 执行sql : " + sql);
+            Statement stmt = connection.createStatement();
+            stmt.execute(sql);
+        }
+
+        public void executeQuery(String sql) throws SQLException {
+            System.out.println(name + " 执行查询 : " + sql);
+            Statement stmt = connection.createStatement();
+            ResultSet resultSet = stmt.executeQuery(sql);
+            while (resultSet.next()) {
+                System.out.println(resultSet.getInt(1));
+            }
+        }
+
+        public void commit() throws SQLException {
+            System.out.println(name + " 提交事务");
+            connection.commit();
+        }
+
+
+    }
+
+
+    /*
+      t1开启事务-->t2开启事务-->t1插入数据,提交事务-->
+      t2在t1提交事务后查询可以读取到t1新插入的数据(如果t2在t1提交事务前查询了,则为了读取一致性则无法查询到了)
+     */
+    private void case1() throws SQLException {
+        Task tx1 = new Task("tx1", 5);
+        tx1.startTransaction();
+
+        Task tx2 = new Task("tx2", 5);
+        tx2.startTransaction();
+
+        tx1.executeSql("insert into user(age) value (22)");
+        tx1.commit();
+
+        tx2.executeQuery("select age from user");
+        tx2.commit();
+
+
+        //数据库原始数据  只有一条记录 age=99
+        //因为tx1插入一条数据, 因为tx1 事务id 小于 tx2 所以tx2可以读取到, (必须要tx1提交事务tx2才可以读取到)
+        //输出
+//        tx1开始事务
+//         tx2开始事务
+//        99
+//        22  //22 为tx1插入的数据,tx2可以查询到
+
+    }
+
+
+    /*
+     t1开启事务-->t2开启事务,并插入数据,t2提交-->t1查询
+     理论结果:根据MySQL的mvvc, t1查询看不见t2插入的数据,因为t2事务id比t1事务id大, 输出一条记录
+     */
+    private void case2() throws SQLException {
+
+
+        Task tx1 = new Task("tx1", 5);
+        tx1.startTransaction();
+//        tx1.executeQuery("select age from user");  //创建读一致性
+
+//        System.out.println(tx1.connection.getTransactionIsolation());
+
+        Task tx2 = new Task("tx2", 5);
+        tx2.startTransaction();
+
+        tx2.executeSql("insert into user(age) value (22)");
+        tx2.commit();
+
+        //tx1居然可以看见tx2提交的数据, 按照mvvc查询这里应该无法看见的
+        tx1.executeQuery("select age from user");
+        tx1.commit();
+    }
+
+    public static void main(String[] args) throws SQLException {
+        RepeatableReadForRangeTest repeatableReadForRangeTest = new RepeatableReadForRangeTest();
+//        repeatableReadForRangeTest.case1();
+        repeatableReadForRangeTest.case2();
+
+    }
+    public static void main11(String[] args) throws InterruptedException{
+
 
         Thread t1 = new Thread(){
             @Override

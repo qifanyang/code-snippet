@@ -15,16 +15,17 @@ import java.util.concurrent.TimeUnit;
 public class TransactionWhenStartTest extends DBHelper {
 
     public static void main(String[] args) throws InterruptedException, SQLException{
-        int x = 5;
+        int x = 50;
         System.out.println("准备获取连接,停止" + x + "秒钟,查看数据库事务id");
         Connection connection = getConnection();//经测试在数据库中没看见事务ID
-        TimeUnit.SECONDS.sleep(x);
+//        TimeUnit.SECONDS.sleep(x);
         connection.setAutoCommit(false);
-        System.out.println("设置自动提交");
+        System.out.println("设置自动提交d");
         Statement stmt = connection.createStatement();
-//        stmt.execute("SELECT 1");
-        stmt.execute("STArt TRANSACTION ");
-//        stmt.execute("SELECT * FROM castest");
+//        stmt.execute("SELECT 1");//不会创建事务
+//        stmt.execute("BEGIN;");//不会创建事务
+//        stmt.execute("SELECT * FROM user");//infomation_schema.INNODB_TRX中会生成事务信息
+        stmt.execute("INSERT INTO start_trx (x) VALUE (1)");//也可以开启事务
         TimeUnit.SECONDS.sleep(x);
     }
 

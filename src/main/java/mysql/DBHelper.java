@@ -32,7 +32,7 @@ public abstract class DBHelper {
         return null;
     }
 
-    protected void closeConnection(Connection conn){
+    protected static void closeConnection(Connection conn){
         if(conn != null){
                 try{
                     conn.close();
