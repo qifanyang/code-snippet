@@ -50,6 +50,11 @@ public class RepeatableReadForRangeTest extends DBHelper {
             stmt.execute(sql);
         }
 
+        public void executeUpdate(String sql) throws SQLException {
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        }
+
         public void executeQuery(String sql) throws SQLException {
             System.out.println(name + " 执行查询 : " + sql);
             Statement stmt = connection.createStatement();
@@ -62,6 +67,12 @@ public class RepeatableReadForRangeTest extends DBHelper {
         public void commit() throws SQLException {
             System.out.println(name + " 提交事务");
             connection.commit();
+        }
+
+        public void rollback() throws SQLException {
+            System.out.println(name + " 回滚事务");
+            connection.rollback();
+
         }
 
 
@@ -117,14 +128,37 @@ public class RepeatableReadForRangeTest extends DBHelper {
         tx2.commit();
 
         //tx1居然可以看见tx2提交的数据, 按照mvvc查询这里应该无法看见的
+        //看见可以归为幻读
         tx1.executeQuery("select age from user");
         tx1.commit();
+    }
+
+    private void testUpdate() throws SQLException {
+        Task tx1 = new Task("tx1", 5);
+        tx1.startTransaction();
+        //update会获取行锁
+        tx1.executeUpdate("update user set age = 1 where id = 1");  //创建读一致性
+
+//        System.out.println(tx1.connection.getTransactionIsolation());
+
+        Task tx2 = new Task("tx2", 5);
+        tx2.startTransaction();
+
+        //tx1没有提交事务,tx2没法获取都行锁,这里会获取锁超时
+        tx2.executeUpdate("update user set age = 1 where id = 1");
+        tx2.commit();
+
+        //tx1居然可以看见tx2提交的数据, 按照mvvc查询这里应该无法看见的
+        tx1.executeQuery("select age from user");
+        tx1.rollback();
+
     }
 
     public static void main(String[] args) throws SQLException {
         RepeatableReadForRangeTest repeatableReadForRangeTest = new RepeatableReadForRangeTest();
 //        repeatableReadForRangeTest.case1();
-        repeatableReadForRangeTest.case2();
+//        repeatableReadForRangeTest.case2();
+        repeatableReadForRangeTest.testUpdate();
 
     }
     public static void main11(String[] args) throws InterruptedException{
