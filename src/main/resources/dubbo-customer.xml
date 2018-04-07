@@ -13,5 +13,7 @@
     <dubbo:registry address="zookeeper://127.0.0.1:2181" />
     <dubbo:consumer timeout="5000" />
 
-    <dubbo:reference id="demoService1" interface="dubbo.Provider" />
+    <dubbo:reference id="demoService1" interface="dubbo.test.Provider" />
+
+    <dubbo:reference id="loginService" interface="dubbo.custom.LoginService"/>
 </beans>

@@ -1,5 +1,8 @@
 package dubbo;
 
+import custom.LoginUser;
+import dubbo.custom.LoginService;
+import dubbo.test.Provider;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -10,17 +13,22 @@ public class DubboCustomer {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "dubbo-customer.xml" });
         context.start();
         Provider demoService = (Provider) context.getBean("demoService1"); // 获取bean
+
+        LoginService loginService = context.getBean(LoginService.class);
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId("1");
+        System.out.println(loginService.login("", "", loginUser));
         // service
         // invocation
         // proxy
-        User user = null;
-        try {
-            user = demoService.build("lili");
-            System.out.println(" the message from server is:" + user.getName());
-            System.out.println(" the message from server is:" + user.getAge());
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+//        User user = null;
+//        try {
+//            user = demoService.build("lili");
+//            System.out.println(" the message from server is:" + user.getName());
+//            System.out.println(" the message from server is:" + user.getAge());
+//        } catch (Exception e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
     }
 }

@@ -23,13 +23,15 @@ public class LC102_BinaryTreeLevelOrderTraversal{
         LC.makeTreeNode(root.left, 4, 5);
         LC.makeTreeNode(root.right, 6, 7);
         LC102_BinaryTreeLevelOrderTraversal test = new LC102_BinaryTreeLevelOrderTraversal();
-        test.levelOrder(root);
+//        test.levelOrder(root);
+        test.breadthFirstSearch(root);
     }
 
     public List<List<Integer>> levelOrder(TreeNode root) {
         int level = 0;
         List<List<Integer>> list = new ArrayList<>(10);
         traversal(root, level, list);
+        System.out.println(list);
         return list;
     }
 
@@ -66,7 +68,7 @@ public class LC102_BinaryTreeLevelOrderTraversal{
             for(int i = 0; i < size; i++){
                 //第一层size为1 只取一次, 第二层size为2 会取两次, 以此类推
                 //没有递归,一层一层的遍历
-                TreeNode node = queue.peek();
+                TreeNode node = queue.poll();
                 //收集下一层节点
                 if(node.left != null) queue.add(node.left);
                 if(node.right != null) queue.add(node.right);
@@ -75,6 +77,7 @@ public class LC102_BinaryTreeLevelOrderTraversal{
             resultList.add(subList);
         }
 
+        System.out.println(resultList);
         //交换list中的值
         resultList.forEach(subList->{
             int start = 0, end = subList.size() - 1;

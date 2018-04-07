@@ -5,9 +5,9 @@ package dubbo;
  */
 public class WrapperGen {
 //    public Object invokeMethod(Object o, String n, Class[] p, Object[] v) throws java.lang.reflect.InvocationTargetException {
-//        dubbo.Provider w;
+//        dubbo.test.Provider w;
 //        try {
-//            w = ((dubbo.Provider) $1);
+//            w = ((dubbo.test.Provider) $1);
 //        } catch (Throwable e) {
 //            throw new IllegalArgumentException(e);
 //        }
@@ -20,6 +20,6 @@ public class WrapperGen {
 //        } catch (Throwable e) {
 //            throw new java.lang.reflect.InvocationTargetException(e);
 //        }
-//        throw new com.alibaba.dubbo.common.bytecode.NoSuchMethodException("Not found method \"" + $2 + "\" in class dubbo.Provider.");
+//        throw new com.alibaba.dubbo.common.bytecode.NoSuchMethodException("Not found method \"" + $2 + "\" in class dubbo.test.Provider.");
 //    }
 }

@@ -8,7 +8,7 @@ import java.util.List;
  * @author yangqf
  * @version 1.0 2016/7/25
  */
-public interface UserMapper{
+public interface UserMapper extends UserMapperExtend{
      List<User> selectAllAuthors();
 
      User selectById(int id);

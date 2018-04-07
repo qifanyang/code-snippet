@@ -6,6 +6,6 @@ package ibatis.base;
  *
  * Created by Administrator on 2017/5/21.
  */
-public interface UserMapperExtend extends UserMapper {
+public interface UserMapperExtend {
 
 }

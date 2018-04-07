@@ -20,9 +20,9 @@ public class InsertSort{
             // 则会像冒泡一样两两交换一直到找到比其更小的元素出现,因为左边的是有序的,所以找到了就停止,没必要继续冒泡小区
                 if( arraytoSort[j+1] < arraytoSort[j] ){
                     temp = arraytoSort[j+1];
-                    arraytoSort[j+1] = arraytoSort[j];
-                    arraytoSort[j] = temp;
-                }
+                arraytoSort[j+1] = arraytoSort[j];
+                arraytoSort[j] = temp;
+            }
             }
         }
     }

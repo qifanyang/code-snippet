@@ -9,12 +9,19 @@ import java.util.concurrent.ConcurrentHashMap;
  * @version 1.0 2017/2/14
  */
 public class Test{
+
+    private final static long workerIdBits = 4L;
+    public final static long maxWorkerId = -1L ^ -1L << workerIdBits;
     public static void main(String[] args){
+
+        System.out.println(Integer.toBinaryString(1 << (35 & 0x1f)));
+
 
         Map<String, String> map = new ConcurrentHashMap<>();
         map.put("aaa", "aaa");
 
-
+        System.out.println(maxWorkerId);
+        System.out.println(Integer.toBinaryString((int)maxWorkerId));
         System.out.println(Integer.toBinaryString(-1));
         System.out.println(Integer.toBinaryString(-1 << 29));
         System.out.println(Integer.toBinaryString((1 << 29)-1));

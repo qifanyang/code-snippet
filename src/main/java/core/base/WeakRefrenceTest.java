@@ -13,11 +13,11 @@ import java.lang.ref.WeakReference;
  */
 public class WeakRefrenceTest{
     public static void main(String[] args) throws InterruptedException {
-//        WeakReference<String> wr = new WeakReference<>(new String("ffff"));
-//        System.out.println(wr.get());
-//        System.gc();
-//        System.out.println(wr.enqueue());
-//        System.out.println(wr.get());
+        WeakReference<String> wr = new WeakReference<>(new String("ffff"));
+        System.out.println(wr.get());
+        System.gc();//每次gc都回收弱引用
+        System.out.println(wr.enqueue());
+        System.out.println(wr.get());
 
         showFreeMemory("初始化空闲内存");
 
@@ -26,8 +26,8 @@ public class WeakRefrenceTest{
         WorkThread workThread = new WorkThread(service);
         workThread.start();
 
-        System.out.println("主线程暂停3s,等待工作线程执行");
         Thread.sleep(3000L);
+        System.out.println("主线程暂停3s,等待工作线程执行");
 
         showFreeMemory("工作线程存储大数据对象后空闲内存");
 
@@ -35,17 +35,10 @@ public class WeakRefrenceTest{
 //        workThread = null;//线程异常退出需要将线程引用置null, gc工作.线程池会移除线程引用
         System.gc();
 
-        showFreeMemory("线程异常退出后空闲内存");
         Thread.sleep(3000L);
+        showFreeMemory("线程异常退出后空闲内存");
         System.gc();
         showFreeMemory("暂停3s,再次gc后空闲内存");
-
-        /*
-        结论:线程退出后,gc可以回收threadLocalMap中的线程本地变量
-
-
-
-         */
     }
 
     /**

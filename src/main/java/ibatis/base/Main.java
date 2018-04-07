@@ -21,13 +21,15 @@ public class Main{
 
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try{
-            UserMapperExtend mapper = sqlSession.getMapper(UserMapperExtend.class);
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            User u = mapper.selectById(1);
+            u = mapper.selectById(1);
 //            List<User> users = mapper.selectAllAuthors();
             User user = new User();
             user.setId(2);
 //            User user1 = mapper.selectByUser(user);
 //            mapper.selectById(2);
-            mapper.selectByIdAndAge(2, 5);
+//            mapper.selectByIdAndAge(2, 5);
             System.out.println("");
         }finally{
             sqlSession.close();

@@ -9,7 +9,7 @@ import java.util.Stack;
  */
 public class LC445_AddTowNumberII{
     public static void main(String[] args){
-        ListNode a = LC.makeSingleLinkedList(5);
+        ListNode a = LC.makeSingleLinkedList(5,4,5);
         ListNode b = LC.makeSingleLinkedList(5);
         LC.print(a);
         LC.print(b);

@@ -18,7 +18,15 @@ public class ThreadPoolTest {
         //a.线程上下文切换
         //b.任务入队刚好任务队列满了,下一个任务会直接新建线程执行
         //c.
-        ThreadPoolExecutor executor = new ThreadPoolExecutor(1, 3, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1));
+
+        //测试core size为0
+        //提交任务到线程池时,线程池需要再次检测线程数量,可能某些线程异常退出,
+        //当把任务放到workqueue后再次检测工作线程数量,因为coreSize为0,所以
+        //workerCount值为0,调用addWorker(null, false),添加一个非core线程
+        //这样就会有一个线程来执行workeQueue中的任务.
+        //结论:如果core size为0,在workQueue满之前,只有一个线程来执行
+        //同core size为1有同样的效果
+        ThreadPoolExecutor executor = new ThreadPoolExecutor(0, 3, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<>(1));
 
 
         for(int i = 0; i < 6; i++){

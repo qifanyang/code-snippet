@@ -11,10 +11,10 @@ public class ScheduleThreadPoolTest {
         ScheduledThreadPoolExecutor s = new ScheduledThreadPoolExecutor(4);
 
 //        for(int i = 0; i < 10; i++)
-        s.scheduleAtFixedRate(()->{
+        s.scheduleWithFixedDelay(()->{
             System.out.println(Thread.currentThread().getName());
 //            throw new RuntimeException("exp");
 
-        },1, 1 , TimeUnit.SECONDS);
+        },1, 1000 , TimeUnit.SECONDS);
     }
 }

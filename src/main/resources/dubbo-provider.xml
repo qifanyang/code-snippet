@@ -2,11 +2,15 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://code.alibabatech.com/schema/dubbo
-        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
-        ">
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="dubbo.custom"/>
+
+    <bean class="custom.aop.CustomBeanPostProcessor"/>
     <!-- 具体的实现bean -->
     <bean id="demoService" class="dubbo.DemoServiceImpl" />
     <!-- 提供方应用信息，用于计算依赖关系 -->
@@ -16,7 +20,9 @@
     <!-- 用dubbo协议在20880端口暴露服务 -->
     <dubbo:protocol name="dubbo" port="20880" />
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="dubbo.Provider" ref="demoService" />
+    <dubbo:service interface="dubbo.test.Provider" ref="demoService" />
+
+    <dubbo:service interface="dubbo.custom.LoginService" ref="loginServiceImpl"/>
 
     <bean class="spring.beanpost.BeanPostProcessorTest"/>
 </beans>

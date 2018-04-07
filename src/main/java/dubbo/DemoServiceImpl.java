@@ -1,5 +1,7 @@
 package dubbo;
 
+import dubbo.test.Provider;
+
 /**
  * Created by Administrator on 2017/3/29.
  */

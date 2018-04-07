@@ -1,4 +1,7 @@
-package dubbo;
+package dubbo.test;
+
+import dubbo.MyException;
+import dubbo.User;
 
 /**
  * Created by Administrator on 2017/3/29.
