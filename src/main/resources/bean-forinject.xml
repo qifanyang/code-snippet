@@ -32,8 +32,8 @@
 
     <bean id="beanautowire" class="spring.bean.BeanForAutowiredInject"/>
 
-    <bean id="circlea" class="spring.circle.CircleA"/>
-    <bean id="circleb" class="spring.circle.CircleB"/>
+    <bean id="circlea" class="spring.circle.CircleA" lazy-init="true"/>
+    <bean id="circleb" class="spring.circle.CircleB" lazy-init="true"/>
 
     <bean id="beanforwrapper" class="spring.bean.BeanForWrapper">
         <property name="a" value="wowowo"/>

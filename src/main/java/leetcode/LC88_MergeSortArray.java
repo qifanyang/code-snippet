@@ -11,27 +11,35 @@ public class LC88_MergeSortArray{
     public static void main(String[] args){
         System.out.println(1^1);
         System.out.println(1^0);
-        int[] nums1 = {1};
-        int[] nums2 = {};
+        int[] nums1 = {2,0};
+        int[] nums2 = {1};
         LC88_MergeSortArray test = new LC88_MergeSortArray();
-        test.merge(nums1,nums1.length, nums2, nums2.length);
+        test.merge(nums1,1, nums2, 1);
         System.out.println(Arrays.toString(nums1));
     }
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        if(n == 0){
-            return;
-        }
-        int[] result = new int[m+n];
-        int start1 = 0, start2 = 0, i = 0;
-        while(start1 < m || start2 < n){
-            if(start1 < m && nums1[start1] < nums2[start2]){
-                result[i++] = nums1[start1++];
-            }else {
-                result[i++] = nums2[start2++];
-            }
+        // Make a copy of nums1.
+        int [] nums1_copy = new int[m];
+        System.arraycopy(nums1, 0, nums1_copy, 0, m);
 
-        }
-        System.arraycopy(result, 0, nums1,0, result.length);
+        // Two get pointers for nums1_copy and nums2.
+        int p1 = 0;
+        int p2 = 0;
+
+        // Set pointer for nums1
+        int p = 0;
+
+        // Compare elements from nums1_copy and nums2
+        // and add the smallest one into nums1.
+        while ((p1 < m) && (p2 < n))
+            nums1[p++] = (nums1_copy[p1] < nums2[p2]) ? nums1_copy[p1++] : nums2[p2++];
+
+        // if there are still elements to add
+        if (p1 < m)
+            System.arraycopy(nums1_copy, p1, nums1, p1 + p2, m + n - p1 - p2);
+        if (p2 < n)
+            System.arraycopy(nums2, p2, nums1, p1 + p2, m + n - p1 - p2);
+
     }
 }

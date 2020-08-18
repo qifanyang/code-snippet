@@ -1,5 +1,7 @@
 package spring;
 
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import spring.bean.BeanForAutowiredInject;
 import spring.bean.BeanForConstructorInject;
@@ -31,6 +33,17 @@ public class BeanForInjectTest{
         System.out.println();
 
         applicationContext.getBean(CircleA.class);
+        //实例化CircleA 会提前暴露ObjectFactory, 当向CircleA注入依赖CircleB时,
+        //会实例化CircleB , 然后CircleB注入时又会去找CircleA, 这时会调用实例化CircleA
+        //时添加的SingletonFactory.getObject(), 其中CircleA bean是还没完全完成注入,会使用BeanPostProcessor
+        //对bean进行增强,返回CircleA实例后, CircleB实例化完成并返回, 然后CircleA也完成初始化
+
+//        addSingletonFactory(beanName, new ObjectFactory<Object>() {
+//            @Override
+//            public Object getObject() throws BeansException {
+//                return getEarlyBeanReference(beanName, mbd, bean);
+//            }
+//        });
         //当bean定义有factory-method的时候,获取bean时返回该方法返回的对象
 
         //spring依赖解析处理流程

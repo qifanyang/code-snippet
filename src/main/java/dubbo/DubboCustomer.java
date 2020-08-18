@@ -1,5 +1,7 @@
 package dubbo;
 
+import com.alibaba.dubbo.common.extension.ExtensionLoader;
+import com.alibaba.dubbo.rpc.Protocol;
 import custom.LoginUser;
 import dubbo.custom.LoginService;
 import dubbo.test.Provider;
@@ -10,6 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class DubboCustomer {
     public static void main(String[] args) {
+        Protocol protocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "dubbo-customer.xml" });
         context.start();
         Provider demoService = (Provider) context.getBean("demoService1"); // 获取bean

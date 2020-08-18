@@ -3,8 +3,7 @@ package core;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,31 +18,24 @@ import java.util.regex.Pattern;
  */
 public class A {
 
-    public static void main(String[] args){
-        LocalDateTime now = LocalDateTime.now();
-        String format = now.format(DateTimeFormatter.ofPattern("yyMMddHHmmssSSS"));
-        System.out.println(format);
-        System.out.println(new Timestamp(new Date().getTime()).getTime());
-        Integer vv = new Integer(777);
-        System.out.println(vv.equals(777));
-        //{"status":1000,"message":"操作成功","content":"6F9FF5ED4B2AC3E2190D2181560E4D7F50353DA3"}
-        String s = "{\"status\":1000,\"message\":\"操作成功\",\"content\":\"6F9FF5ED4B2AC3E2190D2181560E4D7F50353DA3\"}";
-        String regex="\"content\":\"(.*?)\"}";
-        Matcher matcher=Pattern.compile(regex).matcher(s);
-        while(matcher.find())
-        {
-            String ret=matcher.group(1);
-            System.out.println(ret);
-        }
-
-
-        Integer integer = get();
-        System.out.println(integer);
-        ArrayList<Integer> list = new ArrayList<>();
-
+    static boolean foo(char c) {
+        System.out.print(c);
+        return true;
     }
-
-    public static Integer get(){
-        return (Integer)null;
+    public static void main(String[] argv) {
+        int i = 0;
+        for (foo('A'); foo('B') && (i < 2); foo('C')) {
+            i++;
+            foo('D');
+        }
+        List<Integer> sss = Arrays.asList(3, 1, 7);
+        Collections.sort(sss);
+        System.out.println(sss);
+        new Thread(){
+            @Override
+            public void run() {
+                //do something
+            }
+        }.start();
     }
 }
