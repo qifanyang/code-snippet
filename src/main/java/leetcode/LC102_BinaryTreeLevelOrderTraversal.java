@@ -1,9 +1,6 @@
 package leetcode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *  算法题目要静下心思考,基础算法掌握好解决复杂点的算法思路更多更快
@@ -65,6 +62,9 @@ public class LC102_BinaryTreeLevelOrderTraversal{
             //广度优先,需要收集树形结构每一层有多少个节点,然后继续收集下一层有多少节点
             int size = queue.size();
             List<TreeNode> subList = new ArrayList<>();
+            //for循环的size 判断实现巧妙
+            //每次遍历节点, 会将子节点再次加入queue, 利用queue FIFO特性
+            //利用size, 只处理开始遍历的节点, 加入的子子节点不处理
             for(int i = 0; i < size; i++){
                 //第一层size为1 只取一次, 第二层size为2 会取两次, 以此类推
                 //没有递归,一层一层的遍历
@@ -77,7 +77,9 @@ public class LC102_BinaryTreeLevelOrderTraversal{
             resultList.add(subList);
         }
 
-        System.out.println(resultList);
+        for (List<TreeNode> treeNodes : resultList) {
+            System.out.println(Arrays.toString(treeNodes.toArray()));
+        }
         //交换list中的值
         resultList.forEach(subList->{
             int start = 0, end = subList.size() - 1;

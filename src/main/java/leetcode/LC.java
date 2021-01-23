@@ -37,6 +37,17 @@ public class LC {
         return root;
     }
 
+    public static TreeNode makeTree(Integer root, Integer left, Integer right) {
+        TreeNode treeNode = new TreeNode(root);
+        if (left != null) {
+            treeNode.left = new TreeNode(left);
+        }
+        if (right != null) {
+            treeNode.right = new TreeNode(right);
+        }
+        return treeNode;
+    }
+
     public static void main(String[] args) {
         System.out.println(cc(5));
     }
