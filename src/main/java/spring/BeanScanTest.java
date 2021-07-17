@@ -1,6 +1,8 @@
 package spring;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 import spring.service.RoleService;
 import spring.service.UserService;
 
@@ -14,6 +16,7 @@ import spring.service.UserService;
  * @version 1.0 2016/2/25
  */
 public class BeanScanTest {
+    @RequestMapping(value = "aaa", path = "cccc")
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean-scan.xml");
         context.start();

@@ -1,6 +1,5 @@
 package spring.annotation;
 
-import org.apache.ibatis.type.Alias;
 import org.springframework.core.annotation.AliasFor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
