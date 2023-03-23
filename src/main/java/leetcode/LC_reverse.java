@@ -8,14 +8,14 @@ public class LC_reverse {
         ListNode header = LC.makeSingleLinkedList(1, 3, 5, 7, 8, 9);
         LC.print(header);
 
-        //
+        //双指针
         ListNode pre = null, next = null;
         ListNode cur = header;
         while (cur != null) {
-            next = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = next;
+            next = cur.next;//存储next, 用于移动cur
+            cur.next = pre;//断开并指向前驱节点, 第一次前驱为空, 后面不为空
+            pre = cur;//移动前驱节点
+            cur = next;//移动当前节点指针
         }
         LC.print(pre);
         /**

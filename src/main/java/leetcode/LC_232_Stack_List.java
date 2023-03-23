@@ -5,13 +5,14 @@ import java.util.Stack;
 /**
  * Created by yangqifan on 2020/8/29.
  */
-public class LC_232 {
+public class LC_232_Stack_List {
 
     //用栈实现队列, 保持先进入栈的元素在栈顶即可
     //栈FILO, 队列FIFO, 一般使用双栈实现队列, 双队列实现栈
 
     Stack<Integer> s1 = new Stack<>();
     Stack<Integer> s2 = new Stack<>();
+    //中间状态即是 读状态还是写状态
     private boolean middle = false;
 
     //为了变判断栈是否有元素不好理解, 使用s1作为最终栈

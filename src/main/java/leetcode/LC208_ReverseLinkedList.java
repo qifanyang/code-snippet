@@ -9,8 +9,8 @@ public class LC208_ReverseLinkedList{
         ListNode list = LC.makeSingleLinkedList(1, 2, 3);
         LC208_ReverseLinkedList test = new LC208_ReverseLinkedList();
         LC.print(list);
-        ListNode result = test.reverseList(list);
-//        ListNode result = test.reverseListIterator(list);
+//        ListNode result = test.reverseList(list);
+        ListNode result = test.reverseListIterator(list);
         LC.print(result);
     }
 
