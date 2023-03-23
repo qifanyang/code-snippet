@@ -23,7 +23,7 @@ public class BigFileCopy {
         long pos = 0;
         int writeSize = 1000*1000*1000*1;
         while (leftSize > 0){
-            //一次性映射较大文件不能一次完成
+            //因操作系统有限制, 一次性映射较大文件不能一次完成, transferTo代码中也限制一次最大传输Integer.MAX_VALUE
             //sourceFile.getChannel().transferTo(0, sourceFile.length(), destFile.getChannel());
             long l = sourceFile.getChannel().transferTo(pos, writeSize, destFile.getChannel());
             System.out.println(l);
