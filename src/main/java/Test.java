@@ -13,6 +13,8 @@ public class Test{
     private final static long workerIdBits = 4L;
     public final static long maxWorkerId = -1L ^ -1L << workerIdBits;
     public static void main(String[] args){
+        List<String> a = new ArrayList<>();
+        List<Integer> b = new ArrayList<>();
 
         System.out.println(Integer.toBinaryString(1 << (35 & 0x1f)));
 

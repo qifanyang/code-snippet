@@ -14,6 +14,7 @@ public class ScheduledMessageProducer {
             Message message = new Message("TestTopic", ("Hello scheduled message " + i).getBytes());
             // This message will be delivered to consumer 10 seconds later.
             message.setDelayTimeLevel(3);
+           // message.setDelayTimeMs(999);
             // Send the message
             producer.send(message);
         }

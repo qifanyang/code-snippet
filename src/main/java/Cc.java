@@ -119,4 +119,8 @@ public class Cc {
         int value;
     }
 
+
+     void xx(Class<? extends String> cls){
+
+    }
 }

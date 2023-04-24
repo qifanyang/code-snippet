@@ -15,6 +15,10 @@ import java.util.*;
 public class LC102_BinaryTreeLevelOrderTraversal{
 
     public static void main(String[] args){
+        int a = Integer.MAX_VALUE - 100;
+        int b = Integer.MAX_VALUE - a + 50;
+        int c = (a+b)/2;
+
         TreeNode root = new TreeNode(1);
         LC.makeTreeNode(root, 2, 3);
         LC.makeTreeNode(root.left, 4, 5);

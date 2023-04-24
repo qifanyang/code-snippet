@@ -14,4 +14,12 @@ public class Node<T> {
         System.out.println("Node.setData");
         this.data = data;
     }
+
+    void getx(Integer x){
+
+    }
+
+    public T getData(){
+        return data;
+    }
 }
