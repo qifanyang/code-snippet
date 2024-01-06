@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="x.css">
+    <title>弹窗示例</title>
+</head>
+<body>
+
+<!-- 在 body 开始标签之前添加一个半透明蒙层的 div -->
+<div id="overlay" class="overlay"></div>
+
+<button onclick="openModal()">打开弹窗</button>
+
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>这是一个简单的弹窗内容。</p>
+    </div>
+</div>
+
+<script src="x.js"></script>
+</body>
+</html>

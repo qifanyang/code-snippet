@@ -1,0 +1,20 @@
+a： Anchor Element（锚点元素）
+div： Division Element（分割元素）
+p： Paragraph Element（段落元素）
+h1, h2, ..., h6： Heading Elements（标题元素，h1是最高级标题，h6是最低级标题）
+span： Span Element（行内元素的文本容器）
+img： Image Element（图像元素）
+ul： Unordered List Element（无序列表元素）
+ol： Ordered List Element（有序列表元素）
+li： List Item Element（列表项元素）
+table： Table Element（表格元素）
+tr： Table Row Element（表格行元素）
+td： Table Data Cell Element（表格数据单元格元素）
+th： Table Header Cell Element（表格头部单元格元素）
+form： Form Element（表单元素）
+input： Input Element（输入框元素）
+textarea： Textarea Element（文本域元素）
+button： Button Element（按钮元素）
+label： Label Element（标签元素，用于关联表单元素）
+select： Select Element（下拉框元素）
+option： Option Element（下拉框的选项元素）
