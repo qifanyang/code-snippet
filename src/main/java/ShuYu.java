@@ -15,7 +15,6 @@ public class ShuYu {
     }
 
     public static void main(String[] args) {
-        Date
         double x = Math.pow(2, 16) + 2;
         System.out.println(Math.pow(2, 12));
         System.out.println(Math.pow(2, 16));

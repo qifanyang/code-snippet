@@ -1,0 +1,8 @@
+.item {
+    float: left;
+    width: 200px;
+    margin: 10px;
+    background-color: #ddd;
+    padding: 20px;
+    box-sizing: border-box;
+}

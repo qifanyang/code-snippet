@@ -1,0 +1,7 @@
+.column {
+    float: left;
+    width: 33.33%; /* 设置三列等宽 */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+}
